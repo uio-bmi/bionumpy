@@ -341,58 +341,71 @@ def bnpdataclass(base_class: type) -> Type[BNPDataClass]:
             """
             for field in dataclasses.fields(obj):
                 pre_val = getattr(obj, field.name)
-                numeric_types = (int, float, bool)
-                optional_numeric_types = tuple(Optional[t] for t in numeric_types)
-                if field.type == Union[BNPDataClass, str]:
-                    if isinstance(pre_val,
-                                  (str, list, EncodedArray, EncodedRaggedArray, RaggedArray, np.ndarray)) or \
-                            hasattr(pre_val, 'to_numpy'):
-                        val = as_encoded_array(pre_val)
-                    elif True or isinstance(pre_val, BNPDataClass):
-                        val = pre_val
-                    else:
-                        assert False, (field.type, type(pre_val))
+                try:
+                    val = cls.__convert_single_field(field, pre_val)
+                except Exception as e:
+                    raise ValueError(f"Error when converting {field.name} to {field.type} with value {pre_val}") from e
 
-                elif field.type in numeric_types + optional_numeric_types:
-                    val = np.asanyarray(pre_val)
-                elif field.type == str:
-                    assert isinstance(pre_val, (
+                setattr(obj, field.name, val)
+
+        @classmethod
+        def __convert_single_field(cls, field, pre_val):
+            numeric_types = (int, float, bool)
+            optional_numeric_types = tuple(Optional[t] for t in numeric_types)
+            if field.type == Union[BNPDataClass, str]:
+                if isinstance(pre_val,
+                              (str, list, EncodedArray, EncodedRaggedArray, RaggedArray, np.ndarray)) or \
+                        hasattr(pre_val, 'to_numpy'):
+                    val = as_encoded_array(pre_val)
+                elif True or isinstance(pre_val, BNPDataClass):
+                    val = pre_val
+                else:
+                    assert False, (field.type, type(pre_val))
+
+            elif field.type in numeric_types + optional_numeric_types:
+                val = np.asanyarray(pre_val)
+            elif field.type == str:
+                assert isinstance(pre_val, (
                     str, list, EncodedArray, EncodedRaggedArray, RaggedArray, np.ndarray)) or hasattr(pre_val,
                                                                                                       'to_numpy'), (
                     field, pre_val, type(pre_val))
-                    val = as_encoded_array(pre_val)
-                elif field.type == SequenceID or field.type == List[str]:
-                    if isinstance(pre_val, EncodedArray):
-                        val = pre_val
-                    else:
-                        val = as_string_array(pre_val)
-                elif is_subclass_or_instance(field.type, Encoding):
-                    if is_subclass_or_instance(field.type, NumericEncoding):
-                        assert isinstance(pre_val,
-                                          (str, list, EncodedArray, EncodedRaggedArray, RaggedArray, np.ndarray)), \
-                            (field, pre_val, type(pre_val))
-                    else:
-                        assert isinstance(pre_val, (str, list, EncodedArray, EncodedRaggedArray)) or hasattr(pre_val, 'to_numpy'), (field, pre_val)
-                    # must do as_encoded and not explicit encode as pre_val might already
-                    # be encoded
-                    val = as_encoded_array(pre_val, field.type)
-                    if isinstance(field.type, FlatAlphabetEncoding):
-                        val = val.ravel()
-                elif field.type == List[int] or field.type == List[bool] or field.type == List[float]:
-                    if not isinstance(pre_val, RaggedArray):
-                        try:
-                            val = RaggedArray(pre_val)
-                        except TypeError as e:
-                            val = np.asanyarray(pre_val)
-                    else:
-                        val = pre_val
-                elif inspect.isclass(field.type) and issubclass(field.type, BNPDataClass):
-                    # assert isinstance(pre_val, (field.type, field.type._single_entry)), (field.type, type(pre_val))
+                val = as_encoded_array(pre_val)
+            elif field.type == SequenceID or field.type == List[str]:
+                if isinstance(pre_val, EncodedArray):
                     val = pre_val
                 else:
-                    assert False, field.type
-
-                setattr(obj, field.name, val)
+                    val = as_string_array(pre_val)
+            elif is_subclass_or_instance(field.type, Encoding):
+                if is_subclass_or_instance(field.type, NumericEncoding):
+                    assert isinstance(pre_val,
+                                      (str, list, EncodedArray, EncodedRaggedArray, RaggedArray, np.ndarray)), \
+                        (field, pre_val, type(pre_val))
+                    val = as_encoded_array(pre_val, field.type)
+                elif getattr(field.type, 'returns_raw', False) and isinstance(pre_val, (np.ndarray, np.generic)):
+                    val = pre_val
+                else:
+                    assert isinstance(pre_val, (str, list, EncodedArray, EncodedRaggedArray, bool)) or hasattr(pre_val,
+                                                                                                               'to_numpy'), (
+                    field, pre_val, type(pre_val), isinstance(pre_val, np.generic))
+                    val = as_encoded_array(pre_val, field.type)
+                # must do as_encoded and not explicit encode as pre_val might already
+                # be encoded
+                if isinstance(field.type, FlatAlphabetEncoding):
+                    val = val.ravel()
+            elif field.type == List[int] or field.type == List[bool] or field.type == List[float]:
+                if not isinstance(pre_val, RaggedArray):
+                    try:
+                        val = RaggedArray(pre_val)
+                    except TypeError as e:
+                        val = np.asanyarray(pre_val)
+                else:
+                    val = pre_val
+            elif inspect.isclass(field.type) and issubclass(field.type, BNPDataClass):
+                # assert isinstance(pre_val, (field.type, field.type._single_entry)), (field.type, type(pre_val))
+                val = pre_val
+            else:
+                assert False, field.type
+            return val
 
     NewClass.__name__ = base_class.__name__
     NewClass.__qualname__ = base_class.__qualname__

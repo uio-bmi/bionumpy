@@ -75,8 +75,8 @@ The `data` variable now is a type of `dataclass` with the fields `name`, `sequen
 
 As with NumPy, you can also take the mean and other operations over various axis. Specifying `axis=0` gives you the mean over the first axis, i.e. the mean of the base quality at each base position:
 
-    >>> np.mean(data.quality, axis=0)
-    array([5.194, 4.599, 5.591, ..., 5.   , 6.   , 6.   ])
+    >>> np.mean(data.quality, axis=0) # doctest:+ELLIPSIS
+    array([5.194, 4.599, 5.591, ..., 5.   , 6.   , 6.   ]...
 
 
 BioNumPy data can also be indexed exactly as you would index NumPy arrays. This means that if you e.g. want to get all the sequence entries with more than 30% G's, you could use NumPy-syntax like this:

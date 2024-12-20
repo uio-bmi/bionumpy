@@ -98,7 +98,7 @@ class StringArray(np.lib.mixins.NDArrayOperatorsMixin):
             return bytes(value, 'ascii')
         elif isinstance(value, self.__class__):
             return value.raw()
-        elif isinstance(value, EncodedArray):
+        elif isinstance(value, (EncodedArray, EncodedRaggedArray)):
             print(value)
             return string_array(value)
         return np.asanyarray(value, dtype='S')

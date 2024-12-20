@@ -2,11 +2,14 @@ import bionumpy as bnp
 from npstructures import ragged_slice
 
 
-def test_bamquality():
+def test_bamquality(filename="example_data/test.bam"):
     # Open the aligments file
-    alignments = bnp.open("example_data/test.bam").read()
-    
-    # Extract the first cigar operation for each alignment
+    alignments = bnp.open(filename).read()
+
+    # Filter out unmapped reads
+    alignments = alignments[alignments.flag & 4 == 0]
+
+    # Extract the first cigar operation for each alignments
     start_cigar = alignments.cigar_op[..., 0]
     
     # Get aligments that start with soft-clip

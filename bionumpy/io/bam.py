@@ -25,7 +25,8 @@ class BamBufferExtractor:
         self._data = data
         self._new_lines = starts
         self._ends = ends
-        self._chromosome_names = as_encoded_array([h[0] for h in header_data])
+        self._chromosome_names = np.array([h[0] for h in header_data])
+        # self._chromosome_names = as_encoded_array([h[0] for h in header_data])
         self._header_data = header_data
         self._functions = [self._get_chromosome,
                            self._get_read_name,

@@ -10,11 +10,12 @@ from bionumpy import as_encoded_array
 from bionumpy.io import FastQBuffer
 from bionumpy.bnpdataclass import bnpdataclass
 from bionumpy.datatypes import SequenceEntryWithQuality
-from bionumpy.encodings import DigitEncoding, QualityEncoding, CigarEncoding, DigitEncodingFactory, DNAEncoding, ACGTnEncoding
+from bionumpy.encodings import DigitEncoding, QualityEncoding, CigarEncoding, DigitEncodingFactory, DNAEncoding, \
+    ACGTnEncoding
 from bionumpy.encoded_array import NumericEncoding, OneToOneEncoding, BaseEncoding
 
 
-#from bionumpy.encoded_array import OneToOneEncoding
+# from bionumpy.encoded_array import OneToOneEncoding
 
 @pytest.fixture
 def seqs():
@@ -80,9 +81,9 @@ def test_encode_numeric(data):
 
 @pytest.mark.parametrize("data",
                          ["1234",
-                         ["1234", "5678"],
-                         np.array([1, 2, 3, 4]),
-                         RaggedArray([[1, 2, 3], [4]])])
+                          ["1234", "5678"],
+                          np.array([1, 2, 3, 4]),
+                          RaggedArray([[1, 2, 3], [4]])])
 def test_digit_encoding(data):
     encoding = DigitEncoding
     encoded = encoding.encode(data)
@@ -161,3 +162,13 @@ def test_custom_numeric_encoding():
     encoded = encoding.encode(string)
     encoded2 = encoding.encode(array)
     assert_raggedarray_equal(encoded, encoded2)
+
+
+def test_bool_encoding():
+    from bionumpy.encodings.bool_encoding import BoolStringEncoding, bool_string
+    encoding = bool_string
+    data = ["True", "False", "True"]
+    encoded = encoding.encode(data)
+    decoded = encoding.decode(encoded)
+    assert np.all(decoded == data)
+    print(as_encoded_array(data, encoding))

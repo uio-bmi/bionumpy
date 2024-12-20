@@ -1,5 +1,7 @@
 from pathlib import PurePath
 import os
+
+from .indexed_bam import IndexedBamFile
 from .indexed_fasta import IndexedFasta, create_index
 from .files import bnp_open
 from .delimited_buffers import DelimitedBuffer
@@ -45,8 +47,13 @@ def open_indexed(filename: str) -> IndexedFasta:
     path = PurePath(filename)
     suffix = path.suffixes[-1]
     index_file_name = path.with_suffix(path.suffix + ".fai")
-    assert suffix in (".fa", ".fasta"), "Only fasta supported for indexed read"
-    if not os.path.isfile(index_file_name):
-        index = create_index(path)
-        bnp_open(index_file_name, "w", buffer_type=IndexBuffer).write(index)
-    return IndexedFasta(filename)
+
+    if suffix in (".fa", ".fasta"):
+        if not os.path.isfile(index_file_name):
+            index = create_index(path)
+            bnp_open(index_file_name, "w", buffer_type=IndexBuffer).write(index)
+        return IndexedFasta(filename)
+    elif suffix == '.bam':
+        return IndexedBamFile(filename, create_index=True)
+    else:
+        raise ValueError(f"Unknown file type {suffix} for indexed read. Only .fa, .fasta and .bam are supported.")

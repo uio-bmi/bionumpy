@@ -1,3 +1,5 @@
+import time
+
 import bionumpy as bnp
 
 
@@ -19,10 +21,11 @@ def test():
     unique_intersect('example_data/ctcf.bed.gz', 'example_data/znf263.bed.gz',
                      'example_data/hg38.chrom.sizes',
                      out_filename)
-    assert bnp.count_entries(out_filename) == 3951
 
+    assert bnp.count_entries(out_filename) == 3951
 
 if __name__ == '__main__':
     import sys
-
+    t = time.time()
     unique_intersect(*sys.argv[1:])
+    print("Time:", time.time()-t)

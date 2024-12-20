@@ -22,12 +22,24 @@ def read_jaspar_matrix(filename):
     # return alphabet, matrix
 
 
-def read_csv_motif(filename):
+def read_csv_motif(filename: str) -> PWM:
+    '''
+    Read a PWM from a CSV file. The first line should be the alphabet, and the rest should be the matrix with probabilities.
+
+    Parameters
+    ----------
+    filename
+
+    Returns
+    -------
+    PWM
+
+    '''
     f = open(filename)
     alphabet = f.readline().strip().split(",")
     pwm = {letter: [] for letter in alphabet}
     for line in f:
-        line = line.strip().split(",")
+        parts = line.strip().split(",")
         for i, letter in enumerate(alphabet):
-            pwm[letter].append(float(line[i]))
+            pwm[letter].append(float(parts[i]))
     return PWM.from_dict(pwm)

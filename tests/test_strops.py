@@ -114,7 +114,7 @@ def test_str_equal_two_encoded_ragged_arrays():
 def test_chromosome_str_equal(data_path):
     bam = bnp.open(data_path / "test.bam").read()
     bam2 = bnp.open(data_path / "test.bam").read()
-    assert np.all(str_equal(bam.chromosome, bam2.chromosome))
+    assert np.all(bam.chromosome==bam2.chromosome)
 
 
 if __name__ == "__main__":

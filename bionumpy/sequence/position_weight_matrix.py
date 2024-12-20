@@ -100,7 +100,7 @@ class PWM:
         return scores
 
     @classmethod
-    def from_dict(cls, dictionary: Dict[str, ArrayLike], background: Dict[str, float] = None) -> "PWM":
+    def from_dict(cls, dictionary: Dict[str, typing.Union[ArrayLike, typing.List]], background: Dict[str, float] = None) -> "PWM":
         """Create a PWM object from a dict of letters to position probabilities
 
         This takes raw probabilities as input. Not log

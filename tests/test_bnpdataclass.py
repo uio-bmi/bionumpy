@@ -1,11 +1,14 @@
 import dataclasses
 import pytest
 import numpy as np
-from bionumpy import AminoAcidEncoding, DNAEncoding
+from bionumpy import AminoAcidEncoding, DNAEncoding, EncodedArray, BaseEncoding
 from bionumpy.bnpdataclass import bnpdataclass
 from bionumpy.bnpdataclass.bnpdataclass import make_dataclass, BNPDataClass, dynamic_concatenate
 from bionumpy.bnpdataclass.bnpdataclassfunction import bnpdataclassfunction
 from numpy.testing import assert_equal
+
+from bionumpy.datatypes import SequenceID
+from bionumpy.encodings.bool_encoding import bool_string
 from bionumpy.util.testing import assert_bnpdataclass_equal
 # import pandas as pd
 import bionumpy as bnp
@@ -140,4 +143,21 @@ def test_tolist(data):
         assert isinstance(entry, Person.dataclass)
         assert isinstance(entry.name, str)
         assert isinstance(entry.age, int), type(entry.age)
+
+@pytest.fixture()
+def bool_class():
+    @bnpdataclass
+    class BNPDC:
+        sequence_id: SequenceID
+        test_field: bool_string
+
+    return BNPDC
+
+def test_bool_class(bool_class):
+    obj = bool_class(sequence_id=['hei', 'ja'],
+                     test_field=['True', 'False'])
+    from bionumpy.io.delimited_buffers import DelimitedBuffer
+    buffer = DelimitedBuffer.from_data(obj)
+
+
 

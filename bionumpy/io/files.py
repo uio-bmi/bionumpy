@@ -211,8 +211,8 @@ def count_entries(filename: str, buffer_type: FileBuffer = None) -> int:
     path = PurePath(filename)
     suffix = path.suffixes[-1]
     is_gzip = suffix in (".gz", ".bam")
-    if suffix == '.bam':
-        reader = NumpyBamReader
+    #if suffix == '.bam':
+    #    reader = NumpyBamReader
     if suffix == ".gz":
         suffix = path.suffixes[-2]
     open_func = gzip.open if is_gzip else open

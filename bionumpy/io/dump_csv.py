@@ -4,6 +4,7 @@ from typing import List, Dict, Tuple, Optional
 from .strops import ints_to_strings, int_lists_to_strings, float_to_strings
 from ..encoded_array import EncodedArray, Encoding, EncodedRaggedArray, BaseEncoding, encoded_array_from_nparray, \
     change_encoding, as_encoded_array
+from ..encodings.bool_encoding import bool_string
 from ..encodings.string_encodings import StringEncoding
 from npstructures import RaggedArray
 
@@ -48,6 +49,7 @@ def get_column(values, field_type) -> EncodedRaggedArray:
         funcs = {int: ints_to_strings,
                  Optional[int]: optional_ints_to_strings,
                  str: str_func,  # lambda x: x,
+                 bool_string: lambda x: bool_string.decode(x),
                  SequenceID: seq_id_func,
                  List[int]: int_lists_to_strings,
                  float: float_to_strings,
@@ -55,7 +57,7 @@ def get_column(values, field_type) -> EncodedRaggedArray:
                  bool: lambda x: ints_to_strings(x.astype(int)),
                  List[str]: str_matrix_func
                  }
-        if is_subclass_or_instance(datatype, Encoding):
+        if is_subclass_or_instance(datatype, Encoding) and not datatype==bool_string:
             encoding = datatype
 
             def dynamic(x):
