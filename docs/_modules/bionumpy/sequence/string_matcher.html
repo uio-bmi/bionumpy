@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.sequence.string_matcher &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.sequence.string_matcher</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.sequence.string_matcher</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span>
+
+<span class="kn">from</span> <span class="nn">.rollable</span> <span class="kn">import</span> <span class="n">RollableFunction</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">as_encoded_array</span><span class="p">,</span> <span class="n">Encoding</span>
+<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">as_strided</span>
+<span class="kn">from</span> <span class="nn">npstructures</span> <span class="kn">import</span> <span class="n">RaggedArray</span>
+<span class="kn">from</span> <span class="nn">..encodings</span> <span class="kn">import</span> <span class="n">AlphabetEncoding</span>
+<span class="kn">from</span> <span class="nn">..util.typing</span> <span class="kn">import</span> <span class="n">EncodedArrayLike</span><span class="p">,</span> <span class="n">SingleEncodedArrayLike</span>
+
+
+<div class="viewcode-block" id="match_string">
+<a class="viewcode-back" href="../../../modules/sequences.html#bionumpy.sequence.match_string">[docs]</a>
+<span class="k">def</span> <span class="nf">match_string</span><span class="p">(</span><span class="n">sequence</span><span class="p">:</span> <span class="n">EncodedArrayLike</span><span class="p">,</span> <span class="n">matching_sequence</span><span class="p">:</span> <span class="n">SingleEncodedArrayLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ArrayLike</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Matches a sequence aginst sequences and returns a boolean RaggedArray representing positions</span>
+<span class="sd">    where the sequence matches.</span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sequence :</span>
+<span class="sd">    matching_sequence :</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ArrayLike</span>
+<span class="sd">        A boolean RaggedArray representing positions where the sequence matches.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import bionumpy as bnp</span>
+<span class="sd">    &gt;&gt;&gt; sequence = bnp.as_encoded_array([&#39;ACGT&#39;, &#39;TACTAC&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; matching_sequence = bnp.as_encoded_array(&#39;AC&#39;, sequence.encoding)</span>
+<span class="sd">    &gt;&gt;&gt; bnp.match_string(sequence, matching_sequence)</span>
+<span class="sd">    ragged_array([ True False False]</span>
+<span class="sd">    [False  True False False  True])</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+    <span class="n">enforced_encoding</span> <span class="o">=</span> <span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span>
+    <span class="n">matching_sequence</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">matching_sequence</span><span class="p">,</span> <span class="n">enforced_encoding</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">StringMatcher</span><span class="p">(</span><span class="n">matching_sequence</span><span class="p">,</span> <span class="n">enforced_encoding</span><span class="p">)</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">StringMatcher</span><span class="p">(</span><span class="n">RollableFunction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matching_sequence</span><span class="p">,</span> <span class="n">encoding</span><span class="p">:</span><span class="n">Encoding</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span> <span class="o">=</span> <span class="n">encoding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">matching_sequence</span><span class="p">,</span> <span class="n">target_encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">sequence</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+    
+<span class="k">class</span> <span class="nc">RegexMatcher</span><span class="p">(</span><span class="n">RollableFunction</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Matches regexes of various lengths across a RaggedArray of sequences by constructing a list of FixedLenRegexMatcher objects from the original</span>
+<span class="sd">    flexible length regex expression.</span>
+
+<span class="sd">    It overrides the rolling_window function from the superclass to invoke FixedLenRegexMatcher objects across different window sizes for matcher</span>
+<span class="sd">    objects.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matching_regex</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span> <span class="o">=</span> <span class="n">construct_flexible_len_regex_matchers</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">:</span> <span class="n">EncodedArray</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">sub_matcher</span><span class="o">.</span><span class="n">window_size</span> <span class="k">for</span> <span class="n">sub_matcher</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">rolling_window</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_sequence</span><span class="p">:</span> <span class="n">RaggedArray</span><span class="p">,</span> <span class="n">window_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;valid&quot;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_encoding&quot;</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_sequence</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">_sequence</span><span class="p">,</span> <span class="n">target_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s2">&quot;valid&quot;</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Mode is set to &#39;valid&#39; in rolling_window(), but RegexMatcher uses only mode &#39;same&#39;. Switching to &#39;same&#39;...&quot;</span><span class="p">)</span>
+
+        <span class="n">shape</span><span class="p">,</span> <span class="n">sequence</span> <span class="o">=</span> <span class="p">(</span><span class="n">_sequence</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">_sequence</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+        <span class="n">out</span> <span class="o">=</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">),</span> <span class="n">shape</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">sub_matcher</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span><span class="p">):</span>
+            <span class="n">windows</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="n">sequence</span><span class="o">.</span><span class="n">strides</span> <span class="o">+</span> <span class="n">sequence</span><span class="o">.</span><span class="n">strides</span><span class="p">,</span>
+                                 <span class="n">shape</span><span class="o">=</span><span class="n">sequence</span><span class="o">.</span><span class="n">shape</span> <span class="o">+</span> <span class="p">(</span><span class="n">sub_matcher</span><span class="o">.</span><span class="n">window_size</span><span class="p">,),</span> <span class="n">writeable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">convoluted</span> <span class="o">=</span> <span class="n">sub_matcher</span><span class="p">(</span><span class="n">windows</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_sequence</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">):</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">convoluted</span><span class="p">,</span> <span class="n">shape</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">_sequence</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">)):</span>
+                <span class="n">out</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">out</span><span class="p">,</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">convoluted</span><span class="p">,</span> <span class="n">shape</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">class</span> <span class="nc">FixedLenRegexMatcher</span><span class="p">(</span><span class="n">RollableFunction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matching_regex</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span> <span class="o">=</span> <span class="n">construct_fixed_len_regex_matchers</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span> <span class="o">=</span> <span class="n">encoding</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">window_size</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="n">union_of_sub_matches</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="n">sequence</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">matcher</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_sub_matchers</span><span class="p">:</span>
+            <span class="n">union_of_sub_matches</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">union_of_sub_matches</span><span class="p">,</span> <span class="n">matcher</span><span class="p">(</span><span class="n">sequence</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">union_of_sub_matches</span>
+
+
+<span class="k">class</span> <span class="nc">MaskedStringMatcher</span><span class="p">(</span><span class="n">RollableFunction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">matching_sequence_array</span><span class="p">,</span> <span class="n">mask</span><span class="p">):</span>
+        <span class="c1"># assert isinstance(matching_sequence_array, Sequence), type(matching_sequence_array)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">matching_sequence_array</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span> <span class="o">=</span> <span class="n">matching_sequence_array</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span> <span class="o">=</span> <span class="n">mask</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">window_size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="n">sequence</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span><span class="p">,</span> <span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span><span class="p">)</span>
+        <span class="n">direct_match</span> <span class="o">=</span> <span class="p">(</span><span class="n">sequence</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matching_sequence_array</span><span class="p">)</span>
+        <span class="n">masked_or_match</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_or</span><span class="p">(</span><span class="n">direct_match</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mask</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">masked_or_match</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">construct_fixed_len_regex_matchers</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;\[[^\]]+\]&#39;</span><span class="p">)</span>
+    <span class="n">hit</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">construct_wildcard_matcher</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">hit</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
+        <span class="n">pre</span><span class="p">,</span> <span class="n">post</span> <span class="o">=</span> <span class="n">matching_regex</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">start</span><span class="p">],</span> <span class="n">matching_regex</span><span class="p">[</span><span class="n">end</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">construct_fixed_len_regex_matchers</span><span class="p">(</span><span class="n">pre</span> <span class="o">+</span> <span class="n">symbol</span> <span class="o">+</span> <span class="n">post</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">matching_regex</span><span class="p">[</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span> <span class="n">end</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]]))</span>
+
+
+<span class="k">def</span> <span class="nf">construct_flexible_len_regex_matchers</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="s1">&#39;(([A-Z]|\[[A-Z]+\])+)\.\{(\d*)\,(\d+)\}(.+)&#39;</span><span class="p">)</span>
+    <span class="n">hit</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">hit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">construct_fixed_len_regex_matchers</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">min_gap</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hit</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span> <span class="k">if</span> <span class="n">hit</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;&#39;</span> <span class="k">else</span> <span class="mi">0</span>
+        <span class="n">max_gap</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">hit</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+
+        <span class="n">end_group_1</span> <span class="o">=</span> <span class="n">hit</span><span class="o">.</span><span class="n">end</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">start_group_5</span> <span class="o">=</span> <span class="n">hit</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+        <span class="n">pre</span><span class="p">,</span> <span class="n">post</span> <span class="o">=</span> <span class="n">matching_regex</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="n">end_group_1</span><span class="p">],</span> <span class="n">matching_regex</span><span class="p">[</span><span class="n">start_group_5</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">chain</span><span class="o">.</span><span class="n">from_iterable</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">construct_flexible_len_regex_matchers</span><span class="p">(</span><span class="n">pre</span> <span class="o">+</span> <span class="n">symbol</span> <span class="o">+</span> <span class="n">post</span><span class="p">,</span> <span class="n">encoding</span><span class="p">)</span>
+             <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="s2">&quot;.&quot;</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_gap</span><span class="p">,</span> <span class="n">max_gap</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]]))</span>
+
+
+<span class="k">def</span> <span class="nf">construct_wildcard_matcher</span><span class="p">(</span><span class="n">matching_regex</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">encoding</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">encoding</span><span class="p">,</span> <span class="n">AlphabetEncoding</span><span class="p">)</span>
+
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">symbol</span> <span class="o">==</span> <span class="s1">&#39;.&#39;</span> <span class="k">for</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="n">matching_regex</span><span class="p">])</span>
+    <span class="c1">#replacement = encoding.encoding.decode(0) if hasattr(encoding, &quot;encoding&quot;) \</span>
+    <span class="c1">#    else chr(encoding.decode(0))</span>
+    <span class="n">replacement</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">_raw_alphabet</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">base_seq</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">matching_regex</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">replacement</span><span class="p">)),</span>
+                                <span class="n">target_encoding</span><span class="o">=</span><span class="n">encoding</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">MaskedStringMatcher</span><span class="p">(</span><span class="n">base_seq</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

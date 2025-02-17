@@ -1,0 +1,468 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.io.vcf_buffers &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.io.vcf_buffers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.io.vcf_buffers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">npstructures</span> <span class="kn">import</span> <span class="n">RaggedArray</span>
+
+<span class="kn">from</span> <span class="nn">.dump_csv</span> <span class="kn">import</span> <span class="n">dump_csv</span>
+<span class="kn">from</span> <span class="nn">.file_buffers</span> <span class="kn">import</span> <span class="n">TextBufferExtractor</span>
+<span class="kn">from</span> <span class="nn">.named_text_buffer</span> <span class="kn">import</span> <span class="n">NamedBufferExtractor</span>
+<span class="kn">from</span> <span class="nn">.vcf_header</span> <span class="kn">import</span> <span class="n">parse_header</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass.bnpdataclass</span> <span class="kn">import</span> <span class="n">narrow_type</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass.lazybnpdataclass</span> <span class="kn">import</span> <span class="n">create_lazy_class</span><span class="p">,</span> <span class="n">ItemGetter</span><span class="p">,</span> <span class="n">LazyBNPDataClass</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">as_encoded_array</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass</span> <span class="kn">import</span> <span class="n">BNPDataClass</span><span class="p">,</span> <span class="n">make_dataclass</span>
+<span class="kn">from</span> <span class="nn">..datatypes</span> <span class="kn">import</span> <span class="n">VCFEntry</span><span class="p">,</span> <span class="n">VCFGenotypeEntry</span><span class="p">,</span> <span class="n">PhasedVCFGenotypeEntry</span><span class="p">,</span> <span class="n">PhasedVCFHaplotypeEntry</span><span class="p">,</span> \
+    <span class="n">VCFEntryWithGenotypes</span><span class="p">,</span> <span class="n">VCFWithInfoAsStringEntry</span>
+<span class="kn">from</span> <span class="nn">..encodings.vcf_encoding</span> <span class="kn">import</span> <span class="n">GenotypeRowEncoding</span><span class="p">,</span> <span class="n">PhasedGenotypeRowEncoding</span><span class="p">,</span> <span class="n">PhasedHaplotypeRowEncoding</span>
+<span class="kn">from</span> <span class="nn">.delimited_buffers</span> <span class="kn">import</span> <span class="n">DelimitedBuffer</span>
+<span class="kn">from</span> <span class="nn">..string_array</span> <span class="kn">import</span> <span class="n">StringArray</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GenotypeBufferExtractor</span><span class="p">(</span><span class="n">TextBufferExtractor</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_genotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_starts</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">InfoBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer_extractor</span><span class="p">:</span> <span class="n">NamedBufferExtractor</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span> <span class="o">=</span> <span class="n">buffer_extractor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dataclass</span> <span class="o">=</span> <span class="n">dataclass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_validated</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">concatenate</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">buffers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;InfoBuffer&#39;</span><span class="p">]):</span>
+        <span class="n">extractor</span> <span class="o">=</span> <span class="n">buffers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">_buffer_extractor</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">buffers</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">extractor</span><span class="p">,</span> <span class="n">buffers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">_dataclass</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dataclass</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_field_by_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_number</span><span class="p">,</span> <span class="n">field_type</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field_type</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">has_field_number</span><span class="p">(</span><span class="n">col_number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_field_by_number</span><span class="p">(</span><span class="n">col_number</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+
+<span class="k">def</span> <span class="nf">translate_field_type</span><span class="p">(</span><span class="n">info_dict</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">info_dict</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span>
+    <span class="n">number</span> <span class="o">=</span> <span class="n">info_dict</span><span class="p">[</span><span class="s1">&#39;Number&#39;</span><span class="p">]</span>
+    <span class="n">is_list</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">number</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="o">==</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="ow">and</span> <span class="n">is_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">t</span> <span class="o">==</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="ow">and</span> <span class="n">is_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">is_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span>
+    <span class="k">return</span> <span class="n">t</span>
+
+
+<span class="k">def</span> <span class="nf">create_info_dataclass</span><span class="p">(</span><span class="n">header_data</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">header_data</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="n">parse_header</span><span class="p">(</span><span class="n">header_data</span><span class="p">)</span>
+    <span class="n">is_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Number&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Number&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">is_int_list</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">val</span><span class="p">:</span> <span class="p">(</span><span class="n">val</span><span class="p">[</span><span class="s1">&#39;Type&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="ow">and</span> <span class="n">is_list</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+    <span class="n">info_fields</span> <span class="o">=</span> <span class="p">[(</span><span class="n">key</span><span class="p">,</span> <span class="n">translate_field_type</span><span class="p">(</span><span class="n">val</span><span class="p">))</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">header</span><span class="o">.</span><span class="n">INFO</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="n">dc</span> <span class="o">=</span> <span class="n">make_dataclass</span><span class="p">(</span><span class="n">info_fields</span><span class="p">,</span> <span class="s2">&quot;InfoDataclass&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">dc</span>
+
+
+<div class="viewcode-block" id="VCFBuffer">
+<a class="viewcode-back" href="../../../modules/io.html#bionumpy.io.VCFBuffer">[docs]</a>
+<span class="k">class</span> <span class="nc">VCFBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    https://samtools.github.io/hts-specs/VCFv4.2.pdf</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">VCFEntry</span>
+    <span class="n">lazy_dataclass</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">dataclass</span><span class="p">)</span>
+    <span class="n">_info_dataclass</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_vcf_data_class</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">info_cache</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">vcfentry_cache</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">actual_dataclass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">vcf_data_class</span>
+
+    <span class="k">def</span> <span class="nf">_get_field_by_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field_nr</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_info_field</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">field_nr</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_genotypes</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">field_nr</span> <span class="o">==</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_genotype_data</span><span class="p">()</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_field_by_number</span><span class="p">(</span><span class="n">field_nr</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">field_nr</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">val</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">val</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DelimitedBuffer&quot;</span><span class="p">:</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">position</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">info_dataclass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info_dataclass</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_info_dataclass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_info_dataclass</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_info_dataclass</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">vcf_data_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vcf_data_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vcf_data_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_vcf_dataclass</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_vcf_data_class</span>
+
+    <span class="k">def</span> <span class="nf">_get_info_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">field_nr</span> <span class="o">=</span> <span class="mi">7</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="s1">&#39;##INFO&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No header data found or INFO tag missing in header. Cannot parse INFO field.&#39;</span>
+                           <span class="s1">&#39; Returning as string. Please use VCFWithInfoAsAstringBuffer to ensure that info field is consistently parsed as string.&#39;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_field_by_number</span><span class="p">(</span><span class="n">field_nr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_dataclass_field</span><span class="p">(</span><span class="n">field_nr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_dataclass</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lazy_info_class</span><span class="p">)</span>
+        <span class="c1"># return create_lazy_class(dataclass)(item_getter)</span>
+
+    <span class="k">def</span> <span class="nf">_get_dataclass_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_nr</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">lazy_dataclass</span><span class="p">):</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_field_by_number</span><span class="p">(</span><span class="n">field_nr</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">flat_text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="n">delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">flat_text</span> <span class="o">==</span> <span class="s1">&#39;;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lengths</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">all_delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">delimiters</span><span class="p">,</span> <span class="n">offsets</span><span class="p">]),</span> <span class="n">kind</span><span class="o">=</span><span class="s1">&#39;mergesort&#39;</span><span class="p">)</span>
+        <span class="n">delimiter_offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">all_delimiters</span><span class="p">,</span> <span class="n">offsets</span><span class="p">)</span>
+        <span class="n">dl_lens</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">delimiter_offsets</span><span class="p">)</span>
+        <span class="n">starts</span> <span class="o">=</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">all_delimiters</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="n">dl_lens</span><span class="p">)</span>
+        <span class="n">ends</span> <span class="o">=</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">all_delimiters</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="n">dl_lens</span><span class="p">)</span>
+        <span class="c1"># starts[:, :-1] = starts[:, :-1] + 1</span>
+        <span class="n">ends</span> <span class="o">=</span> <span class="n">ends</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="c1"># [:, :-1] = ends[:, :-1] - 1</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span><span class="o">==</span><span class="mi">0</span> <span class="ow">or</span> <span class="n">ends</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">flat_text</span><span class="p">),</span> <span class="p">(</span><span class="n">ends</span><span class="p">,</span> <span class="n">flat_text</span><span class="p">)</span>
+        <span class="n">lens</span> <span class="o">=</span> <span class="n">ends</span> <span class="o">-</span> <span class="n">starts</span>
+        <span class="n">extractor</span> <span class="o">=</span> <span class="n">NamedBufferExtractor</span><span class="p">(</span>
+            <span class="n">flat_text</span><span class="p">,</span>
+            <span class="n">starts</span><span class="p">,</span>
+            <span class="n">lens</span><span class="p">,</span>
+            <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">dataclass</span><span class="p">)])</span>
+        <span class="n">buf</span> <span class="o">=</span> <span class="n">InfoBuffer</span><span class="p">(</span><span class="n">extractor</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">)</span>
+        <span class="n">item_getter</span> <span class="o">=</span> <span class="n">ItemGetter</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">dataclass</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">lazy_dataclass</span><span class="p">(</span><span class="n">item_getter</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_lazy_info_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">info_cache</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">header_data</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_lazy_vcf_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_data</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">vcfentry_cache</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_make_vcf_dataclass</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">vcfentry_cache</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">header_data</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_make_vcf_dataclass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">vcfentry_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">vcfentry_cache</span>
+        <span class="n">dataclass</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataclass</span>
+        <span class="n">header_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_data</span>
+        <span class="k">if</span> <span class="n">header_data</span> <span class="ow">in</span> <span class="n">vcfentry_cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">vcfentry_cache</span><span class="p">[</span><span class="n">header_data</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">info_class</span> <span class="o">=</span> <span class="nb">str</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">header_data</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">info_dataclass</span>
+        <span class="n">vcf_entry</span> <span class="o">=</span> <span class="n">narrow_type</span><span class="p">(</span><span class="n">dataclass</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">info_class</span><span class="p">)</span>
+        <span class="n">lc</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">vcf_entry</span><span class="p">)</span>
+        <span class="n">vcfentry_cache</span><span class="p">[</span><span class="n">header_data</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">vcf_entry</span><span class="p">,</span> <span class="n">lc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">vcfentry_cache</span><span class="p">[</span><span class="n">header_data</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">modify_class_with_header_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">header_data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">header_data</span> <span class="ow">or</span> <span class="s1">&#39;##INFO&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">header_data</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span>
+        <span class="n">info_class</span> <span class="o">=</span> <span class="n">create_info_dataclass</span><span class="p">(</span><span class="n">header_data</span><span class="p">)</span>
+        <span class="n">new_dataclass</span> <span class="o">=</span> <span class="n">narrow_type</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">dataclass</span><span class="p">,</span> <span class="s1">&#39;info&#39;</span><span class="p">,</span> <span class="n">info_class</span><span class="p">)</span>
+        <span class="n">new_lazy_class</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">new_dataclass</span><span class="p">)</span>
+
+        <span class="k">class</span> <span class="nc">ModifiedClass</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+            <span class="n">_header_data</span> <span class="o">=</span> <span class="n">header_data</span>
+            <span class="n">dataclass</span> <span class="o">=</span> <span class="n">new_dataclass</span>
+            <span class="n">lazy_class</span> <span class="o">=</span> <span class="n">new_lazy_class</span>
+
+        <span class="n">ModifiedClass</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="o">+</span><span class="s1">&#39;H&#39;</span>
+        <span class="n">ModifiedClass</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__qualname__</span><span class="o">+</span><span class="s1">&#39;H&#39;</span>
+
+        <span class="k">return</span> <span class="n">ModifiedClass</span>
+
+    <span class="k">def</span> <span class="nf">_make_info_dataclass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">info_cache</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">info_cache</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_data</span> <span class="ow">in</span> <span class="n">info_cache</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">info_cache</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">header_data</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">header_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span>
+        <span class="n">dc</span> <span class="o">=</span> <span class="n">create_info_dataclass</span><span class="p">(</span><span class="n">header_data</span><span class="p">)</span>
+        <span class="n">info_cache</span><span class="p">[</span><span class="n">header_data</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">dc</span><span class="p">,</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">dc</span><span class="p">))</span>
+        <span class="k">assert</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">info_cache</span><span class="p">[</span><span class="n">header_data</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="n">dc</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">info_cache</span><span class="p">[</span><span class="n">header_data</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_extract_genotypes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">n_fields</span> <span class="o">&lt;</span> <span class="mi">9</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="p">),</span> <span class="mi">0</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+        <span class="n">byte_array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_padded_field</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="n">stop_at</span><span class="o">=</span><span class="s1">&#39;:&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">()</span>
+        <span class="n">n_bytes</span> <span class="o">=</span> <span class="n">byte_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">n_bytes</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">bytes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">n_fields</span><span class="o">-</span><span class="mi">9</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;S&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">bytes</span> <span class="o">=</span> <span class="n">byte_array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&gt;S</span><span class="si">{</span><span class="n">n_bytes</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">byte_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">StringArray</span><span class="p">(</span><span class="nb">bytes</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_extract_genotype_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">get_column_range_as_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_start</span><span class="p">,</span> <span class="n">col_end</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">col_start</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_column_range_as_text</span><span class="p">(</span><span class="n">col_start</span><span class="p">,</span> <span class="n">col_end</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="n">keep_sep</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_fields_by_range</span><span class="p">(</span><span class="n">from_nr</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">to_nr</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="n">keep_sep</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">make_header</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">has_context</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">):</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_context</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">header</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span>
+                <span class="s1">&#39;##fileformat=VCFv4.1&#39;</span><span class="p">,</span>
+                <span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;#CHROM POS ID REF ALT QUAL FILTER INFO FORMAT&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">())])</span><span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">process_field_for_write</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field_name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field_name</span> <span class="o">==</span> <span class="s1">&#39;position&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">process_field_for_write</span><span class="p">(</span><span class="n">field_name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">VCFBuffer2</span><span class="p">(</span><span class="n">VCFBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">VCFEntryWithGenotypes</span>
+    <span class="n">lazy_dataclass</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">dataclass</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DelimitedBuffer&quot;</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">LazyBNPDataClass</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get_data_object</span><span class="p">())</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">position</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">[(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="n">data_dict</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[(</span><span class="nb">str</span><span class="p">,</span> <span class="n">as_encoded_array</span><span class="p">([</span><span class="s1">&#39;GT&#39;</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))]</span> <span class="o">+</span> <span class="p">[</span><span class="n">data_dict</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="k">return</span> <span class="n">dump_csv</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span><span class="p">)</span>
+
+
+
+<span class="k">class</span> <span class="nc">VCFWithInfoAsStringBuffer</span><span class="p">(</span><span class="n">VCFBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">VCFWithInfoAsStringEntry</span>
+
+
+<span class="k">class</span> <span class="nc">VCFMatrixBuffer</span><span class="p">(</span><span class="n">VCFBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">VCFGenotypeEntry</span>
+    <span class="c1"># genotype_dataclass = VCFGenotypeEntry</span>
+    <span class="n">genotype_encoding</span> <span class="o">=</span> <span class="n">GenotypeRowEncoding</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">__read_header</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_object</span><span class="p">):</span>
+        <span class="c1"># NOT IMPLEMENTED version of read_header()</span>
+        <span class="n">prev_line</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_object</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">decode</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">COMMENT</span><span class="p">:</span>
+                <span class="n">file_object</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">line</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="k">break</span>
+            <span class="n">prev_line</span> <span class="o">=</span> <span class="n">line</span>
+        <span class="k">if</span> <span class="n">prev_line</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+
+        <span class="n">sample_names</span> <span class="o">=</span> <span class="n">prev_line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">9</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="n">sample_names</span>
+
+    <span class="k">def</span> <span class="nf">__get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+        <span class="c1"># genotype_data = self._buffer_extractor.get_fixed_length_field(slice(9, None), 3)</span>
+        <span class="c1"># genotypes = EncodedArray(self.genotype_encoding.encode(genotype_data), self.genotype_encoding)</span>
+        <span class="c1"># return self.genotype_dataclass(*data.shallow_tuple(), genotypes)</span>
+
+    <span class="k">def</span> <span class="nf">_get_field_by_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field_nr</span> <span class="o">!=</span> <span class="mi">8</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">field_nr</span> <span class="o">&lt;</span> <span class="mi">8</span><span class="p">,</span> <span class="p">(</span><span class="n">field_nr</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">_get_field_by_number</span><span class="p">(</span><span class="n">field_nr</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+        <span class="n">genotype_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_fixed_length_field</span><span class="p">(</span><span class="nb">slice</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">genotypes</span> <span class="o">=</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">genotype_encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">genotype_data</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">genotype_encoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">genotypes</span>
+
+
+<span class="c1"># @bnpdataclass</span>
+<span class="k">class</span> <span class="nc">Genotypes</span><span class="p">:</span>
+    <span class="n">genotype</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">phased</span><span class="p">:</span> <span class="nb">bool</span>
+
+
+<span class="k">class</span> <span class="nc">PhasedVCFMatrixBuffer</span><span class="p">(</span><span class="n">VCFMatrixBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">PhasedVCFGenotypeEntry</span>
+    <span class="n">lazy_dataclass</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">dataclass</span><span class="p">)</span>
+    <span class="n">genotype_encoding</span> <span class="o">=</span> <span class="n">PhasedGenotypeRowEncoding</span>
+
+
+<span class="k">class</span> <span class="nc">PhasedHaplotypeVCFMatrixBuffer</span><span class="p">(</span><span class="n">VCFMatrixBuffer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Encodes genotype info using one column per haplotype (not genotype)&quot;&quot;&quot;</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">PhasedVCFHaplotypeEntry</span>
+    <span class="n">lazy_dataclass</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">dataclass</span><span class="p">)</span>
+    <span class="n">genotype_encoding</span> <span class="o">=</span> <span class="n">PhasedHaplotypeRowEncoding</span>
+
+<span class="k">class</span> <span class="nc">VCFHaplotypeBuffer</span><span class="p">(</span><span class="n">VCFBuffer2</span><span class="p">):</span>
+    <span class="k">pass</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

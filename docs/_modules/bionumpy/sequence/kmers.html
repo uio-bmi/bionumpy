@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.sequence.kmers &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.sequence.kmers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.sequence.kmers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">..streams</span> <span class="kn">import</span> <span class="n">streamable</span>
+<span class="kn">from</span> <span class="nn">.count_encoded</span> <span class="kn">import</span> <span class="n">count_encoded</span><span class="p">,</span> <span class="n">EncodedCounts</span>
+<span class="kn">from</span> <span class="nn">..encodings.exceptions</span> <span class="kn">import</span> <span class="n">EncodingError</span>
+<span class="kn">from</span> <span class="nn">..encodings.kmer_encodings</span> <span class="kn">import</span> <span class="n">KmerEncoding</span>
+<span class="kn">from</span> <span class="nn">.rollable</span> <span class="kn">import</span> <span class="n">RollableFunction</span>
+<span class="kn">from</span> <span class="nn">bionumpy.encodings</span> <span class="kn">import</span> <span class="n">DNAEncoding</span>
+<span class="kn">from</span> <span class="nn">..encodings.alphabet_encoding</span> <span class="kn">import</span> <span class="n">AlphabetEncoding</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">BaseEncoding</span><span class="p">,</span> <span class="n">change_encoding</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">as_encoded_array</span>
+<span class="kn">from</span> <span class="nn">npstructures.bitarray</span> <span class="kn">import</span> <span class="n">BitArray</span>
+<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">as_strided</span><span class="p">,</span> <span class="n">is_subclass_or_instance</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">KmerEncoder</span><span class="p">(</span><span class="n">RollableFunction</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">alphabet_encoding</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_size</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_k</span> <span class="o">=</span> <span class="n">k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span> <span class="o">=</span> <span class="n">alphabet_encoding</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_alphabet_size</span> <span class="o">=</span> <span class="n">alphabet_encoding</span><span class="o">.</span><span class="n">alphabet_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_convolution</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alphabet_size</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_k</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">:</span> <span class="n">EncodedArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="n">sequence</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">target_encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_convolution</span><span class="p">),</span> <span class="n">KmerEncoding</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_k</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">inverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">kmer_hash</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedArray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">(((</span><span class="n">kmer_hash</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">//</span> <span class="bp">self</span><span class="o">.</span><span class="n">_convolution</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alphabet_size</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sample_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alphabet_size</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_k</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_k</span><span class="p">)),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_encoding</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_kmers">
+<a class="viewcode-back" href="../../../modules/sequences.html#bionumpy.sequence.get_kmers">[docs]</a>
+<span class="k">def</span> <span class="nf">get_kmers</span><span class="p">(</span><span class="n">sequence</span><span class="p">:</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Get kmers for sequences.</span>
+<span class="sd">    Sequences should be encoded with an AlphabetEncoding (e.g. DNAEncoding).</span>
+<span class="sd">    Use bnp.change_encoding if your sequences do not have a suitable encoding.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sequence : EncodedRaggedArray</span>
+<span class="sd">        Sequences to get kmers from</span>
+<span class="sd">    k : int</span>
+<span class="sd">        The kmer size (1-31)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    EncodedRaggedArray</span>
+<span class="sd">        Kmers from the sequences.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; import bionumpy as bnp</span>
+<span class="sd">    &gt;&gt;&gt; sequences = bnp.encoded_array.as_encoded_array([&quot;ACTG&quot;, &quot;AAA&quot;, &quot;TTGGC&quot;], bnp.DNAEncoding)</span>
+<span class="sd">    &gt;&gt;&gt; bnp.sequence.get_kmers(sequences, 3)</span>
+<span class="sd">    encoded_ragged_array([[ACT, CTG],</span>
+<span class="sd">                          [AAA],</span>
+<span class="sd">                          [TTG, TGG, GGC]], 3merEncoding(AlphabetEncoding(&#39;ACGT&#39;)))</span>
+
+<span class="sd">    &gt;&gt;&gt; sequences = bnp.open(&quot;example_data/big.fq.gz&quot;).read().sequence</span>
+<span class="sd">    &gt;&gt;&gt; sequences = bnp.change_encoding(sequences, bnp.DNAEncoding)</span>
+<span class="sd">    &gt;&gt;&gt; bnp.sequence.get_kmers(sequences, 31)[0, 0:3]  # first three kmers of first sequence</span>
+<span class="sd">    encoded_array([CGGTAGCCAGCTGCGTTCAGTATGGAAGATT, GGTAGCCAGCTGCGTTCAGTATGGAAGATTT, GTAGCCAGCTGCGTTCAGTATGGAAGATTTG], 31merEncoding(AlphabetEncoding(&#39;ACGT&#39;)))</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;k must be larger than 0 and smaller than 32&quot;</span>
+    <span class="k">if</span> <span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span> <span class="o">==</span> <span class="n">BaseEncoding</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">sequence</span> <span class="o">=</span> <span class="n">change_encoding</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">DNAEncoding</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">EncodingError</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Tried to change encoding of sequences to DNAEncoding, but failed. &quot;</span>
+                          <span class="s2">&quot;Make sure your sequences are valid DNA, only containing A, C, G, and T&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+
+    <span class="k">assert</span> <span class="n">is_subclass_or_instance</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">AlphabetEncoding</span><span class="p">),</span> \
+        <span class="s2">&quot;Sequence needs to be encoded with an AlphabetEncoding, e.g. DNAEncoding. &quot;</span> \
+        <span class="s2">&quot;Change encoding of your sequences by using e.g. bnp.change_encoding(sequences, bnp.DNAEncoding)&quot;</span>
+
+    <span class="k">if</span> <span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+        <span class="c1"># use the faster _get_dna_kmers</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">_get_dna_kmers</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">return</span> <span class="n">KmerEncoder</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">convolution</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">new_func</span><span class="p">(</span><span class="n">_sequence</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">shape</span><span class="p">,</span> <span class="n">sequence</span> <span class="o">=</span> <span class="p">(</span><span class="n">_sequence</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">_sequence</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+        <span class="n">convoluted</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">window_size</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">as_strided</span><span class="p">(</span><span class="n">convoluted</span><span class="p">,</span> <span class="n">shape</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">out</span> <span class="o">=</span> <span class="n">EncodedRaggedArray</span><span class="p">(</span><span class="n">convoluted</span><span class="p">,</span> <span class="n">shape</span><span class="p">,</span> <span class="n">safe_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># FIXME: Should not use unsafe here</span>
+        <span class="k">if</span> <span class="n">window_size</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">out</span>
+        <span class="k">return</span> <span class="n">out</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+
+    <span class="k">return</span> <span class="n">new_func</span>
+
+
+<span class="nd">@convolution</span>
+<span class="k">def</span> <span class="nf">_get_dna_kmers</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A faster version alternative to get_kmers that can be used with sequences encoded</span>
+<span class="sd">     with an AlphabetEncoding with alphabet size **exactly equal to 4**.</span>
+
+<span class="sd">    This function is called by get_kmers when alphabet size is 4 to get some speedup.</span>
+
+<span class="sd">    See get_kmers for documentation on use.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="mi">32</span><span class="p">,</span> <span class="s2">&quot;k must be larger than 0 and smaller than 32&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">),</span> <span class="n">sequence</span>
+    <span class="k">assert</span> <span class="n">is_subclass_or_instance</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">AlphabetEncoding</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">alphabet_size</span> <span class="o">==</span> <span class="mi">4</span><span class="p">,</span> \
+        <span class="s2">&quot;Only supported for sequence encoded with an AlphabetEncoding with alphabetsize 4&quot;</span>
+
+    <span class="n">bit_array</span> <span class="o">=</span> <span class="n">BitArray</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">bit_stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">hashes</span> <span class="o">=</span> <span class="n">bit_array</span><span class="o">.</span><span class="n">sliding_window</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="n">hashes</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint64</span>
+    <span class="n">hashes</span> <span class="o">=</span> <span class="n">hashes</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+    <span class="n">output_encoding</span> <span class="o">=</span> <span class="n">KmerEncoding</span><span class="p">(</span><span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">hashes</span><span class="p">,</span> <span class="n">output_encoding</span><span class="p">)</span>
+
+
+<span class="nd">@streamable</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">count_kmers</span><span class="p">(</span><span class="n">sequence</span><span class="p">:</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedCounts</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Count the occurance of each kmer in a set of sequences</span>
+
+<span class="sd">    For each possible kmer, count the number of occurances in a (set</span>
+<span class="sd">    of) sequence(s)</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sequence : EncodedRaggedArray</span>
+<span class="sd">    k : int</span>
+<span class="sd">        Length of the kmer</span>
+<span class="sd">    axis : int</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">kmers</span> <span class="o">=</span> <span class="n">get_kmers</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">count_encoded</span><span class="p">(</span><span class="n">kmers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

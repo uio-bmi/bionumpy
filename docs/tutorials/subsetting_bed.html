@@ -1,0 +1,219 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting read pileup inside peaks (intervals) &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="FastQC-like quality-checking of FASTQ files" href="fastqc.html" />
+    <link rel="prev" title="Working with BAM-files" href="bam_handling.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting read pileup inside peaks (intervals)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/subsetting_bed.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-read-pileup-inside-peaks-intervals">
+<span id="subsetting-bed"></span><h1>Getting read pileup inside peaks (intervals)<a class="headerlink" href="#getting-read-pileup-inside-peaks-intervals" title="Link to this heading"></a></h1>
+<p>This is a brief example of how you can you can analyse alignments (pileup) inside a given set of regions. This example assumes that:</p>
+<ul class="simple">
+<li><p>You have a set of alignments as a bam or bed file</p></li>
+<li><p>You have a set of regions in another bed-file</p></li>
+</ul>
+<p>In these scenarios it is common to have a bed-file that easily fits into memory (e.g. binding sites) and a large BAM file that we don’t want to keep in memory. As long as these are sorted, BioNumPy will handle streaming of the files and make sure that only data for a single chromosome is processed in memory at once. We can specify the behaviour by using <cite>stream=True/False</cite> when reading the data.</p>
+<p>We start by reading our genome as the rest of the data depends on the genome (chromosome sizes).</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s2">&quot;example_data/hg38.chrom.sizes&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">genome</span><span class="p">)</span>
+<span class="go">           Chromosome                     Size</span>
+<span class="go">                 chr1                248956422</span>
+<span class="go">                 chr2                242193529</span>
+<span class="go">                 chr3                198295559</span>
+<span class="go">                 chr4                190214555</span>
+<span class="go">                 chr5                181538259</span>
+<span class="go">                 chr6                170805979</span>
+<span class="go">                 chr7                159345973</span>
+<span class="go">                 chr8                145138636</span>
+<span class="go">                 chr9                138394717</span>
+<span class="go">                chr10                133797422</span>
+</pre></div>
+</div>
+<p>Using this genome object, we can now read our peaks and alignemnts. We add <cite>stream=True</cite> to tell BioNumPy to <em>stream</em> all data, i.e. only keep the data for a single chromosome in memory at the same time.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">peaks</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_intervals</span><span class="p">(</span><span class="s2">&quot;example_data/ctcf_chr21-22.bed.gz&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reads</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_intervals</span><span class="p">(</span><span class="s2">&quot;example_data/ctcf_chr21-22.bam&quot;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <cite>peaks</cite> and <cite>reads</cite> are now intervals. Using the <cite>.get_pileup()</cite> method, we can create a <cite>GenomeArray</cite> pileup, which lets us easily query the pileup value at any position along the genome. A <cite>GenomeArray</cite> can be thought of as an array along the genome.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">read_pileup</span> <span class="o">=</span> <span class="n">reads</span><span class="o">.</span><span class="n">get_pileup</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can then subset this pileup where we have peaks</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">peaks_pileup</span> <span class="o">=</span> <span class="n">read_pileup</span><span class="p">[</span><span class="n">peaks</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>… get e.g. the max pileup value inside each peak:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">max_pileup_value_per_peak</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">peaks_pileup</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If you try to print <cite>max_ipleup_value_per_peak</cite>, you will see that no data is shown. Instead you get a ComputationNode object. This is because since we used <cite>stream=True</cite>, no computations have been performed yet. BioNumPy waits until you ask for results by calling <cite>.compute()</cite> on a ComputationNode object, and then finds out how to correctly stream the data and do the necessary jobs for creating the data you ask for.</p>
+<p>Having the max peak values, we can easily filter the original peaks, e.g. get the peaks with max pileup value above some threshold:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">high_peaks</span> <span class="o">=</span> <span class="n">peaks</span><span class="p">[</span><span class="n">max_pileup_value_per_peak</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>If we now call <cite>.compute()</cite> on the final peaks, BioNumPy performs all the necessary steps and gives us a final set of peaks:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">high_peaks</span><span class="o">.</span><span class="n">compute</span><span class="p">())</span>
+<span class="go">    Genomic Intervals on [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;, &#39;chr4&#39;, &#39;chr5&#39;, &#39;...&#39;]:</span>
+<span class="go">    Interval with 362 entries</span>
+<span class="go">                   chromosome                    start                     stop</span>
+<span class="go">                        chr21                 13980409                 13980679</span>
+<span class="go">                        chr21                 37460251                 37460521</span>
+<span class="go">                        chr21                 31933717                 31933987</span>
+<span class="go">                        chr21                 29164384                 29164654</span>
+<span class="go">                        chr21                 34351806                 34352076</span>
+<span class="go">                        chr21                 25708519                 25708789</span>
+<span class="go">                        chr21                 32403198                 32403468</span>
+<span class="go">                        chr21                 30434098                 30434368</span>
+<span class="go">                        chr21                 30044653                 30044724</span>
+<span class="go">                        chr21                 31874156                 31874275</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="bam_handling.html" class="btn btn-neutral float-left" title="Working with BAM-files" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fastqc.html" class="btn btn-neutral float-right" title="FastQC-like quality-checking of FASTQ files" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

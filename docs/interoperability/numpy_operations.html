@@ -1,0 +1,250 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Numpy Interoperability &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Using BioNumPy with Biopython" href="working_with_biopython.html" />
+    <link rel="prev" title="Extracting kmers around snps" href="../tutorials/extracting_kmers_around_snps.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Numpy Interoperability</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/interoperability/numpy_operations.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="numpy-interoperability">
+<h1>Numpy Interoperability<a class="headerlink" href="#numpy-interoperability" title="Link to this heading"></a></h1>
+<section id="using-numpy-functionality">
+<h2>Using Numpy functionality<a class="headerlink" href="#using-numpy-functionality" title="Link to this heading"></a></h2>
+<p>This is a collection of short examples showing how NumPy concepts like indexing, broadcasting and reductions can be used effectively in BioNumPy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1">#### Boolean indexing</span>
+<span class="n">intervals</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/small_interval.bed&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Get intervals larger than 20</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">end</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">20</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">intervals</span><span class="p">[</span><span class="n">mask</span><span class="p">])</span>
+
+
+<span class="c1">### slice-indexing</span>
+<span class="c1"># Skip first and last 10 intervals and extract every 2nd</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">intervals</span><span class="p">[</span><span class="mi">10</span><span class="p">:</span><span class="o">-</span><span class="mi">10</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+
+
+<span class="c1">###  List indexing</span>
+<span class="n">reference_sequence</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/small_genome.fa.fai&quot;</span><span class="p">)[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
+
+<span class="c1"># Get indices of all Gs in reference</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">reference_sequence</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get all letters follwing a G</span>
+<span class="n">next_letters</span> <span class="o">=</span> <span class="n">reference_sequence</span><span class="p">[</span><span class="n">indices</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Count the letters following a G</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">count_encoded</span><span class="p">(</span><span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_sequence_array</span><span class="p">(</span><span class="n">next_letters</span><span class="p">,</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
+
+
+<span class="c1">### Broadcasting</span>
+<span class="c1"># Get a one_hot_encoding of a sequence</span>
+<span class="n">one_hot_encoding</span> <span class="o">=</span> <span class="n">reference_sequence</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ACTG&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">one_hot_encoding</span><span class="p">)</span>
+
+
+<span class="c1">### Reductions</span>
+<span class="c1"># Get reads from file</span>
+<span class="n">reads</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+<span class="c1"># Get proportion of G&#39;s in each sequence</span>
+<span class="n">g_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">reads</span><span class="o">.</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">g_count</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="from-numpy-to-bionumpy">
+<h2>From NumPy to BioNumPy<a class="headerlink" href="#from-numpy-to-bionumpy" title="Link to this heading"></a></h2>
+<p>If you have an array of already encoded sequences, you can convert it to a BioNumPy sequence array by instantiating a ‘EncodedArray’ object with the array and the encoding you used. Here is an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">original_sequence</span> <span class="o">=</span> <span class="s1">&#39;ACGTACGTACGT&#39;</span>
+<span class="n">lookup</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">numpy_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">lookup</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">original_sequence</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">encoded_array</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">EncodedArray</span><span class="p">(</span><span class="n">numpy_array</span><span class="p">,</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded_array</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ACGTACGTACGT
+</pre></div>
+</div>
+</section>
+<section id="from-bionumpy-to-numpy">
+<h2>From BioNumPy to NumPy<a class="headerlink" href="#from-bionumpy-to-numpy" title="Link to this heading"></a></h2>
+<p>The most common way to get a NumPy array from a EncodedArray object is to either count occurances, or creating masks of certain bases. Here is an example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+
+<span class="n">encoded_array</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">(</span><span class="s1">&#39;ACGTACGAC&#39;</span><span class="p">,</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="n">mask</span> <span class="o">=</span> <span class="n">encoded_array</span> <span class="o">==</span> <span class="s1">&#39;A&#39;</span>
+<span class="n">counts</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">count_encoded</span><span class="p">(</span><span class="n">encoded_array</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">counts</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ True False False False  True False False  True False]
+[3 3 2 1]
+</pre></div>
+</div>
+<p>If you want to access the underlying Numpy array, you can use the ‘raw()’ method:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+
+<span class="n">encoded_array</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">(</span><span class="s1">&#39;ACGTACGAC&#39;</span><span class="p">,</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded_array</span><span class="o">.</span><span class="n">raw</span><span class="p">())</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[0 1 2 3 0 1 2 0 1]
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../tutorials/extracting_kmers_around_snps.html" class="btn btn-neutral float-left" title="Extracting kmers around snps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="working_with_biopython.html" class="btn btn-neutral float-right" title="Using BioNumPy with Biopython" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

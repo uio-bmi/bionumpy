@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sequences &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Intervals" href="intervals.html" />
+    <link rel="prev" title="Supported file formats" href="supported_file_formats.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#encodedarray"><cite>EncodedArray</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#encodedraggedarray"><cite>EncodedRaggedArray</cite></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#absolute-basics-of-encodedraggedarray">Absolute basics of <cite>EncodedRaggedArray</cite></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#indexing-and-slicing-of-encodedraggedarray-objects">Indexing and slicing of <cite>EncodedRaggedArray</cite> objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#some-basic-properties-of-encodedraggedarray-objects">Some basic properties of <cite>EncodedRaggedArray</cite> objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#concatenation-of-encodedraggedarray-objects">Concatenation of <cite>EncodedRaggedArray</cite> objects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-unique-elements-and-counting-occurrences">Getting unique elements and counting occurrences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#counting-the-number-of-occurrences-of-a-specific-element-in-each-sequence">Counting the number of occurrences of a specific element in each sequence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filtering-encodedraggedarray-objects-based-on-a-mask">Filtering <cite>EncodedRaggedArray</cite> objects based on a mask</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#broadcasting-and-one-hot-encoding">Broadcasting and one-hot encoding</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#reading-sequences-from-file">Reading sequences from file</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reading-sequence-entries-fa-fq-bam">Reading sequence entries (.fa, .fq, .bam)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reading-indexed-files-fa-fai">Reading indexed files (.fa.fai)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#functions-workin-on-sequences">Functions workin on sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sequences</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/sequences.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sequences">
+<span id="id1"></span><h1>Sequences<a class="headerlink" href="#sequences" title="Link to this heading"></a></h1>
+<section id="encodedarray">
+<h2><cite>EncodedArray</cite><a class="headerlink" href="#encodedarray" title="Link to this heading"></a></h2>
+<p>Sequence data in BioNumPy are are represented by <cite>EncodedArray</cite> objects. These are basically <cite>numpy</cite> arrays of integers, that have an encoding that specifies which character each integer represent. This representataion allows us to do fast <cite>numpy</cite> operation on the sequences, while still allowing for human readable representation of them. The easiest way to create an <cite>EncodedArray</cite> is to use the <cite>as_encoded_array</cite> function.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_array</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">(</span><span class="s2">&quot;actggtcc&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_array</span>
+<span class="go">encoded_array(&#39;actggtcc&#39;)</span>
+</pre></div>
+</div>
+<p>We see that the encoded array represents the text “actggtcc”, but under the hood these are just integers with an ASCII encoding. You seldom have to think about this internal representation, but it is what allow us to write for instance:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">encoded_array</span> <span class="o">==</span> <span class="s2">&quot;g&quot;</span><span class="p">)</span>
+<span class="go">[False False False  True  True False False False]</span>
+</pre></div>
+</div>
+<p>And get numpy-fast performance for the query. We can also use numpy-like indexing on encoded arrays, so that we can for instance trim the first and last two characters from the sequence:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_array</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">encoded_array(&#39;tggt&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="encodedraggedarray">
+<h2><cite>EncodedRaggedArray</cite><a class="headerlink" href="#encodedraggedarray" title="Link to this heading"></a></h2>
+<p>When working with multiple sequences we usually have to use <cite>EncodedRaggedArray</cite> objects. These are much like <cite>EncodedArray</cite> objects, but instead uses <cite>npstructures.RaggedArray</cite> to store the integers. This allows us to store seqeunces of differing lengths. The easiest way to create an <cite>EncodedRaggedArray</cite> is to use the <cite>as_encoded_array</cite> function on a list of strings:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_ragged_array</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">([</span><span class="s2">&quot;ctt&quot;</span><span class="p">,</span> <span class="s2">&quot;actg&quot;</span><span class="p">,</span> <span class="s2">&quot;ag&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_ragged_array</span>
+<span class="go">encoded_ragged_array([&#39;ctt&#39;,</span>
+<span class="go">                      &#39;actg&#39;,</span>
+<span class="go">                      &#39;ag&#39;])</span>
+</pre></div>
+</div>
+<p>These objects also behave very much like numpy arrays, in indexing and broadcasting. For instance, to get the 2nd character of the first and third seqeunce:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">encoded_ragged_array</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="mi">1</span><span class="p">]</span>
+<span class="go">encoded_array(&#39;tg&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="absolute-basics-of-encodedraggedarray">
+<h2>Absolute basics of <cite>EncodedRaggedArray</cite><a class="headerlink" href="#absolute-basics-of-encodedraggedarray" title="Link to this heading"></a></h2>
+<p>As shown above, sequences are represented as <cite>EncodedRaggedArray</cite> objects. Below are some absolute basics of <cite>EncodedRaggedArray</cite> objects:</p>
+<p>For this example, instead of creating a <cite>EncodedRaggedArray</cite> object directly, we will simulate some sequences using the
+BioNumpy’s <cite>simulate_sequences</cite> function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bionumpy.simulate</span> <span class="kn">import</span> <span class="n">simulate_sequences</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="n">seed</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">aa_alphabet</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">encodings</span><span class="o">.</span><span class="n">alphabet_encoding</span><span class="o">.</span><span class="n">AminoAcidEncoding</span><span class="o">.</span><span class="n">get_labels</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">named_seqs</span> <span class="o">=</span> <span class="n">simulate_sequences</span><span class="p">(</span><span class="n">aa_alphabet</span><span class="p">,</span> <span class="p">{</span><span class="sa">f</span><span class="s1">&#39;s</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)},</span> <span class="n">rng</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span> <span class="o">=</span> <span class="n">named_seqs</span><span class="o">.</span><span class="n">sequence</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">named_seqs</span> <span class="c1"># print the sequences</span>
+<span class="go"> SequenceEntry with 10 entries</span>
+<span class="go">                     name                 sequence</span>
+<span class="go">                       s0               LMSYAEVYGH</span>
+<span class="go">                       s1         WKGVGKQNCAWSVNVH</span>
+<span class="go">                       s2        LTDHDL*DKKWFMGASC</span>
+<span class="go">                       s3            GMMD*S*CSHNYG</span>
+<span class="go">                       s4           SEH*KMHDKQLTIP</span>
+<span class="go">                       s5         TYKASNWLICLQTVFP</span>
+<span class="go">                       s6               TGIVPMRM*S</span>
+<span class="go">                       s7                    CENVC</span>
+<span class="go">                       s8                    RSTWF</span>
+<span class="go">                       s9                   NTIFMC</span>
+</pre></div>
+</div>
+<section id="indexing-and-slicing-of-encodedraggedarray-objects">
+<h3>Indexing and slicing of <cite>EncodedRaggedArray</cite> objects<a class="headerlink" href="#indexing-and-slicing-of-encodedraggedarray-objects" title="Link to this heading"></a></h3>
+<p>We can index and slice <cite>EncodedRaggedArray</cite> objects in a similar way to numpy arrays. Below are some examples:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="c1"># first 2 sequences</span>
+<span class="go">  encoded_ragged_array([&#39;LMSYAEVYGH&#39;,</span>
+<span class="go">                      &#39;WKGVGKQNCAWSVNVH&#39;], AlphabetEncoding(&#39;ACDEFGHIKLMNPQRSTVWY*&#39;))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">:]</span> <span class="c1"># last 4 sequences</span>
+<span class="go">encoded_ragged_array([&#39;TGIVPMRM*S&#39;,</span>
+<span class="go">                      &#39;CENVC&#39;,</span>
+<span class="go">                      &#39;RSTWF&#39;,</span>
+<span class="go">                      &#39;NTIFMC&#39;], AlphabetEncoding(&#39;ACDEFGHIKLMNPQRSTVWY*&#39;))</span>
+</pre></div>
+</div>
+</section>
+<section id="some-basic-properties-of-encodedraggedarray-objects">
+<h3>Some basic properties of <cite>EncodedRaggedArray</cite> objects<a class="headerlink" href="#some-basic-properties-of-encodedraggedarray-objects" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># number of sequences and length of each sequence</span>
+<span class="go">(10, array([10, 16, 17, 13, 14, 16, 10,  5,  5,  6]))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span><span class="o">.</span><span class="n">lengths</span> <span class="c1"># lengths of each sequence</span>
+<span class="go">array([10, 16, 17, 13, 14, 16, 10,  5,  5,  6])</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span><span class="o">.</span><span class="n">size</span> <span class="c1"># total number of elements (amino acid residues across all sequences in the encoded ragged array)</span>
+<span class="go">112</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_seqs</span><span class="o">.</span><span class="n">encoding</span> <span class="c1"># the encoding used for the sequences</span>
+<span class="go">AlphabetEncoding(&#39;ACDEFGHIKLMNPQRSTVWY*&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section id="concatenation-of-encodedraggedarray-objects">
+<h3>Concatenation of <cite>EncodedRaggedArray</cite> objects<a class="headerlink" href="#concatenation-of-encodedraggedarray-objects" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">my_seqs</span><span class="p">,</span> <span class="n">my_seqs</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]])</span><span class="o">.</span><span class="n">shape</span> <span class="c1"># concatenate two encoded ragged arrays and get the shape</span>
+<span class="go">(12, array([10, 16, 17, 13, 14, 16, 10,  5,  5,  6,  5,  6]))</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-unique-elements-and-counting-occurrences">
+<h3>Getting unique elements and counting occurrences<a class="headerlink" href="#getting-unique-elements-and-counting-occurrences" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">count_encoded</span><span class="p">(</span><span class="n">my_seqs</span><span class="o">.</span><span class="n">get_column_values</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="c1"># count the number of occurrences of each amino acid at the first position (similar to numpy.unique)</span>
+<span class="go">    EncodedCounts(alphabet=[&#39;A&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;K&#39;, &#39;L&#39;, &#39;M&#39;, &#39;N&#39;, &#39;P&#39;, &#39;Q&#39;, &#39;R&#39;, &#39;S&#39;, &#39;T&#39;, &#39;V&#39;, &#39;W&#39;, &#39;Y&#39;, &#39;*&#39;], counts=array([0, 1, 0, 0, 0, 1, 0, 0, 0, 2, 0, 1, 0, 0, 1, 1, 2, 0, 1, 0, 0]), row_names=None)</span>
+</pre></div>
+</div>
+</section>
+<section id="counting-the-number-of-occurrences-of-a-specific-element-in-each-sequence">
+<h3>Counting the number of occurrences of a specific element in each sequence<a class="headerlink" href="#counting-the-number-of-occurrences-of-a-specific-element-in-each-sequence" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">my_seqs</span> <span class="o">==</span> <span class="s2">&quot;F&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># count the number of occurrences of the amino acid &quot;F&quot; in each sequence</span>
+<span class="go"> array([0, 0, 1, 0, 0, 1, 0, 0, 1, 1])</span>
+</pre></div>
+</div>
+</section>
+<section id="filtering-encodedraggedarray-objects-based-on-a-mask">
+<h3>Filtering <cite>EncodedRaggedArray</cite> objects based on a mask<a class="headerlink" href="#filtering-encodedraggedarray-objects-based-on-a-mask" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">my_seqs</span><span class="o">.</span><span class="n">lengths</span> <span class="o">&lt;</span> <span class="mi">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">short_seqs</span> <span class="o">=</span> <span class="n">my_seqs</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">short_seqs</span>
+<span class="go">encoded_ragged_array([&#39;CENVC&#39;,</span>
+<span class="go">                      &#39;RSTWF&#39;,</span>
+<span class="go">                      &#39;NTIFMC&#39;], AlphabetEncoding(&#39;ACDEFGHIKLMNPQRSTVWY*&#39;))</span>
+</pre></div>
+</div>
+</section>
+<section id="broadcasting-and-one-hot-encoding">
+<h3>Broadcasting and one-hot encoding<a class="headerlink" href="#broadcasting-and-one-hot-encoding" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">short_seqs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ACDEFGHIKLMNPQRSTVWY&quot;</span> <span class="c1"># one-hot encoding of the second sequence</span>
+<span class="go"> array([[False, False, False, False, False, False, False, False, False,</span>
+<span class="go">        False, False, False, False, False,  True, False, False, False,</span>
+<span class="go">        False, False],</span>
+<span class="go">       [False, False, False, False, False, False, False, False, False,</span>
+<span class="go">        False, False, False, False, False, False,  True, False, False,</span>
+<span class="go">        False, False],</span>
+<span class="go">       [False, False, False, False, False, False, False, False, False,</span>
+<span class="go">        False, False, False, False, False, False, False,  True, False,</span>
+<span class="go">        False, False],</span>
+<span class="go">       [False, False, False, False, False, False, False, False, False,</span>
+<span class="go">        False, False, False, False, False, False, False, False, False,</span>
+<span class="go">         True, False],</span>
+<span class="go">       [False, False, False, False,  True, False, False, False, False,</span>
+<span class="go">        False, False, False, False, False, False, False, False, False,</span>
+<span class="go">        False, False]])</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="reading-sequences-from-file">
+<h2>Reading sequences from file<a class="headerlink" href="#reading-sequences-from-file" title="Link to this heading"></a></h2>
+<p>Usually we get sequences directly from file. BioNumPy supports a range of file formats containing sequence data including fasta, fastq, indexed fasta and bam files.</p>
+<section id="reading-sequence-entries-fa-fq-bam">
+<h3>Reading sequence entries (.fa, .fq, .bam)<a class="headerlink" href="#reading-sequence-entries-fa-fq-bam" title="Link to this heading"></a></h3>
+<p>To read in a set of sequence entries, we can just use the <cite>bnp.open</cite> method (here we read a fastq file, but this works the same for fasta and bam files):</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">entries</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/reads.fq&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">entries</span>
+<span class="go">SequenceEntryWithQuality with 2 entries</span>
+<span class="go">                     name                 sequence                  quality</span>
+<span class="go">             headerishere                 CTTGTTGA        [2 2 2 2 2 2 2 2]</span>
+<span class="go">            anotherheader                      CGG               [93 93 93]</span>
+</pre></div>
+</div>
+<p>We see we get all the entries in the file, with the corresponding fields. The <cite>sequence</cite> field here is an <cite>EncodedRaggedArray</cite> and thus supports numpy-like indexing etc:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="n">entries</span><span class="o">.</span><span class="n">sequence</span><span class="o">==</span><span class="s2">&quot;T&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Count the number of T&#39;s</span>
+<span class="go">array([4, 0])</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-indexed-files-fa-fai">
+<h3>Reading indexed files (.fa.fai)<a class="headerlink" href="#reading-indexed-files-fa-fai" title="Link to this heading"></a></h3>
+<p>When reading a reference genome, we often can’t read in the whole file (using <cite>.read()</cite>) and it doesn’t make sense to read in the chromosome-sequences as entries in chunks (using <cite>.read_chunks()</cite>) but we rather want to read specific parts of the genome. In these cases we can use an index to be able to read specific regions. We then use <cite>bnp.open_indexed</cite> function:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reference_sequence</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open_indexed</span><span class="p">(</span><span class="s2">&quot;example_data/small_genome.fa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reference_sequence</span><span class="p">[</span><span class="s2">&quot;2&quot;</span><span class="p">][</span><span class="mi">10</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+<span class="go">encoded_array(&#39;atattagcca&#39;)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="functions-workin-on-sequences">
+<h2>Functions workin on sequences<a class="headerlink" href="#functions-workin-on-sequences" title="Link to this heading"></a></h2>
+<p>A set of functions working on sequences are gathered in the <cite>bnp.seqeunce</cite> module.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="supported_file_formats.html" class="btn btn-neutral float-left" title="Supported file formats" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="intervals.html" class="btn btn-neutral float-right" title="Intervals" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

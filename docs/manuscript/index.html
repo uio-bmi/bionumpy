@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioNumPy manuscript &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Implementing encodings" href="../developer_guide/encodings.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">BioNumPy manuscript</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#abstract">Abstract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#results">Results</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-bionumpy-library">The BioNumPy Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-usage">Example usage</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#example-1-using-bionumpy-on-sequence-data">Example 1: Using BioNumPy on sequence data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#example-2-analysing-motif-matches-inside-transcription-factor-peaks">Example 2: Analysing motif matches inside transcription factor peaks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#implementation-details">Implementation details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-representation">Data representation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#development">Development</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">BioNumPy manuscript</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/manuscript/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="bionumpy-manuscript">
+<h1>BioNumPy manuscript<a class="headerlink" href="#bionumpy-manuscript" title="Link to this heading"></a></h1>
+<p>Knut Rand <a class="footnote-reference brackets" href="#id2" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, Ivar Grytten, Milena Pavlovic, Chakravarthi Kanduri and Geir Kjetil Sandve</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Correspondence: <a class="reference external" href="mailto:knutdr&#37;&#52;&#48;math&#46;uio&#46;no">knutdr<span>&#64;</span>math<span>&#46;</span>uio<span>&#46;</span>no</a></p>
+</aside>
+</aside>
+<section id="abstract">
+<h2>Abstract<a class="headerlink" href="#abstract" title="Link to this heading"></a></h2>
+<p>Python is a popular and widespread programming language for scientific computing, in large part due to the powerful <em>array programming</em> library NumPy, which makes it easy to write clean, vectorized and efficient code for handling large datasets. A challenge with using array programming for biological data is that the data is often non-numeric and variable-length (such as DNA sequences), inhibiting out-of-the-box use of standard array programming techniques. Thus, a tradition in bioinformatics has been to use low-level languages like C and C++ to write efficient code. This makes the tools less transparent to the average computational biologist - making them harder to understand, modify and contribute to.</p>
+<p>We here present a new Python package BioNumPy, which adds a layer on top of NumPy in order to enable intuitive array programming on biological datasets. BioNumPy is able to efficiently load biological datasets (e.g. FASTQ-files, BED-files and BAM-files) into NumPy-like data structures, so that NumPy operations like indexing, vectorized functions and reductions can be applied to the data. We show that BioNumPy is considerably faster than vanilla Python and other Python packages for common bioinformatics tasks, and in many cases as fast as tools written in C/C++. BioNumPy thus bridges a long-lasting gap in bioinformatics, allowing the same programming language (Python) to be used across the full spectrum from quick and simple scripts to computationally efficient processing of large-scale data.</p>
+</section>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading"></a></h2>
+<p>Python is one of the most commonly used and fastest growing programming languages <a href="#id3"><span class="problematic" id="id4">:cite:`tiobe`</span></a>. Being a high-level language, Python is flexible and suits a wide variety of analyses. It is both easy to learn for biologists new to programming and a powerful language for experienced bioinformaticians. However, a common hurdle is that vanilla Python is too slow to be a viable option for large-scale analyses. Thus, bioinformaticians often end up using non-transparent and error-prone one-liners on the unix command line, or end up developing and using tools written in low-level languages such as C and C++.</p>
+<p>In other scientific fields (e.g. physics, engineering and machine learning), Python is being extensively and successfully used for high-performance computing and large-scale analysis <a href="#id5"><span class="problematic" id="id6">:cite:`pytorch, pangeo, satpy, astropy`</span></a>. This is in large part thanks to the very powerful <em>array programming</em> package NumPy <a href="#id7"><span class="problematic" id="id8">:cite:`numpy`</span></a>, which enables memory-efficient representation and fast analysis of numeric data (similar to R and MATLAB). For problems that lend themself to the array programming paradigm, solutions based on suited libraries in high-level languages are usually easier to write, read, use and adapt than corresponding programs written in low-level languages like C and C++. However, the discrete and variable-length nature of biological sequence data inhibits the out-of-the-box use of standard array programming languages and libraries. Due to a lack of suited high-performance libraries in Python, two distinct implementation strategies have come to dominate the processing and analysis of biosequence data: a) the use of high-level languages like Python with libraries like BioPython <a href="#id9"><span class="problematic" id="id10">:cite:`biopython`</span></a> and Biotite <a href="#id11"><span class="problematic" id="id12">:cite:`biotite`</span></a> for smaller-scale analytical exploration in individual life science investigations, and b) the use of low-level languages like C to create command-line executables for common compute-intensive tasks.</p>
+<p>We here present the BioNumPy package, which enables efficient and intuitive array programming on biological data in Python. BioNumPy supports a broad range of bioinformatics analyses, with the main philosophy being that data structures should behave  as closely as possible to standard numeric NumPy arrays. This means that BioNumPy is easy to learn for users familiar with NumPy or with array programming languages like R and Matlab. BioNumPy is open source and freely available at <a class="reference external" href="https://github.com/bionumpy/bionumpy/">https://github.com/bionumpy/bionumpy/</a>, and can be installed through the Python package manager Pip. BioNumPy comes with extensive documentation and a user guide that makes it easy to use for a wide range of bioinformatics problems.</p>
+</section>
+<section id="results">
+<h2>Results<a class="headerlink" href="#results" title="Link to this heading"></a></h2>
+<section id="the-bionumpy-library">
+<h3>The BioNumPy Library<a class="headerlink" href="#the-bionumpy-library" title="Link to this heading"></a></h3>
+<p>BioNumPy is a Python package for efficiently reading, representing and analysing biological datasets. All time-critical operations are implemented in NumPy, meaning that BioNumPy performs comparably to customised low-level language implementations. The key features of BioNumPy are:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Reading/writing biological datasets directly to/from NumPy-like data structures, providing easy access to the data through an intuitive and easy-to-use API.</p></li>
+<li><p>Processing and analysing such biological data efficiently using a NumPy-like interface.</p></li>
+</ol>
+</div></blockquote>
+<p>As an example, reading in a set of sequences from a FASTQ-file and computing their GC-content is as simple as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">bionumpy</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;reads.fq.gz&quot;</span><span class="p">)</span>
+<span class="n">gc_content</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">data</span><span class="o">.</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;C&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>In the example above, the <cite>data.sequence</cite> object is a NumPy-like data structure containing all the sequences in our datasets. Common NumPy operations, like indexing and vectorized operations, work with this data structure. BioNumPy also supports broadcasting of functions along one and two-dimensional arrays (in the same way as NumPy), allowing to e.g. easily compute GC content per sequence, or per position across all sequences. This makes BioNumPy powerful and flexible, allowing it to perform a wide range of operations on biological datasets.</p>
+<p>BioNumPy comes with extensive documentation, available at <a class="reference external" href="https://bionumpy.github.io/bionumpy">https://bionumpy.github.io/bionumpy</a>, showing how to do common tasks for a wide range of data formats and domains.</p>
+</section>
+<section id="benchmarks">
+<h3>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading"></a></h3>
+<p>We compare the speed of BioNumPy against other existing Python packages and commonly used non-Python tools on a set of typical bioinformatics tasks. As seen in Figure 1, we find that BioNumPy is generally considerably faster than vanilla Python solutions, including the commonly used Python packages BioPython and Biotite, which mostly rely on Python for-loops to perform operations on datasets. On problems where designated efficient bioinformatics tools are commonly used (intersection of BED-files, kmer counting and VCF operations), we find that BioNumPy is close to, or as efficient as, tools written in C/C++ (BEDTools <a href="#id13"><span class="problematic" id="id14">:cite:`bedtools`</span></a>, Jellyfish <a href="#id15"><span class="problematic" id="id16">:cite:`jellyfish`</span></a> and BCFTools <a href="#id17"><span class="problematic" id="id18">:cite:`bcftools`</span></a>). While these benchmarks only cover a very small subset of operations, and we only compare against a small subset of available tools, we believe the results still illustrate that BioNumPy can achieve the same performance as dedicated tools written in low-level languages. A Snakemake pipeline for reproducing the results can be found at <a class="reference external" href="https://github.com/bionumpy/bionumpy/tree/main/benchmarks">https://github.com/bionumpy/bionumpy/tree/main/benchmarks</a>, along with an open invitation to expand the benchmark with additional tools and cases.</p>
+<figure class="align-default" id="id35">
+<a class="reference internal image-reference" href="../_images/report_big.png"><img alt="../_images/report_big.png" src="../_images/report_big.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Benchmarking BioNumPy against other tools and methods on various typical bioinformatics tasks.</strong></span><a class="headerlink" href="#id35" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="example-usage">
+<h3>Example usage<a class="headerlink" href="#example-usage" title="Link to this heading"></a></h3>
+<p>We here show two examples to illustrate how BioNumPy can be used.</p>
+<section id="example-1-using-bionumpy-on-sequence-data">
+<h4>Example 1: Using BioNumPy on sequence data<a class="headerlink" href="#example-1-using-bionumpy-on-sequence-data" title="Link to this heading"></a></h4>
+<p>In the following example, we represent a few sequences with BioNumPy and show how basic NumPy functionality works:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Normally, you will read sequences from file using bnp.open</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># but for testing, the bnp.as_encoded_array function is useful</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">([</span><span class="s2">&quot;ACTGA&quot;</span><span class="p">,</span> <span class="s2">&quot;AACCA&quot;</span><span class="p">,</span> <span class="s2">&quot;GA&quot;</span><span class="p">,</span> <span class="s2">&quot;AATTTT&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># We remove the first base</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">sequences</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+<span class="go">CTGA</span>
+<span class="go">ACCA</span>
+<span class="go">A</span>
+<span class="go">ATTTT</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Creating a mask is easy</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_A</span> <span class="o">=</span> <span class="n">sequences</span> <span class="o">==</span> <span class="s2">&quot;A&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">is_A</span><span class="p">)</span>
+<span class="go">[False False False  True]</span>
+<span class="go">[ True False False  True]</span>
+<span class="go">[ True]</span>
+<span class="go">[ True False False False False]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Counting As per sequence using axis=1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">is_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([1, 2, 1, 1])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Counting ratio of As per base position using np.mean with axis=0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">is_A</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="go">array([0.75      , 0.        , 0.        , 0.66666667, 0.        ])</span>
+</pre></div>
+</div>
+</section>
+<section id="example-2-analysing-motif-matches-inside-transcription-factor-peaks">
+<h4>Example 2: Analysing motif matches inside transcription factor peaks<a class="headerlink" href="#example-2-analysing-motif-matches-inside-transcription-factor-peaks" title="Link to this heading"></a></h4>
+<p>In the following example, we show how BioNumPy can be used to easily combine different types of datasets. We read transcription factor peaks from a bed file, fetch the peak sequences from an indexed reference genome and analyse motif scores within the peaks using data from the Jaspar database <a href="#id19"><span class="problematic" id="id20">:cite:`jaspar`</span></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">bionumpy.sequence.position_weight_matrix</span> <span class="kn">import</span> <span class="n">PWM</span><span class="p">,</span> <span class="n">get_motif_scores</span>
+<span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pyjaspar</span> <span class="kn">import</span> <span class="n">jaspardb</span>
+<span class="kn">import</span> <span class="nn">plotly.express</span> <span class="k">as</span> <span class="nn">plx</span>
+
+<span class="c1"># Read peaks and reference genom</span>
+<span class="n">peaks</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;ctcf.bed.gz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">reference_genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open_indexed</span><span class="p">(</span><span class="s2">&quot;hg38.fa&quot;</span><span class="p">)</span>
+
+<span class="c1"># Change start and end position of peaks (100 bp around centre)</span>
+<span class="n">midpoints</span> <span class="o">=</span> <span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">start</span><span class="o">+</span><span class="n">peaks</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+<span class="n">peaks</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">midpoints</span> <span class="o">-</span> <span class="mi">50</span>
+<span class="n">peaks</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">midpoints</span> <span class="o">+</span> <span class="mi">50</span>
+
+<span class="c1"># Fetch sequences within each peak</span>
+<span class="n">peak_sequences</span> <span class="o">=</span> <span class="n">reference_genome</span><span class="o">.</span><span class="n">get_interval_sequences</span><span class="p">(</span><span class="n">peaks</span><span class="p">)</span>
+
+<span class="c1"># Fetch a motif from Jaspar and read it into BioNumPy</span>
+<span class="n">jaspar_object</span> <span class="o">=</span> <span class="n">jaspardb</span><span class="p">(</span><span class="n">release</span><span class="o">=</span><span class="s2">&quot;JASPAR2020&quot;</span><span class="p">)</span>
+<span class="n">ctcf_motif</span> <span class="o">=</span> <span class="n">jaspar_object</span><span class="o">.</span><span class="n">fetch_motifs_by_name</span><span class="p">(</span><span class="s1">&#39;CTCF&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">ctcf_pwm</span> <span class="o">=</span> <span class="n">PWM</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">ctcf_motif</span><span class="o">.</span><span class="n">pwm</span><span class="p">)</span>
+
+<span class="c1"># Get motif scores and make a boolean mask of likely binding sites</span>
+<span class="n">motif_scores</span> <span class="o">=</span> <span class="n">get_motif_scores</span><span class="p">(</span><span class="n">peak_sequences</span><span class="p">,</span> <span class="n">ctcf_pwm</span><span class="p">)</span>
+<span class="n">has_motif_match</span> <span class="o">=</span> <span class="n">motif_scores</span> <span class="o">&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+
+<span class="c1"># Plot mean matches per base (axis=0)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plx</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">has_motif_match</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span> <span class="n">template</span><span class="o">=</span><span class="s1">&#39;seaborn&#39;</span><span class="p">,</span>
+               <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;Position in peak&quot;</span><span class="p">,</span>
+                       <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;Ratio of peaks with motif match&quot;</span><span class="p">},</span>
+               <span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">write_image</span><span class="p">(</span><span class="s2">&quot;motif_matches.png&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<figure class="align-default" id="id36">
+<a class="reference internal image-reference" href="../_images/motif_matches.png"><img alt="../_images/motif_matches.png" src="../_images/motif_matches.png" style="width: 60%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Plot generated in Example 2.</strong> Showing ratio of peaks with a motif match per base position, with an enrichment at the centre of each peak as one would expect.</span><a class="headerlink" href="#id36" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+</section>
+<section id="implementation-details">
+<h2>Implementation details<a class="headerlink" href="#implementation-details" title="Link to this heading"></a></h2>
+<section id="data-representation">
+<h3>Data representation<a class="headerlink" href="#data-representation" title="Link to this heading"></a></h3>
+<p>BioNumPy internally stores sequence data (e.g. nucleotides or amino acids) as numeric values, allowing the use of standard NumPy arrays for data representation and processing. A key way in which BioNumpy achieves high performance is by storing multiple data entries in shared NumPy arrays. To illustrate the benefit of this approach, consider the example where we want to count the number of Gs and Cs in a large set of DNA sequences. With existing Python packages like BioPython and Biotite, this must be done by iterating over the sequences using Python for-loops, which is slow when the number of sequences is large. BioNumPy, however, stores all sequences in only one or a few shared NumPy arrays (Figure 3a), meaning that vectorized NumPy operations can be used to do the counting in a fraction of the time.</p>
+<p>Storing multiple elements in shared arrays is trivial if the elements all have the same size, since a matrix representation can be used. However, for biological data, it is common that data elements vary in size. For instance, sequences in FASTA files are rarely all of the exact same size. BioNumPy uses the RaggedArray data structure from the npstructures package (<a class="reference external" href="https://github.com/bionumpy/npstructures">https://github.com/bionumpy/npstructures</a>, developed in tandem with BioNumPy) to tackle this problem (Figure 2). The RaggedArray can be seen as a matrix where rows can have different lengths. The npstructures RaggedArray implementation is compatible with most common NumPy operations, like indexing (Figure 3b), vectorized operations (Figure 3c), and reductions (Figure 3d). As far as possible, objects in BioNumPy follow the array interoperability protocols defined by NumPy (<a class="reference external" href="https://numpy.org/doc/stable/user/basics.interoperability.html">https://numpy.org/doc/stable/user/basics.interoperability.html</a>)</p>
+<figure class="align-default" id="id37">
+<a class="reference internal image-reference" href="../_images/ragged_array_figure.png"><img alt="../_images/ragged_array_figure.png" src="../_images/ragged_array_figure.png" style="width: 100%;" />
+</a>
+<figcaption>
+<p><span class="caption-text"><strong>Overview of the RaggedArray and EncodedRaggedArray data structures</strong>. A RaggedArray is similar to a NumPy array/matrix but can represent a matrix consisting of rows with varying lengths (a). This makes it able to efficiently represent data with varying lengths in a shared data structure. A RaggedArray supports many of the same operations as NumPy arrays, such as indexing (b), vectorization (c) and reduction (d). An EncodedRaggedArray is a RaggedArray that supports storing and operating on non-numeric data (e.g. DNA-sequences) by encoding the data and keeping track of the encoding (e). An EncodedRaggedArray supports the same operations as RaggedArrays (f). This figure is an adopted and modified version of  Figure 1 in <a href="#id21"><span class="problematic" id="id22">:cite:`numpy`</span></a> and is licensed under a Creative Commons Attribution 4.0 International License (<a class="reference external" href="http://creativecommons.org/licenses/by/4.0/">http://creativecommons.org/licenses/by/4.0/</a>).</span><a class="headerlink" href="#id37" title="Link to this image"></a></p>
+<div class="legend">
+</div>
+</figcaption>
+</figure>
+</section>
+<section id="development">
+<h3>Development<a class="headerlink" href="#development" title="Link to this heading"></a></h3>
+<p>BioNumPy has been developed following the principles of continuous integration and distribution <a href="#id23"><span class="problematic" id="id24">:cite:`state_of_devops, continuous_delivery`</span></a>. The codebase is thoroughly and automatically tested through an extensive collection of unit tests, application tests, integrations tests and property-based tests <a href="#id25"><span class="problematic" id="id26">:cite:`hypothesis`</span></a>. New code changes are automatically benchmarked and tested before being automatically published, ensuring that updates can be frequent, while high code quality is maintained. This makes it safe and easy to allow contributions from new contributors, which is important for longevity and community adoption of the package.</p>
+</section>
+</section>
+<section id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Link to this heading"></a></h2>
+<p>We have presented a new Python package, BioNumPy, for efficient representation and analysis of biological datasets. We have shown that BioNumPy is usually considerably faster than both vanilla Python scripts and commonly used Python packages for performing similar tasks. BioNumPy also has comparable efficiency to commonly used efficient tools written in C/C++.</p>
+<p>While BioNumPy is fast on basic operations such as kmer counting and getting reverse complements of reads, we want to emphasise that BioNumPy is not specifically designed for standard tasks where  tailored and highly optimised tools already exists <a href="#id27"><span class="problematic" id="id28">:cite:`seqtk, bcftools`</span></a>. BioNumPy is instead meant to be used as a library inside Python, and is useful when one e.g. wants to perform multiple operations on a dataset, explore or play around with datasets, or perform analyses that integrate multiple datasets in novel ways. We also invite the community to develop a broad variety of functionality for dedicated purposes with BioNumPy as an internal workhorse.</p>
+<p>As shown in Figure 1, BioNumPy is not always faster than vanilla Python code, e.g. for the case where one is only reading a FASTA file, subsampling the sequences and writing the results back to file. The reason is that although BioNumPy reads all data into NumPy-arrays that can be efficiently subsampled, BioNumPy performs operations beyond the vanilla Python implementation, such as validating, encoding and representing the data efficiently. These additional steps come handy when you want to do more operations on the data, such as combining it with other datasets or querying it in different ways. An example of a case where BioNumPy gives considerable speedup over native tools is the problem of computing the Jaccard similarity index between all pairs of a set of bed-files. Since BioNumPy can keep all files in memory, it is considerably faster than dedicated packages like BEDTools, which needs to read each bed-file from disk every time a pair of BED-files are to be compared.</p>
+<p>Many common bioinformatics tasks are today typically performed as a series of bash commands, using a combination of sed, AWK, Grep, Perl and/or other native unix utility tools. As an example, consider the following bash-code for converting from FASTQ to FASTA:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>zcat<span class="w"> </span>file.fastq.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>paste<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span>-<span class="w"> </span><span class="p">|</span><span class="w"> </span>perl<span class="w"> </span>-ane<span class="w"> </span><span class="s1">&#39;print &quot;&gt;$F[0]\n$F[2]\n&quot;;&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>gzip<span class="w"> </span>-c<span class="w"> </span>&gt;<span class="w"> </span>file.fasta.gz
+</pre></div>
+</div>
+<p>While such commands often yield fast results, there are in our opinion several drawbacks to this approach, which a package like BioNumPy addresses. First, bash commands are difficult to read and understand, which increases the chance for errors. Second, since such commands typically come in the form of ad-hoc scripts, these are usually not version controlled, not tested and thus not reproducible (each person typically has their own script). Third, it is inconvenient to write unit tests, defensive assertion code or do runtime inspection/debugging on such bash scripts, meaning that logical errors can easily go unnoticed. A better solution is thus to instead use specialised tools, such as e.g. seqtk or BioNumpy. The task of converting from FASTQ to FASTA can be done like this in BioNumPy:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;output.fasta&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">out_file</span><span class="p">:</span>
+        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;input.fastq&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_chunks</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Since BioNumPy is flexible in its input, it works well with existing packages and solutions for fetching data from databases, e.g. in combination with the various BioPython modules for downloading data from databases like Encode <a href="#id29"><span class="problematic" id="id30">:cite:`encode`</span></a> and Jaspar <a href="#id31"><span class="problematic" id="id32">:cite:`jaspar`</span></a>. This ease of interoperability is also the reason why we have limited the scope of BioNumPy to not including modules for e.g. fetching data from online databases.</p>
+<p>It can be speculated that the difficulty of writing efficient code for large-scale analyses in Python is an important reason why a lot of central bioinformatics tools are instead written in low-level and harder to learn languages like C or C++  <a href="#id33"><span class="problematic" id="id34">:cite:`seqtk, bcftools, bedtools, seqtk`</span></a>. The fact that tools are written in such languages means that the large majority of bioinformaticians and computational biologists - who are typically only familiar with bash, R, and/or Python - are not able to easily contribute to the development of tools or understand/learn the internal workings of the methods they use. This limits transparency of bioinformatics research, and is also a broader problem since the continually growing size of biological data necessitates fast and efficient tools and libraries. Our hope is that BioNumPy is able to bridge this gap by making it possible for anyone to more easily work with large biological datasets in Python.</p>
+<p><strong>Funding</strong></p>
+<p>This work was supported by the Centre for Computational Inference in Evolutionary Life Science (CELS). We also
+acknowledge generous support by the Research Council of Norway for an IKTPLUSS project (#311341) to KR and
+GKS.</p>
+<p><strong>Affiliation</strong></p>
+<p>KD, IG, MP and GK: Biomedical Informatics research group, Department of Informatics, University of Oslo, Oslo, Norway</p>
+<p>KD, CK and GK: Centre for Bioinformatics, University of Oslo, Oslo, Norway,</p>
+<p>MP, CK and GK: UiORealArt Convergence Environment, University of Oslo, Oslo, Norway</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../developer_guide/encodings.html" class="btn btn-neutral float-left" title="Implementing encodings" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

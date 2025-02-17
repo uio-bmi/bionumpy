@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.io.indexed_fasta &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.io.indexed_fasta</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.io.indexed_fasta</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">as_encoded_array</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span>
+<span class="kn">from</span> <span class="nn">.multiline_buffer</span> <span class="kn">import</span> <span class="n">FastaIdxBuffer</span><span class="p">,</span> <span class="n">FastaIdx</span>
+<span class="kn">from</span> <span class="nn">..datatypes</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="kn">from</span> <span class="nn">.files</span> <span class="kn">import</span> <span class="n">bnp_open</span>
+<span class="kn">from</span> <span class="nn">..encodings</span> <span class="kn">import</span> <span class="n">BaseEncoding</span>
+<span class="kn">from</span> <span class="nn">..encodings.string_encodings</span> <span class="kn">import</span> <span class="n">StringEncoding</span>
+
+
+<span class="k">def</span> <span class="nf">read_index</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Read a fa.fai into a nested dict</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        The filename for the fasta index</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        nested dict. chromosome names to dicts of index values</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">split_lines</span> <span class="o">=</span> <span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">chromosome</span><span class="o">.</span><span class="n">split</span><span class="p">()[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="p">{</span><span class="s2">&quot;rlen&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">rlen</span><span class="p">),</span> <span class="s2">&quot;offset&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">offset</span><span class="p">),</span>
+             <span class="s2">&quot;lenc&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">lenc</span><span class="p">),</span> <span class="s2">&quot;lenb&quot;</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="n">lenb</span><span class="p">)}</span>
+            <span class="k">for</span> <span class="n">chromosome</span><span class="p">,</span> <span class="n">rlen</span><span class="p">,</span> <span class="n">offset</span><span class="p">,</span> <span class="n">lenc</span><span class="p">,</span> <span class="n">lenb</span> <span class="ow">in</span> <span class="n">split_lines</span><span class="p">}</span>
+
+
+<span class="k">def</span> <span class="nf">create_index</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FastaIdx</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a fasta index for a fasta file</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Filename of the fasta file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    FastaIdx</span>
+<span class="sd">        Fasta index as bnpdataclass</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">reader</span> <span class="o">=</span> <span class="n">bnp_open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">buffer_type</span><span class="o">=</span><span class="n">FastaIdxBuffer</span><span class="p">)</span>
+    <span class="n">indice_builders</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">read_chunks</span><span class="p">())</span>
+    <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">([</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="p">[</span><span class="n">idx</span><span class="o">.</span><span class="n">byte_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indice_builders</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span>
+        <span class="n">FastaIdx</span><span class="p">(</span><span class="n">idx</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span>
+                 <span class="n">idx</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+                 <span class="n">idx</span><span class="o">.</span><span class="n">start</span><span class="o">+</span><span class="n">offset</span><span class="p">,</span>
+                 <span class="n">idx</span><span class="o">.</span><span class="n">characters_per_line</span><span class="p">,</span>
+                 <span class="n">idx</span><span class="o">.</span><span class="n">line_length</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">indice_builders</span><span class="p">,</span> <span class="n">offsets</span><span class="p">)])</span>
+
+
+<div class="viewcode-block" id="IndexedFasta">
+<a class="viewcode-back" href="../../../modules/io.html#bionumpy.io.IndexedFasta">[docs]</a>
+<span class="k">class</span> <span class="nc">IndexedFasta</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Class representing an indexed fasta file.</span>
+<span class="sd">    Behaves like dict of chrom names to sequences</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_filename</span> <span class="o">=</span> <span class="n">filename</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">read_index</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="n">filename</span><span class="o">.</span><span class="n">suffix</span> <span class="o">+</span> <span class="s2">&quot;.fai&quot;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index_table</span> <span class="o">=</span> <span class="n">FastaIdx</span><span class="o">.</span><span class="n">from_entry_tuples</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;rlen&#39;</span><span class="p">],</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">],</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;lenc&#39;</span><span class="p">],</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;lenb&#39;</span><span class="p">])</span>
+             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span><span class="c1">#  if &#39;_&#39; not in name])</span>
+
+<div class="viewcode-block" id="IndexedFasta.get_contig_lengths">
+<a class="viewcode-back" href="../../../modules/io.html#bionumpy.io.IndexedFasta.get_contig_lengths">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_contig_lengths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a dict of chromosome names to seqeunce lengths</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        dict</span>
+<span class="sd">            chromosome name to sequence length mapping</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">values</span><span class="p">[</span><span class="s2">&quot;lenc&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">values</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span></div>
+
+
+    <span class="k">def</span> <span class="nf">keys</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">values</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">EncodedArray</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="nf">items</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">]]:</span>
+        <span class="k">return</span> <span class="p">((</span><span class="n">key</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">])</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Indexed Fasta File with chromosome sizes: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">get_contig_lengths</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosome</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return entire sequence of the given chromosome</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chromosome : str</span>
+<span class="sd">            chromosome name</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        EncodedArray</span>
+<span class="sd">            The sequence for that chromosome</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">chromosome</span><span class="p">]</span>
+        <span class="n">lenb</span><span class="p">,</span> <span class="n">rlen</span><span class="p">,</span> <span class="n">lenc</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="s2">&quot;lenb&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;rlen&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;lenc&quot;</span><span class="p">])</span>
+        <span class="n">n_rows</span> <span class="o">=</span> <span class="p">(</span><span class="n">rlen</span> <span class="o">+</span> <span class="n">lenc</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">lenc</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">lenb</span> <span class="o">*</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">bytes_to_read</span> <span class="o">=</span> <span class="p">(</span><span class="n">n_rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">lenb</span> <span class="o">+</span> <span class="p">(</span><span class="n">rlen</span> <span class="o">-</span> <span class="p">(</span><span class="n">n_rows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">lenc</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="s2">&quot;offset&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span><span class="o">.</span><span class="n">readinto</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="n">bytes_to_read</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">data</span><span class="p">[:</span><span class="n">bytes_to_read</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">data</span><span class="p">[:</span><span class="n">bytes_to_read</span><span class="p">]</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">lenb</span><span class="p">)</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="n">lenc</span><span class="p">]</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[:</span><span class="n">rlen</span><span class="p">]</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">ret</span><span class="p">[:</span><span class="n">rlen</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">ret</span>
+        <span class="k">assert</span> <span class="n">ret</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;rlen&quot;</span><span class="p">],</span> <span class="p">(</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">size</span><span class="p">,</span>
+            <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;rlen&quot;</span><span class="p">],</span>
+            <span class="n">ret</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;rlen&quot;</span><span class="p">],</span>
+            <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">BaseEncoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">(((</span><span class="n">ret</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">))</span> <span class="o">%</span> <span class="mi">32</span><span class="p">)</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="n">BaseEncoding</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_interval_sequences_fast</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedRaggedArray</span><span class="p">:</span>
+        <span class="n">tmp</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">encoding</span><span class="o">.</span><span class="n">get_labels</span><span class="p">()}</span>
+        <span class="n">index_table</span> <span class="o">=</span> <span class="n">FastaIdx</span><span class="o">.</span><span class="n">from_entry_tuples</span><span class="p">(</span>
+            <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;rlen&#39;</span><span class="p">],</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;offset&#39;</span><span class="p">],</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;lenc&#39;</span><span class="p">],</span> <span class="n">var</span><span class="p">[</span><span class="s1">&#39;lenb&#39;</span><span class="p">])</span>
+             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">tmp</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+
+        <span class="n">pre_alloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">chromosome_i</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">raw</span><span class="p">()</span>
+        <span class="n">indices</span><span class="p">:</span> <span class="n">FastaIdx</span> <span class="o">=</span> <span class="n">index_table</span><span class="p">[</span><span class="n">chromosome_i</span><span class="p">]</span>
+        <span class="n">start_rows</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">//</span><span class="n">indices</span><span class="o">.</span><span class="n">characters_per_line</span>
+        <span class="n">start_mods</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">start</span> <span class="o">%</span> <span class="n">indices</span><span class="o">.</span><span class="n">characters_per_line</span>
+        <span class="n">start_offsets</span> <span class="o">=</span> <span class="n">start_rows</span><span class="o">*</span><span class="n">indices</span><span class="o">.</span><span class="n">line_length</span><span class="o">+</span><span class="n">start_mods</span>
+
+        <span class="n">stop_rows</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span> <span class="o">//</span> <span class="n">indices</span><span class="o">.</span><span class="n">characters_per_line</span>
+        <span class="n">stop_offsets</span> <span class="o">=</span> <span class="n">stop_rows</span><span class="o">*</span><span class="n">indices</span><span class="o">.</span><span class="n">line_length</span><span class="o">+</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span> <span class="o">%</span> <span class="n">indices</span><span class="o">.</span><span class="n">characters_per_line</span>
+        <span class="n">read_starts</span> <span class="o">=</span> <span class="n">indices</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="n">start_offsets</span>
+        <span class="n">read_lengths</span> <span class="o">=</span> <span class="n">stop_offsets</span><span class="o">-</span><span class="n">start_offsets</span>
+
+        <span class="n">lengths</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span>
+        <span class="n">n_rows</span> <span class="o">=</span> <span class="n">stop_rows</span><span class="o">-</span><span class="n">start_rows</span>
+        <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">lengths</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">read_start</span><span class="p">,</span> <span class="n">read_length</span><span class="p">,</span> <span class="n">n_row</span><span class="p">,</span> <span class="n">start_mod</span><span class="p">,</span> <span class="n">lenb</span><span class="p">,</span> <span class="n">a_offset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
+                <span class="n">read_starts</span><span class="p">,</span> <span class="n">read_lengths</span><span class="p">,</span> <span class="n">n_rows</span><span class="p">,</span> <span class="n">start_mods</span><span class="p">,</span> <span class="n">indices</span><span class="o">.</span><span class="n">line_length</span><span class="p">,</span> <span class="n">offsets</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">read_start</span><span class="p">)</span>
+            <span class="n">r_sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">read_length</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="n">sequence</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">r_sequence</span><span class="p">,</span>
+                                 <span class="p">[</span><span class="n">lenb</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">start_mod</span>
+                                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_row</span><span class="p">)])</span>
+            <span class="n">pre_alloc</span><span class="p">[</span><span class="n">a_offset</span><span class="p">:</span><span class="n">a_offset</span><span class="o">+</span><span class="n">sequence</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">=</span> <span class="n">sequence</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">pre_alloc</span><span class="p">,</span> <span class="n">BaseEncoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">EncodedRaggedArray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+
+<div class="viewcode-block" id="IndexedFasta.get_interval_sequences">
+<a class="viewcode-back" href="../../../modules/io.html#bionumpy.io.IndexedFasta.get_interval_sequences">[docs]</a>
+    <span class="k">def</span> <span class="nf">get_interval_sequences</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedRaggedArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the sequences for a set of genomic intervals</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        intervals : Interval</span>
+<span class="sd">            Intervals</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        EncodedRaggedArray</span>
+<span class="sd">            Sequences</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">StringEncoding</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_interval_sequences_fast</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">cur_offset</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">pre_alloc</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">alloc_offset</span> <span class="o">=</span> <span class="mi">0</span>
+        
+        <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="n">intervals</span><span class="p">:</span>
+            <span class="n">chromosome</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span>
+            <span class="n">idx</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">chromosome</span><span class="p">]</span>
+            <span class="n">lenb</span><span class="p">,</span> <span class="n">rlen</span><span class="p">,</span> <span class="n">lenc</span> <span class="o">=</span> <span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="s2">&quot;lenb&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;rlen&quot;</span><span class="p">],</span> <span class="n">idx</span><span class="p">[</span><span class="s2">&quot;lenc&quot;</span><span class="p">])</span>
+            <span class="n">start_row</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">start</span><span class="o">//</span><span class="n">lenc</span>
+            <span class="n">start_mod</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">start</span> <span class="o">%</span> <span class="n">lenc</span>
+            <span class="n">start_offset</span> <span class="o">=</span> <span class="n">start_row</span><span class="o">*</span><span class="n">lenb</span><span class="o">+</span><span class="n">start_mod</span>
+            <span class="n">stop_row</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">stop</span> <span class="o">//</span> <span class="n">lenc</span>
+            <span class="n">stop_offset</span> <span class="o">=</span> <span class="n">stop_row</span><span class="o">*</span><span class="n">lenb</span><span class="o">+</span><span class="n">interval</span><span class="o">.</span><span class="n">stop</span> <span class="o">%</span> <span class="n">lenc</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">idx</span><span class="p">[</span><span class="s2">&quot;offset&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">start_offset</span><span class="p">)</span>
+            <span class="n">lengths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">stop_offset</span><span class="o">-</span><span class="n">start_offset</span><span class="o">-</span><span class="p">(</span><span class="n">stop_row</span><span class="o">-</span><span class="n">start_row</span><span class="p">))</span>
+            <span class="n">D</span> <span class="o">=</span> <span class="n">stop_offset</span><span class="o">-</span><span class="n">start_offset</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">frombuffer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_f_obj</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">stop_offset</span><span class="o">-</span><span class="n">start_offset</span><span class="p">),</span>
+                                <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span> <span class="p">[</span><span class="n">lenb</span><span class="o">*</span><span class="p">(</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">start_mod</span>
+                                  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">stop_row</span><span class="o">-</span><span class="n">start_row</span><span class="p">)])</span>
+            <span class="n">pre_alloc</span><span class="p">[</span><span class="n">alloc_offset</span><span class="p">:</span><span class="n">alloc_offset</span><span class="o">+</span><span class="n">tmp</span><span class="o">.</span><span class="n">size</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+            <span class="n">alloc_offset</span> <span class="o">+=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">size</span>
+            <span class="n">cur_offset</span> <span class="o">+=</span> <span class="n">stop_offset</span><span class="o">-</span><span class="n">start_offset</span>
+        <span class="k">assert</span> <span class="n">alloc_offset</span> <span class="o">==</span> <span class="n">pre_alloc</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="n">alloc_offset</span><span class="p">,</span> <span class="n">pre_alloc</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">pre_alloc</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">pre_alloc</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">pre_alloc</span><span class="p">,</span> <span class="n">BaseEncoding</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">EncodedRaggedArray</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

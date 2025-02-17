@@ -1,0 +1,1185 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.genomic_data.genomic_intervals &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.genomic_data.genomic_intervals</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.genomic_data.genomic_intervals</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABC</span><span class="p">,</span> <span class="n">abstractmethod</span><span class="p">,</span> <span class="n">abstractproperty</span><span class="p">,</span> <span class="n">abstractclassmethod</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">.coordinate_mapping</span> <span class="kn">import</span> <span class="n">map_locations</span><span class="p">,</span> <span class="n">find_indices</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">EncodedArray</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass</span> <span class="kn">import</span> <span class="n">BNPDataClass</span><span class="p">,</span> <span class="n">replace</span><span class="p">,</span> <span class="n">bnpdataclass</span>
+<span class="kn">from</span> <span class="nn">.genomic_track</span> <span class="kn">import</span> <span class="n">GenomicArray</span><span class="p">,</span> <span class="n">GenomicArrayNode</span>
+<span class="kn">from</span> <span class="nn">.genome_context_base</span> <span class="kn">import</span> <span class="n">GenomeContextBase</span>
+<span class="kn">from</span> <span class="nn">..datatypes</span> <span class="kn">import</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">Bed6</span><span class="p">,</span> <span class="n">StrandedInterval</span><span class="p">,</span> <span class="n">LocationEntry</span><span class="p">,</span> <span class="n">StrandedLocationEntry</span>
+<span class="kn">from</span> <span class="nn">..arithmetics.intervals</span> <span class="kn">import</span> <span class="n">get_pileup</span><span class="p">,</span> <span class="n">merge_intervals</span><span class="p">,</span> <span class="n">extend_to_size</span><span class="p">,</span> <span class="n">clip</span><span class="p">,</span> <span class="n">get_boolean_mask</span><span class="p">,</span> <span class="n">RawInterval</span>
+<span class="kn">from</span> <span class="nn">..computation_graph</span> <span class="kn">import</span> <span class="n">StreamNode</span><span class="p">,</span> <span class="n">Node</span><span class="p">,</span> <span class="n">ComputationNode</span><span class="p">,</span> <span class="n">compute</span>
+
+<span class="kn">from</span> <span class="nn">..string_array</span> <span class="kn">import</span> <span class="n">StringArray</span>
+<span class="kn">from</span> <span class="nn">..util.typing</span> <span class="kn">import</span> <span class="n">EncodedArrayLike</span>
+
+
+<span class="k">class</span> <span class="nc">GenomicPlace</span><span class="p">:</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">genome_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicLocation&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="nf">set_strand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">strand</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_strand</span> <span class="o">=</span> <span class="n">strand</span>
+
+
+<div class="viewcode-block" id="GenomicLocation">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicLocation">[docs]</a>
+<span class="k">class</span> <span class="nc">GenomicLocation</span><span class="p">(</span><span class="n">GenomicPlace</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Class representing (possibliy stranded) locations in the genome&#39;&#39;&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">strand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">is_stranded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+<div class="viewcode-block" id="GenomicLocation.from_fields">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicLocation.from_fields">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">chromosome</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">position</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span>
+                    <span class="n">strand</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicLocation&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create genomic location from a genome context and the needed fields (chromosome and position)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        genome_context : GenomeContextBase</span>
+<span class="sd">            Genome context object for the genome</span>
+<span class="sd">        chromosome : List[str]</span>
+<span class="sd">            List of chromosome</span>
+<span class="sd">        position : List[int]:</span>
+<span class="sd">            List of positions</span>
+<span class="sd">        strand : List[str]</span>
+<span class="sd">            Optional list of strand</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicLocation&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">is_stranded</span> <span class="o">=</span> <span class="n">strand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">is_stranded</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">StrandedLocationEntry</span><span class="p">(</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">strand</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">LocationEntry</span><span class="p">(</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">position</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicLocationGlobal</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="n">is_stranded</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GenomicLocation.from_data">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicLocation.from_data">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">,</span>
+                  <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span>
+                  <span class="n">is_stranded</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                  <span class="n">chromosome_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;chromosome&#39;</span><span class="p">,</span>
+                  <span class="n">position_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;position&#39;</span><span class="p">,</span>
+                  <span class="n">strand_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;strand&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicLocation&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create GenomicLocation object from a genome context and a bnpdataclass</span>
+
+<span class="sd">        The field names for the chromosome, positions and strand can be specified</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cls : 3</span>
+<span class="sd">            4</span>
+<span class="sd">        data : BNPDataClass</span>
+<span class="sd">            The data containing the locations</span>
+<span class="sd">        genome_context : GenomeContextBase</span>
+<span class="sd">            Genome context for the genome</span>
+<span class="sd">        is_stranded : bool</span>
+<span class="sd">            Whether or not the locations should be stranded</span>
+<span class="sd">        chromosome_name : str</span>
+<span class="sd">            Name of the chromosome field in `data`</span>
+<span class="sd">        position_name : str</span>
+<span class="sd">            Name of the position field in the `data`</span>
+<span class="sd">        strand_name : str</span>
+<span class="sd">            Name if the `strand` field int the `data`</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicLocation&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="n">chromosome_name</span><span class="p">,</span> <span class="n">position_name</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">is_stranded</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">strand_name</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicLocationGlobal</span><span class="p">(</span><span class="n">genome_context</span><span class="o">.</span><span class="n">mask_data</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="n">genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="p">,</span>
+                                     <span class="p">{</span><span class="s1">&#39;chromosome&#39;</span><span class="p">:</span> <span class="n">chromosome_name</span><span class="p">,</span>
+                                      <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="n">position_name</span><span class="p">,</span>
+                                      <span class="s1">&#39;strand&#39;</span><span class="p">:</span> <span class="n">strand_name</span><span class="p">})</span></div>
+</div>
+
+
+
+<span class="k">class</span> <span class="nc">GenomicLocationGlobal</span><span class="p">(</span><span class="n">GenomicLocation</span><span class="p">,</span> <span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Class for genomic locations that are kept entirely in memory&#39;&#39;&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locations</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">is_stranded</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+                 <span class="n">field_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span> <span class="o">=</span> <span class="n">locations</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span> <span class="o">=</span> <span class="n">genome_context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span> <span class="o">=</span> <span class="n">is_stranded</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span> <span class="o">=</span> <span class="n">field_dict</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Genomic Locations on </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">LocationEntry</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BNPDataClass</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return the underlying data as a bnpdataclass</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        BNPDataClass</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_locations</span>
+
+    <span class="k">def</span> <span class="nf">__replace__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Replace fields in the locations, used internally by bnp.replace</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span><span class="p">[</span><span class="n">kw</span><span class="p">]:</span> <span class="n">value</span> <span class="k">for</span> <span class="n">kw</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span><span class="p">,</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">StringArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return the chromosome of the locations</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        StringArray</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span><span class="p">[</span><span class="s1">&#39;chromosome&#39;</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the position of the locations</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">strand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedArrayLike</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The strand of the locations</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        EncodedArrayLike</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unstranded position has not strand&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span><span class="p">[</span><span class="s1">&#39;strand&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">is_stranded</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return whether the locations are stranded</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span>
+
+    <span class="k">def</span> <span class="nf">get_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flank</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">window_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create windows around the locations. </span>
+
+<span class="sd">        `Flank specifies the flank on either side of the location. The full windows</span>
+<span class="sd">        will thus be `flank*2+1` wide</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        flank : int</span>
+<span class="sd">            Flank on either side of the location</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicIntervals</span>
+<span class="sd">            Window intervals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">flank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">window_size</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="n">l_flank</span> <span class="o">=</span> <span class="n">flank</span>
+            <span class="n">r_flank</span> <span class="o">=</span> <span class="n">flank</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">window_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">l_flank</span> <span class="o">=</span> <span class="n">window_size</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">r_flank</span> <span class="o">=</span> <span class="n">window_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">window_size</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+            <span class="n">intervals</span> <span class="o">=</span> <span class="n">StrandedInterval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-</span> <span class="n">l_flank</span><span class="p">,</span>
+                                         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+</span> <span class="n">r_flank</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">intervals</span> <span class="o">=</span> <span class="n">Interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-</span> <span class="n">l_flank</span><span class="p">,</span>
+                                 <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+</span> <span class="n">r_flank</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsFull</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span>
+                                    <span class="n">is_stranded</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">())</span><span class="o">.</span><span class="n">clip</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicLocation</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a sorted version of the locations</span>
+
+<span class="sd">        Sorted according the chromosome order in the `GenomeContext`</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicLocation</span>
+<span class="sd">            Sorted locations</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">raw</span><span class="p">()])]</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span><span class="o">-&gt;</span> <span class="s1">&#39;GenomicLocation&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Get a subset of the locations</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx: numpy index like</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicLocation</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_field_dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Get a field from the undelying data</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field_name: str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Any</span>
+<span class="sd">            The field from the underlying data</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_locations</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GenomicLocationStreamed</span><span class="p">(</span><span class="n">GenomicLocation</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Class for representing intervals that are grouped by chromosome, and where only intervals</span>
+<span class="sd">    for one chromosome at the time is kept in memory</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">is_stream</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_get_chrom_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;GLS:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;GLS:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                 <span class="n">field_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">field_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;chromosome&#39;</span><span class="p">,</span> <span class="s1">&#39;positions&#39;</span><span class="p">,</span> <span class="s1">&#39;strand&#39;</span><span class="p">]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span> <span class="o">=</span> <span class="n">genome_context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">data_node</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;chromosome&#39;</span><span class="p">]])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_position</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">data_node</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;position&#39;</span><span class="p">]])</span>
+        <span class="k">if</span> <span class="n">is_stranded</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_strand</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">data_node</span><span class="p">,</span> <span class="n">field_dict</span><span class="p">[</span><span class="s1">&#39;strand&#39;</span><span class="p">]])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_chrom_size_node</span> <span class="o">=</span> <span class="n">StreamNode</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data_node</span> <span class="o">=</span> <span class="n">data_node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span> <span class="o">=</span> <span class="n">is_stranded</span>
+
+    <span class="k">def</span> <span class="nf">is_stranded</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span>
+
+    <span class="k">def</span> <span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicLocationStreamed&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComputationNode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return a computation node for the position of the locations.</span>
+<span class="sd">        Can be realized by calling bnp.compute on them, or can be aggregated across the stream with</span>
+<span class="sd">        numpy aggregations</span>
+<span class="sd">        -------</span>
+<span class="sd">        ComputationNode</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_position</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComputationNode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return a computation node for the chromosome of the locations.</span>
+<span class="sd">        Can be realized by calling bnp.compute on them, or can be aggregated across the stream with</span>
+<span class="sd">        numpy aggregations</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ComputationNode</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome</span>
+
+    <span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComputationNode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Get a field from the undelying data returned as a computation node</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field_name: str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ComputationNode</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_node</span><span class="p">,</span> <span class="n">field_name</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">strand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ComputationNode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Return a computation node for the strand of the locations.</span>
+<span class="sd">        Can be realized by calling bnp.compute on them, or can be aggregated across the stream with</span>
+<span class="sd">        numpy aggregations</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        ComputationNode</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Strand not supported on unstranded intervals&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strand</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Get a subset of the locations, returned as a CompuationNode</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        item</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_data_node</span><span class="p">,</span> <span class="n">item</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_windows</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flank</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">window_size</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create windows around the locations. </span>
+
+<span class="sd">        `Flank specifies the flank on either side of the location. The full windows</span>
+<span class="sd">        will thus be `flank*2+1` wide</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        window_size</span>
+<span class="sd">        flank : int</span>
+<span class="sd">            Flank on either side of the location</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicIntervals</span>
+<span class="sd">            Window intervals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">flank</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">window_size</span> <span class="ow">is</span> <span class="kc">None</span>
+            <span class="n">l_flank</span> <span class="o">=</span> <span class="n">flank</span>
+            <span class="n">r_flank</span> <span class="o">=</span> <span class="n">flank</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">window_size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">l_flank</span> <span class="o">=</span> <span class="n">window_size</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">r_flank</span> <span class="o">=</span> <span class="n">window_size</span> <span class="o">//</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">window_size</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+            <span class="n">intervals</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="n">StrandedInterval</span><span class="p">,</span>
+                                        <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span>
+                                         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-</span> <span class="n">l_flank</span><span class="p">,</span>
+                                         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+</span> <span class="n">r_flank</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">strand</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">intervals</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span>
+                <span class="n">Interval</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">-</span> <span class="n">l_flank</span><span class="p">,</span>
+                           <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">+</span> <span class="n">r_flank</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsStreamed</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span>
+                                        <span class="n">is_stranded</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">())</span><span class="o">.</span><span class="n">clip</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_get_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GenomicLocationGlobal</span><span class="p">(</span>
+            <span class="n">LocationEntry</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">_get_buffer</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                          <span class="bp">self</span><span class="o">.</span><span class="n">position</span><span class="o">.</span><span class="n">_get_buffer</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GenomicIntervals">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals">[docs]</a>
+<span class="k">class</span> <span class="nc">GenomicIntervals</span><span class="p">(</span><span class="n">GenomicPlace</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Class for representing intervals on a genome&#39;&#39;&#39;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">strand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">is_stranded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicLocation</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+<div class="viewcode-block" id="GenomicIntervals.extended_to_size">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.extended_to_size">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">extended_to_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extend intervals along strand to reach the given size</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        size : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.merged">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.merged">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Merge intervals that overlap or lie within distance of eachother</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">            4</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.get_mask">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.get_mask">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a boolean mask of areas covered by any interval</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicArray</span>
+<span class="sd">            Genomic mask</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.get_pileup">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.get_pileup">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">get_pileup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a genmic track of counting the number of intervals covering each bp</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicArray</span>
+<span class="sd">            Pileup track</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.from_track">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.from_track">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_track</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">track</span><span class="p">:</span> <span class="n">GenomicArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return intervals of contigous areas of nonzero values of track</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        track : GenomicArray</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">track</span><span class="p">,</span> <span class="n">GenomicArrayNode</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">GenomicIntervalsStreamed</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">get_data</span><span class="p">(),</span> <span class="n">track</span><span class="o">.</span><span class="n">genome_context</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsFull</span><span class="p">(</span><span class="n">track</span><span class="o">.</span><span class="n">get_data</span><span class="p">(),</span> <span class="n">track</span><span class="o">.</span><span class="n">genome_context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.from_fields">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.from_fields">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">chromosome</span><span class="p">:</span> <span class="n">StringArray</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">stop</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">strand</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">EncodedArray</span><span class="p">]</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Create genomic intervals from fields</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        genome_context: GenomeContextBase</span>
+<span class="sd">        chromosome: StringArray</span>
+<span class="sd">        start: np.ndarray</span>
+<span class="sd">        stop: np.ndarray</span>
+<span class="sd">        strand: EncodedArray</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicIntervals</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+
+        <span class="n">is_stranded</span> <span class="o">=</span> <span class="n">strand</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">is_stranded</span><span class="p">:</span>
+            <span class="n">intervals</span> <span class="o">=</span> <span class="n">Bed6</span><span class="p">(</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">start</span><span class="p">),</span>
+                             <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">strand</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">intervals</span> <span class="o">=</span> <span class="n">Interval</span><span class="p">(</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="n">is_stranded</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.from_intervals">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.from_intervals">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_intervals</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">is_stranded</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create genomic intervals from interval entries and genome info</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        intervals : Interval</span>
+<span class="sd">        genome_context : GenomeContextBase</span>
+<span class="sd">        is_stranded : bool</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">Interval</span><span class="p">):</span>  <span class="c1"># TODO check is node</span>
+            <span class="k">return</span> <span class="n">GenomicIntervalsFull</span><span class="p">(</span><span class="n">genome_context</span><span class="o">.</span><span class="n">mask_data</span><span class="p">(</span><span class="n">intervals</span><span class="p">),</span> <span class="n">genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_interval_stream</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.from_interval_stream">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.from_interval_stream">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_interval_stream</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">interval_stream</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Interval</span><span class="p">],</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span>
+                             <span class="n">is_stranded</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create streamed genomic intervals from a stream of intervals and genome info</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        interval_stream : Iterable[Interval]</span>
+<span class="sd">        genome_context : GenomeContextBase</span>
+<span class="sd">        is_stranded : bool</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">interval_stream</span> <span class="o">=</span> <span class="n">genome_context</span><span class="o">.</span><span class="n">iter_chromosomes</span><span class="p">(</span>
+            <span class="n">interval_stream</span><span class="p">,</span> <span class="n">StrandedInterval</span> <span class="k">if</span> <span class="n">is_stranded</span> <span class="k">else</span> <span class="n">Interval</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsStreamed</span><span class="p">(</span><span class="n">StreamNode</span><span class="p">(</span><span class="n">interval_stream</span><span class="p">),</span> <span class="n">genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="n">is_stranded</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="GenomicIntervals.clip">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicIntervals.clip">[docs]</a>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clip the intervals so that they are contained in the genome</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">            Clipped intervals</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">GenomicIntervalsFull</span><span class="p">(</span><span class="n">GenomicIntervals</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39; Class for holding a set of intervals in memory&#39;&#39;&#39;</span>
+
+    <span class="n">is_stream</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span> <span class="o">=</span> <span class="n">intervals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span> <span class="o">=</span> <span class="n">is_stranded</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span> <span class="o">=</span> <span class="n">genome_context</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BNPDataClass</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Return the underlying data as a bnpdataclass&#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span>
+
+    <span class="k">def</span> <span class="nf">__array_function__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="nb">callable</span><span class="p">,</span> <span class="n">types</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">args</span><span class="p">:</span> <span class="n">List</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">:</span> <span class="n">Dict</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">func</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">obj</span><span class="o">.</span><span class="n">_intervals</span> <span class="k">for</span> <span class="n">obj</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span>
+                                  <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Genomic Intervals on </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="si">}</span><span class="s1">:</span><span class="se">\n</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">Interval</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BNPDataClass</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the underlying data for the intervals</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        BNPDataClass</span>
+<span class="sd">            The data for the intervals</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span>
+
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">map_locations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">locations</span><span class="p">:</span> <span class="n">LocationEntry</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Map locations to the intervals. The locations should be in the same coordinate system as the intervals</span>
+<span class="sd">        The new locations will be in the coordinate system of the intervals</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        locations: LocationEntry</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        LocationEntry</span>
+
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">go</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span><span class="o">.</span><span class="n">from_local_interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">)</span>
+        <span class="n">global_positions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span><span class="o">.</span><span class="n">from_local_coordinates</span><span class="p">(</span><span class="n">locations</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span>
+                                                                                     <span class="n">locations</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+
+        <span class="n">location_indices</span><span class="p">,</span> <span class="n">interval_indices</span> <span class="o">=</span> <span class="n">find_indices</span><span class="p">(</span><span class="n">global_positions</span><span class="p">,</span> <span class="n">go</span><span class="p">)</span>
+        <span class="n">new_entries</span> <span class="o">=</span> <span class="n">locations</span><span class="p">[</span><span class="n">location_indices</span><span class="p">]</span>
+        <span class="n">names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">name</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">StringArray</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">))</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;S&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">replace</span><span class="p">(</span><span class="n">new_entries</span><span class="p">,</span> <span class="n">chromosome</span><span class="o">=</span><span class="n">names</span><span class="p">[</span><span class="n">interval_indices</span><span class="p">],</span>
+                       <span class="n">position</span><span class="o">=</span><span class="n">new_entries</span><span class="o">.</span><span class="n">position</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="n">interval_indices</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">map_locations</span><span class="p">(</span><span class="n">replace</span><span class="p">(</span><span class="n">locations</span><span class="p">,</span> <span class="n">position</span><span class="o">=</span><span class="n">global_positions</span><span class="p">),</span> <span class="n">go</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return the intervals sorted according to `genome_context`</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">raw</span><span class="p">()])</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicLocation</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the genomic location of eitert &#39;start&#39;, &#39;stop&#39; or &#39;center&#39; of the intervals</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        where : str</span>
+<span class="sd">            &#39;start&#39;, &#39;stop&#39; or &#39;center&#39;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicLocation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">where</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">location</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">strand</span> <span class="o">==</span> <span class="p">(</span><span class="s1">&#39;+&#39;</span> <span class="k">if</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span> <span class="k">else</span> <span class="s1">&#39;-&#39;</span><span class="p">),</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">stop</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;center&#39;</span>
+            <span class="n">location</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">location</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicLocationGlobal</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">(),</span>
+            <span class="n">position_name</span><span class="o">=</span><span class="s1">&#39;start&#39;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">start</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">stop</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">strand</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unstranded interval has not strand&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">strand</span>
+
+    <span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="n">field_name</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">chromosome</span>
+
+    <span class="k">def</span> <span class="nf">extended_to_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicIntervals</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extend intervals along strand to reach the given size</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        size : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chrom_sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span><span class="o">.</span><span class="n">get_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_intervals</span><span class="p">(</span><span class="n">extend_to_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">chrom_sizes</span><span class="p">),</span>
+                                   <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicIntervals</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Merge intervals that overlap or lie within distance of eachother</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stream</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">as_stream</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">stream</span><span class="o">.</span><span class="n">merged</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span><span class="o">.</span><span class="n">compute</span><span class="p">()</span>
+
+        <span class="k">assert</span> <span class="n">distance</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;Distance might cross chromosome boundries so is not supported with current implementation&#39;</span>
+        <span class="n">go</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span>
+        <span class="n">global_intervals</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">from_local_interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">)</span>
+        <span class="n">global_merged</span> <span class="o">=</span> <span class="n">merge_intervals</span><span class="p">(</span><span class="n">global_intervals</span><span class="p">,</span> <span class="n">distance</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_intervals</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_global_offset</span><span class="o">.</span><span class="n">to_local_interval</span><span class="p">(</span><span class="n">global_merged</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_pileup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a genmic array of counting the number of intervals covering each bp</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicArray</span>
+<span class="sd">            Pileup track</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">go</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span><span class="o">.</span><span class="n">from_local_interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicArray</span><span class="o">.</span><span class="n">from_global_data</span><span class="p">(</span>
+            <span class="n">get_pileup</span><span class="p">(</span><span class="n">go</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">size</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return a boolean mask of areas covered by any interval</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicArray</span>
+<span class="sd">            Genomic mask</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">I</span> <span class="o">=</span> <span class="n">RawInterval</span>
+        <span class="n">starts</span><span class="p">,</span> <span class="n">stops</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span><span class="o">.</span><span class="n">start_ends_from_intervals</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">)</span>
+        <span class="n">global_mask</span> <span class="o">=</span> <span class="n">get_boolean_mask</span><span class="p">(</span><span class="n">I</span><span class="p">(</span><span class="n">starts</span><span class="p">,</span> <span class="n">stops</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicArray</span><span class="o">.</span><span class="n">from_global_data</span><span class="p">(</span><span class="n">global_mask</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervalsFull&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Clip the intervals so that they are contained in the genome</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">            Clipped intervals</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chrom_sizes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">global_offset</span><span class="o">.</span><span class="n">get_size</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                       <span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">),</span>
+                       <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">__replace__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">as_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">interval_class</span> <span class="o">=</span> <span class="n">StrandedInterval</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span> <span class="k">else</span> <span class="n">Interval</span>
+        <span class="n">filled</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">genome_context</span><span class="o">.</span><span class="n">iter_chromosomes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals</span><span class="p">,</span> <span class="n">interval_class</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsStreamed</span><span class="p">(</span>
+            <span class="n">StreamNode</span><span class="p">(</span><span class="n">filled</span><span class="p">),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_sorted_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sorted_intervals</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sorted</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_interval_stream</span><span class="p">(</span><span class="nb">iter</span><span class="p">([</span><span class="n">sorted_intervals</span><span class="p">]))</span>
+
+    <span class="k">def</span> <span class="nf">is_stranded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span>
+
+
+<span class="k">class</span> <span class="nc">GenomicIntervalsStreamed</span><span class="p">(</span><span class="n">GenomicIntervals</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Class for representing intervals that are grouped by chromosome, and where only intervals</span>
+<span class="sd">    for one chromosome at the time is kept in memory</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+
+    <span class="n">is_stream</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">_get_chrom_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">chrom_sizes</span><span class="p">[</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;GIS:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s1">&#39;GIS:&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals_node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">:</span> <span class="n">GenomeContextBase</span><span class="p">,</span> <span class="n">is_stranded</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span> <span class="o">=</span> <span class="n">genome_context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_start</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">intervals_node</span><span class="p">,</span> <span class="s1">&#39;start&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">intervals_node</span><span class="p">,</span> <span class="s1">&#39;stop&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">is_stranded</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_strand</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">intervals_node</span><span class="p">,</span> <span class="s1">&#39;strand&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome</span> <span class="o">=</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="n">intervals_node</span><span class="p">,</span> <span class="s1">&#39;chromosome&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_chrom_size_node</span> <span class="o">=</span> <span class="n">StreamNode</span><span class="p">(</span><span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="o">.</span><span class="n">chrom_sizes</span><span class="o">.</span><span class="n">values</span><span class="p">()))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span> <span class="o">=</span> <span class="n">intervals_node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span> <span class="o">=</span> <span class="n">is_stranded</span>
+
+    <span class="k">def</span> <span class="nf">is_stranded</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_stranded</span>
+
+    <span class="k">def</span> <span class="nf">sorted</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stop</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">chromosome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chromosome</span>
+
+    <span class="k">def</span> <span class="nf">get_data_field</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">ComputationNode</span><span class="p">(</span><span class="nb">getattr</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="s1">&#39;chromosome&#39;</span><span class="p">])</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">strand</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Strand not supported on unstranded intervals&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_strand</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="n">item</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">extended_to_size</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicIntervals</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extend intervals along strand to reach the given size</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        size : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span>
+            <span class="n">ComputationNode</span><span class="p">(</span><span class="n">extend_to_size</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chrom_size_node</span><span class="p">]),</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">merged</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicIntervals</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Merge intervals that overlap or lie within distance of eachother</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        distance : int</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;GenomicIntervals&#39;</span>
+<span class="sd">            4</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="n">merge_intervals</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="n">distance</span><span class="p">]),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_pileup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Create a GenomicTrack of how many intervals covers each position in the genome</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        intervals : Interval</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicArray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">GenomicArrayNode</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="n">get_pileup</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chrom_size_node</span><span class="p">]),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_mask</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicArray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GenomicArrayNode</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="n">get_boolean_mask</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chrom_size_node</span><span class="p">]),</span>
+                                <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicIntervals&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="n">clip</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_chrom_size_node</span><span class="p">]),</span>
+                              <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__replace__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="n">ComputationNode</span><span class="p">(</span><span class="n">replace</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">],</span> <span class="n">kwargs</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+        <span class="c1"># return self.__class__(dataclasses.replace(self._intervals, **kwargs), self._genome_context)</span>
+
+    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chromosome</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span> <span class="o">=</span> <span class="n">compute</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsFull</span><span class="p">(</span><span class="n">Interval</span><span class="p">(</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_buffer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GenomicIntervalsFull</span><span class="p">(</span><span class="n">Interval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">_get_buffer</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                                             <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">_get_buffer</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
+                                             <span class="bp">self</span><span class="o">.</span><span class="n">stop</span><span class="o">.</span><span class="n">_get_buffer</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span>
+                                    <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">as_stream</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">get_location</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">where</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;start&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicLocation</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get the genomic location of eitert &#39;start&#39;, &#39;stop&#39; or &#39;center&#39; of the intervals</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        where : str</span>
+<span class="sd">            &#39;start&#39;, &#39;stop&#39; or &#39;center&#39;</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        GenomicLocation</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">where</span> <span class="o">==</span> <span class="s1">&#39;start&#39;</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_stranded</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">GenomicLocationStreamed</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_intervals_node</span><span class="p">,</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span><span class="p">,</span>
+                                       <span class="kc">False</span><span class="p">,</span>
+                                       <span class="p">{</span><span class="s1">&#39;chromosome&#39;</span><span class="p">:</span> <span class="s1">&#39;chromosome&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="s1">&#39;start&#39;</span><span class="p">,</span>
+                                        <span class="s1">&#39;strand&#39;</span><span class="p">:</span> <span class="s1">&#39;strand&#39;</span><span class="p">})</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

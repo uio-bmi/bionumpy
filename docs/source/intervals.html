@@ -1,0 +1,314 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Intervals &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Working with Multiple Files/Data Sources" href="multiple_data_sources.html" />
+    <link rel="prev" title="Sequences" href="sequences.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sequences.html">Sequences</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Intervals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#independent-operations">Independent Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations-with-dependencies">Operations with dependencies</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#working-with-boolean-masks">Working with boolean masks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#genomic-intervals">Genomic Intervals</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Intervals</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/intervals.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="intervals">
+<span id="id1"></span><h1>Intervals<a class="headerlink" href="#intervals" title="Link to this heading"></a></h1>
+<p>Working with intervals is a central part of many bioinformatics analyses. In BioNumPy, an interval is any object (<cite>bnpdataclass</cite>) having a <cite>start</cite> and <cite>stop</cite> attribute and optionally a <cite>strand</cite> attribute. We will typically get intervals by reading them from files such as <cite>.bed</cite>, <cite>.gtf</cite> or <cite>.narrowPeaks</cite>. Or by converting alignments to reference intervals by <cite>alignment.to_interval</cite>. The functionality in BioNumPy for handling intervals can be divided into two operating on intervals as independent objects, or operations with some sort of dependencies:</p>
+<section id="independent-operations">
+<h2>Independent Operations<a class="headerlink" href="#independent-operations" title="Link to this heading"></a></h2>
+<p>Independent operations covers any thing we want to do with a set of intervals that can be done one interval at a time. This covers simple geometric operations such as shifting and resizing; filtering based on properties of intervals. Since both the start and stop (and strand) attribute are NumPy arrays, we can implement a lot of functionality simply by using NumPy indexing and ufuncs:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/small_interval.bed&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">extended_right</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">shifted</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">+</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">small</span> <span class="o">=</span> <span class="n">intervals</span><span class="p">[(</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">-</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">50</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Even though it is possible to write these kinds of functions using simple NumPy functionality, it is often better to wrap them in functions with instructive names. In the <cite>bnp.interval</cite> module, a set of utility funcitons ffor working with intervals is provided.</p>
+</section>
+<section id="operations-with-dependencies">
+<h2>Operations with dependencies<a class="headerlink" href="#operations-with-dependencies" title="Link to this heading"></a></h2>
+<p>Some queries cannot be answered just by looking at intervals as independent entries. Consider the query “all regions covered by at least two intervals”. In order to answer such questions, we need to look at the intervals as a coherent set. In BioNumPy, such queries are done by reducing all the relevant information from the intervals into a  <cite>npstructures.RunLengthArray</cite>. The two main ways of doing this is to do make a pileup, i.e. counting how many intevals overlap with each position in the genome, or to make a boolean mask indicating which positions are covered by any interval.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bionumpy.datatypes</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bionumpy.arithmetics</span> <span class="kn">import</span> <span class="n">get_boolean_mask</span><span class="p">,</span> <span class="n">get_pileup</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">Interval</span><span class="p">([</span><span class="s2">&quot;chr1&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">21</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_boolean_mask</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="go">array([False, False, False, False, False, False, False, False, False,</span>
+<span class="go">          False,  True,  True,  True, False, False,  True,  True,  True,</span>
+<span class="go">           True,  True,  True,  True, False])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">get_pileup</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="go">array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 2,</span>
+<span class="go">          1, 0])</span>
+</pre></div>
+</div>
+<p>These run length encoded arrays stores the data in a smart way, but are supposed to work a much like a NumPy array as possible. So we can do NumPy-like operations on them to achieve common goals:</p>
+<section id="working-with-boolean-masks">
+<h3>Working with boolean masks<a class="headerlink" href="#working-with-boolean-masks" title="Link to this heading"></a></h3>
+<p>The boolean mask representation is good to use when you want to filter a set of intervals or positions based on overlap with another set of intervals. We will examplify that here with a use of: a set of genes,  a set of aligned reads and a set of variants.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bionumpy.datatypes</span> <span class="kn">import</span> <span class="n">Bed6</span><span class="p">,</span> <span class="n">Variant</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genes</span> <span class="o">=</span> <span class="n">Bed6</span><span class="p">([</span><span class="s2">&quot;chr1&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">13</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">21</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;gene_a&quot;</span><span class="p">,</span> <span class="s2">&quot;gene_b&quot;</span><span class="p">,</span> <span class="s2">&quot;gene_c&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genes</span>
+<span class="go">Bed6 with 3 entries</span>
+<span class="go">               chromosome                    start                     stop                     name                    score                   strand</span>
+<span class="go">                     chr1                       10                       13                   gene_a                        .                        +</span>
+<span class="go">                     chr1                       15                       22                   gene_b                        .                        -</span>
+<span class="go">                     chr1                       20                       21                   gene_c                        .                        +</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reads</span> <span class="o">=</span> <span class="n">Bed6</span><span class="p">([</span><span class="s2">&quot;chr1&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">11</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;read</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)],</span> <span class="p">[</span><span class="s2">&quot;.&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">5</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="s2">&quot;-&quot;</span><span class="p">,</span> <span class="s2">&quot;+&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reads</span>
+<span class="go">Bed6 with 5 entries</span>
+<span class="go">               chromosome                    start                     stop                     name                    score                   strand</span>
+<span class="go">                     chr1                        2                        4                    read0                        .                        +</span>
+<span class="go">                     chr1                        3                        6                    read1                        .                        -</span>
+<span class="go">                     chr1                        5                        8                    read2                        .                        +</span>
+<span class="go">                     chr1                        7                       10                    read3                        .                        -</span>
+<span class="go">                     chr1                       11                       12                    read4                        .                        +</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">variants</span> <span class="o">=</span> <span class="n">Variant</span><span class="p">([</span><span class="s2">&quot;chr1&quot;</span><span class="p">]</span><span class="o">*</span><span class="mi">4</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">16</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="s2">&quot;C&quot;</span><span class="p">,</span> <span class="s2">&quot;T&quot;</span><span class="p">,</span> <span class="s2">&quot;A&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">variants</span>
+<span class="go">Variant with 4 entries</span>
+<span class="go">               chromosome                 position                  ref_seq                  alt_seq</span>
+<span class="go">                     chr1                        2                        A                        G</span>
+<span class="go">                     chr1                        4                        C                        C</span>
+<span class="go">                     chr1                       11                        G                        T</span>
+<span class="go">                     chr1                       16                        T                        A</span>
+</pre></div>
+</div>
+<p>Let’s say we now want to get all the variants that lie within a gene, and is also covered by at least one read. We would then make a boolean mask for both the genes and the reads:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gene_mask</span> <span class="o">=</span> <span class="n">get_boolean_mask</span><span class="p">(</span><span class="n">genes</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">read_mask</span> <span class="o">=</span> <span class="n">get_boolean_mask</span><span class="p">(</span><span class="n">reads</span><span class="p">,</span> <span class="mi">23</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now combine these together using the <cite>and</cite> operator to get the mask where both are covered:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gene_and_read_mask</span> <span class="o">=</span> <span class="n">gene_mask</span> <span class="o">&amp;</span> <span class="n">read_mask</span>
+</pre></div>
+</div>
+<p>Finally, we want to find all the variants that lie within this mask:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">covered_variants</span> <span class="o">=</span> <span class="n">variants</span><span class="p">[</span><span class="n">gene_and_read_mask</span><span class="p">[</span><span class="n">variants</span><span class="o">.</span><span class="n">position</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">covered_variants</span>
+<span class="go">Variant with 1 entries</span>
+<span class="go">               chromosome                 position                  ref_seq                  alt_seq</span>
+<span class="go">                     chr1                       11                        G                        T</span>
+</pre></div>
+</div>
+<p>We see that only one variant is covered both by a gene and a read.</p>
+</section>
+</section>
+<section id="genomic-intervals">
+<h2>Genomic Intervals<a class="headerlink" href="#genomic-intervals" title="Link to this heading"></a></h2>
+<p>When working with genomic intervals, we often want to only deal intervals from one chromsome at the time. In order to do this, we can use the <cite>bnp.groupby</cite> function on interval entries.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/small_interval.bed&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+<span class="go">Interval with 50 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                        0                       13                       18</span>
+<span class="go">                        0                       37                       46</span>
+<span class="go">                        0                       62                       83</span>
+<span class="go">                        0                      105                      126</span>
+<span class="go">                        0                      129                      130</span>
+<span class="go">                        1                        3                       21</span>
+<span class="go">                        1                       41                       65</span>
+<span class="go">                        1                       91                      114</span>
+<span class="go">                        1                      131                      153</span>
+<span class="go">                        1                      157                      168</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">chromosome</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">bnp</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="s2">&quot;chromosome&quot;</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;---Chromosome: </span><span class="si">{</span><span class="n">chromosome</span><span class="si">}</span><span class="s2">---&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="go">---Chromosome: 0---</span>
+<span class="go">Interval with 5 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                        0                       13                       18</span>
+<span class="go">                        0                       37                       46</span>
+<span class="go">                        0                       62                       83</span>
+<span class="go">                        0                      105                      126</span>
+<span class="go">                        0                      129                      130</span>
+<span class="go">---Chromosome: 1---</span>
+<span class="go">Interval with 10 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                        1                        3                       21</span>
+<span class="go">                        1                       41                       65</span>
+<span class="go">                        1                       91                      114</span>
+<span class="go">                        1                      131                      153</span>
+<span class="go">                        1                      157                      168</span>
+<span class="go">                        1                      174                      201</span>
+<span class="go">                        1                      213                      230</span>
+<span class="go">                        1                      240                      268</span>
+<span class="go">                        1                      290                      315</span>
+<span class="go">                        1                      319                      339</span>
+<span class="go">---Chromosome: 2---</span>
+<span class="go">Interval with 15 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                        2                        2                       16</span>
+<span class="go">                        2                       44                       49</span>
+<span class="go">                        2                       77                      101</span>
+<span class="go">                        2                      108                      127</span>
+<span class="go">                        2                      135                      154</span>
+<span class="go">                        2                      163                      165</span>
+<span class="go">                        2                      173                      177</span>
+<span class="go">                        2                      201                      214</span>
+<span class="go">                        2                      242                      268</span>
+<span class="go">                        2                      292                      320</span>
+<span class="go">---Chromosome: 3---</span>
+<span class="go">Interval with 20 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                        3                        7                       34</span>
+<span class="go">                        3                       58                       82</span>
+<span class="go">                        3                       95                      101</span>
+<span class="go">                        3                      130                      138</span>
+<span class="go">                        3                      150                      170</span>
+<span class="go">                        3                      188                      211</span>
+<span class="go">                        3                      234                      261</span>
+<span class="go">                        3                      283                      302</span>
+<span class="go">                        3                      325                      352</span>
+<span class="go">                        3                      353                      362</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sequences.html" class="btn btn-neutral float-left" title="Sequences" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="multiple_data_sources.html" class="btn btn-neutral float-right" title="Working with Multiple Files/Data Sources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,901 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genomic Data &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="IO" href="io.html" />
+    <link rel="prev" title="Genome arithmetics" href="genome_arithmetics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Genomic Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-documentation">API documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.genomic_data.Genome"><code class="docutils literal notranslate"><span class="pre">Genome</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.from_dict"><code class="docutils literal notranslate"><span class="pre">Genome.from_dict()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.from_file"><code class="docutils literal notranslate"><span class="pre">Genome.from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.get_genome_context"><code class="docutils literal notranslate"><span class="pre">Genome.get_genome_context()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.get_intervals"><code class="docutils literal notranslate"><span class="pre">Genome.get_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.get_locations"><code class="docutils literal notranslate"><span class="pre">Genome.get_locations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.get_track"><code class="docutils literal notranslate"><span class="pre">Genome.get_track()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.read_annotation"><code class="docutils literal notranslate"><span class="pre">Genome.read_annotation()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.read_intervals"><code class="docutils literal notranslate"><span class="pre">Genome.read_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.read_locations"><code class="docutils literal notranslate"><span class="pre">Genome.read_locations()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.read_sequence"><code class="docutils literal notranslate"><span class="pre">Genome.read_sequence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.read_track"><code class="docutils literal notranslate"><span class="pre">Genome.read_track()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.size"><code class="docutils literal notranslate"><span class="pre">Genome.size</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.Genome.with_ignored_added"><code class="docutils literal notranslate"><span class="pre">Genome.with_ignored_added()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray"><code class="docutils literal notranslate"><span class="pre">GenomicArray</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray.from_bedgraph"><code class="docutils literal notranslate"><span class="pre">GenomicArray.from_bedgraph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray.from_global_data"><code class="docutils literal notranslate"><span class="pre">GenomicArray.from_global_data()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.clip"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.clip()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.extended_to_size"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.extended_to_size()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.from_fields"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.from_fields()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.from_interval_stream"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.from_interval_stream()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.from_intervals"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.from_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.from_track"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.from_track()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.get_mask"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.get_mask()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.get_pileup"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.get_pileup()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals.merged"><code class="docutils literal notranslate"><span class="pre">GenomicIntervals.merged()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation"><code class="docutils literal notranslate"><span class="pre">GenomicLocation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation.from_data"><code class="docutils literal notranslate"><span class="pre">GenomicLocation.from_data()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation.from_fields"><code class="docutils literal notranslate"><span class="pre">GenomicLocation.from_fields()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.genomic_data.GenomicAnnotation"><code class="docutils literal notranslate"><span class="pre">GenomicAnnotation</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicAnnotation.from_gtf_entries"><code class="docutils literal notranslate"><span class="pre">GenomicAnnotation.from_gtf_entries()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.genomic_data.GenomicSequence"><code class="docutils literal notranslate"><span class="pre">GenomicSequence</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicSequence.extract_intervals"><code class="docutils literal notranslate"><span class="pre">GenomicSequence.extract_intervals()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.genomic_data.GenomicSequence.from_dict"><code class="docutils literal notranslate"><span class="pre">GenomicSequence.from_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Genomic Data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/genomic_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="genomic-data">
+<span id="arithmetics-api"></span><h1>Genomic Data<a class="headerlink" href="#genomic-data" title="Link to this heading"></a></h1>
+<p>The <cite>bnp.genomic_data</cite> module contains functions for analysing data that belongs to a reference genome, e.g .bed, .bam, .vcf, .gtf files and so on. The main entry point is the <cite>Genome</cite> class that creates genomic data objects, either from file, or from <cite>BNPDataClass</cite> objects. The <cite>Genome</cite> file is most commonly instaniated from a <cite>.chrom.sizes</cite> or <cite>.fasta</cite> file, which contains information about the size of each chromosome in the genome.</p>
+<section id="api-documentation">
+<h2>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.genomic_data.</span></span><span class="sig-name descname"><span class="pre">Genome</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">chrom_sizes:</span> <span class="pre">~typing.Dict[str,</span> <span class="pre">int],</span> <span class="pre">fasta_filename:</span> <span class="pre">str</span> <span class="pre">=</span> <span class="pre">None,</span> <span class="pre">sort_names=False,</span> <span class="pre">filter_function=&lt;function</span> <span class="pre">Genome.&lt;lambda&gt;&gt;</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome" title="Link to this definition"></a></dt>
+<dd><p>The entry point for working with genomic data. Supports reading data directly from
+file and into GenomicData objects, or creating GenomicData objects from <cite>BNPDataClass</cite> objects, 
+such <cite>Interval</cite>, <cite>BedGraph</cite> or <cite>LocationEntry</cite>.</p>
+<p>Supports both in memory or streamed/lazy data, controlled with the <cite>stream</cite> keyword. For streamed
+data it requires that the data in the file uses the same chromosome ordering as the genome. This
+will usually be the same as either what is provided in the <cite>chrom.sizes</cite> file, or a simple alphabetic
+ordering. If sort order errors occur, try using <cite>sort_names=True</cite> when creating the <cite>Genome</cite> object.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chrom_sizes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.Genome" title="bionumpy.genomic_data.genome.Genome"><span class="pre">Genome</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Create a Genome object from a dictionary of chromosome sizes</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<p>chrom_sizes: Dict[str, int]
+args: Additional args to be passed to the Genome constructor
+kwargs: Additional kwargs to be passed to the Genome constructor</p>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<p>Genome</p>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;chr1&#39;</span><span class="p">:</span> <span class="mi">1000</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">:</span> <span class="mi">2000</span><span class="p">})</span>
+<span class="go">Genome([&#39;chr1&#39;, &#39;chr2&#39;])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.from_file">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename:</span> <span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_names:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_function=&lt;function</span> <span class="pre">ignore_underscores&gt;</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.Genome" title="bionumpy.genomic_data.genome.Genome"><span class="pre">Genome</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.from_file" title="Link to this definition"></a></dt>
+<dd><p>Read genome information from a ‘chrom.sizes’ or ‘fa.fai’ file</p>
+<p>File should contain rows of names and lengths of chromosomes.
+If a fasta file is provided, a fasta index will be written to ‘fa.fai’
+if not already theree. The sequence will then be available through, ‘genome.read_sequence()’
+without any ‘filename’ parameter.</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<p>cls :
+filename : str
+sort_names : bool Whether or not to sort the chromosome names</p>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>‘Genome’</dt><dd><p>A <cite>Genome</cite> object created from the read chromosome sizes</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/hg38.chrom.sizes&#39;</span><span class="p">)</span>
+<span class="go">Genome([&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;, &#39;chr4&#39;, &#39;chr5&#39;, &#39;chr6&#39;, &#39;chr7&#39;, &#39;chr8&#39;, &#39;chr9&#39;, &#39;chr10&#39;, &#39;...&#39;])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.get_genome_context">
+<span class="sig-name descname"><span class="pre">get_genome_context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GenomeContext</span></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.get_genome_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.get_genome_context" title="Link to this definition"></a></dt>
+<dd><p>Get the genome context of the Genome
+Returns
+——-
+GenomeContext</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.get_intervals">
+<span class="sig-name descname"><span class="pre">get_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stranded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.get_intervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.get_intervals" title="Link to this definition"></a></dt>
+<dd><p>Get genomic intervals from interval data.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>intervals<span class="classifier">Interval</span></dt><dd><p>Interval’s or stream of Intervals’s</p>
+</dd>
+<dt>stranded<span class="classifier">bool</span></dt><dd><p>Wheter or not the intervals are stranded</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<p>GenomicIntervals</p>
+</section>
+<section id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Interval</span><span class="p">(</span><span class="n">chromosome</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;chr1&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">get_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+<span class="go">Genomic Intervals on [&#39;chr1&#39;, &#39;chr2&#39;]:</span>
+<span class="go">Interval with 3 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                     chr1                        0                        5</span>
+<span class="go">                     chr1                       10                       15</span>
+<span class="go">                     chr2                        0                        5</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.get_locations">
+<span class="sig-name descname"><span class="pre">get_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">LocationEntry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_numeric_chromosomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation" title="bionumpy.genomic_data.genomic_intervals.GenomicLocation"><span class="pre">GenomicLocation</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.get_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.get_locations" title="Link to this definition"></a></dt>
+<dd><p>Create <a href="#id7"><span class="problematic" id="id8">`</span></a>GenomicLocation`s from location entries</p>
+<section id="id9">
+<h3>Parameters<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>data<span class="classifier">LocationEntry</span></dt><dd><p>BNPDataClass of location entries</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Returns<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<p>GenomicLocation</p>
+</section>
+<section id="id11">
+<h3>Examples<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/small_sequence.fa&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">get_locations</span><span class="p">(</span><span class="n">bnp</span><span class="o">.</span><span class="n">datatypes</span><span class="o">.</span><span class="n">LocationEntry</span><span class="p">(</span><span class="n">chromosome</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">],</span> <span class="n">position</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+<span class="go">Genomic Locations on [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;]:</span>
+<span class="go">LocationEntry with 3 entries</span>
+<span class="go">               chromosome                 position</span>
+<span class="go">                     chr1                        0</span>
+<span class="go">                     chr1                       10</span>
+<span class="go">                     chr2                        0</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.get_track">
+<span class="sig-name descname"><span class="pre">get_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bedgraph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BedGraph</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray" title="bionumpy.genomic_data.genomic_track.GenomicArray"><span class="pre">GenomicArray</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.get_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.get_track" title="Link to this definition"></a></dt>
+<dd><p>Create a <cite>GenomicArray</cite> for the data in the bedgraph</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>bedgraph : BedGraph</p>
+</section>
+<section id="id13">
+<h3>Returns<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<p>GenomicArray</p>
+</section>
+<section id="id14">
+<h3>Examples<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bedgraph</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">datatypes</span><span class="o">.</span><span class="n">BedGraph</span><span class="p">(</span><span class="n">chromosome</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr1&#39;</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">],</span> <span class="n">start</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">stop</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;chr1&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">get_track</span><span class="p">(</span><span class="n">bedgraph</span><span class="p">)</span>
+<span class="go">chr1: [1 1 1 1 1 0 0 0 0 0 2 2 2 2 2 0 0 0 0 0]</span>
+<span class="go">chr2: [3 3 3 3 3 0 0 0 0 0]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.read_annotation">
+<span class="sig-name descname"><span class="pre">read_annotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicAnnotation" title="bionumpy.genomic_data.annotation.GenomicAnnotation"><span class="pre">GenomicAnnotation</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.read_annotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.read_annotation" title="Link to this definition"></a></dt>
+<dd><p>Read genomic annotation from a ‘gtf’ or ‘gff’ file</p>
+<p>The annotation file should have ‘gene’, ‘transcript’ and ‘exon’ entries.</p>
+<section id="id15">
+<h3>Parameters<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Filename of the annotation file</p>
+</dd>
+</dl>
+</section>
+<section id="id16">
+<h3>Returns<a class="headerlink" href="#id16" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>GenomicAnnotation</dt><dd><p><cite>GenomicAnnotation</cite> containing the genes, transcripts and exons</p>
+</dd>
+</dl>
+</section>
+<section id="id17">
+<h3>Examples<a class="headerlink" href="#id17" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/small_sequence.fa&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">read_annotation</span><span class="p">(</span><span class="s1">&#39;example_data/small.gtf&#39;</span><span class="p">)</span>
+<span class="go">GenomicAnnotation(genome_context=[&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;], data=GTFEntry with 5 entries</span>
+<span class="go">               chromosome                   source             feature_type                    start                     stop                    score                   strand                    phase                atributes</span>
+<span class="go">                     chr1                knownGene               transcript                    17369                    17436                        .                        -                        .  gene_id &quot;ENST0000061921</span>
+<span class="go">                     chr1                knownGene                     exon                    17369                    17436                        .                        -                        .  gene_id &quot;ENST0000061921</span>
+<span class="go">                     chr1                knownGene               transcript                    29554                    31097                        .                        +                        .  gene_id &quot;ENST0000047335</span>
+<span class="go">                     chr1                knownGene                     exon                    29554                    30039                        .                        +                        .  gene_id &quot;ENST0000047335</span>
+<span class="go">                     chr1                knownGene                     exon                    30564                    30667                        .                        +                        .  gene_id &quot;ENST0000047335)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.read_intervals">
+<span class="sig-name descname"><span class="pre">read_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stranded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.read_intervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.read_intervals" title="Link to this definition"></a></dt>
+<dd><p>Read a bed file and represent it as <cite>GenomicIntervals</cite></p>
+<p>If <cite>stream</cite> is <cite>True</cite> then read the bedgraph in chunks and get
+a lazy evaluated GenomicTrack</p>
+<section id="id18">
+<h3>Parameters<a class="headerlink" href="#id18" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Filename for the bed file</p>
+</dd>
+<dt>stranded<span class="classifier">bool</span></dt><dd><p>Whether or not to treat the intervals as stranded</p>
+</dd>
+<dt>stream<span class="classifier">bool</span></dt><dd><p>Wheter to read as a stream</p>
+</dd>
+</dl>
+</section>
+<section id="id19">
+<h3>Returns<a class="headerlink" href="#id19" title="Link to this heading"></a></h3>
+<p>GenomicIntervals</p>
+</section>
+<section id="id20">
+<h3>Examples<a class="headerlink" href="#id20" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/small_sequence.fa&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">read_intervals</span><span class="p">(</span><span class="s1">&#39;example_data/small_summits.bed&#39;</span><span class="p">)</span>
+<span class="go">Genomic Intervals on [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;]:</span>
+<span class="go">Interval with 13 entries</span>
+<span class="go">               chromosome                    start                     stop</span>
+<span class="go">                     chr1                      639                      640</span>
+<span class="go">                     chr1                     6023                     6024</span>
+<span class="go">                     chr1                     7124                     7125</span>
+<span class="go">                     chr2                      849                      850</span>
+<span class="go">                     chr2                     6320                     6321</span>
+<span class="go">                     chr2                     8483                     8484</span>
+<span class="go">                     chr2                    11342                    11343</span>
+<span class="go">                     chr2                    12527                    12528</span>
+<span class="go">                     chr2                    13092                    13093</span>
+<span class="go">                     chr2                    18943                    18944</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.read_locations">
+<span class="sig-name descname"><span class="pre">read_locations</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stranded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">has_numeric_chromosomes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation" title="bionumpy.genomic_data.genomic_intervals.GenomicLocation"><span class="pre">GenomicLocation</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.read_locations"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.read_locations" title="Link to this definition"></a></dt>
+<dd><p>Read a set of locations from file and convert them to <cite>GenomicLocation</cite></p>
+<p>Locations can be treated as stranded or not stranded. If <cite>has_numeric_chromosomes</cite> then ‘chr’
+will be prepended to all the chromosome names in order to make them compatible with the
+genome’s chromosome names</p>
+<section id="id21">
+<h3>Parameters<a class="headerlink" href="#id21" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Filename of the locations</p>
+</dd>
+<dt>stranded<span class="classifier">bool</span></dt><dd><p>Whether or not the locations are stranded</p>
+</dd>
+<dt>stream<span class="classifier">bool</span></dt><dd><p>Whether the data should be read as a stream</p>
+</dd>
+<dt>has_numeric_chromosomes<span class="classifier">bool</span></dt><dd><p>Whether the file has the chromosomes as numbers</p>
+</dd>
+</dl>
+</section>
+<section id="id22">
+<h3>Returns<a class="headerlink" href="#id22" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>GenomicLocation</dt><dd><p>(Stranded) GenomicLocation</p>
+</dd>
+</dl>
+</section>
+<section id="id23">
+<h3>Examples<a class="headerlink" href="#id23" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/hg38.chrom.sizes&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">read_locations</span><span class="p">(</span><span class="s1">&#39;example_data/thousand_genomes.vcf&#39;</span><span class="p">,</span> <span class="n">has_numeric_chromosomes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">Genomic Locations on [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;, &#39;chr4&#39;, &#39;chr5&#39;, &#39;chr6&#39;, &#39;chr7&#39;, &#39;chr8&#39;, &#39;chr9&#39;, &#39;chr10&#39;, &#39;...&#39;]:</span>
+<span class="go">LocationEntry with 74 entries</span>
+<span class="go">               chromosome                 position</span>
+<span class="go">                    chr21                  5033883</span>
+<span class="go">                    chr21                  5035657</span>
+<span class="go">                    chr21                  5038297</span>
+<span class="go">                    chr21                  5038312</span>
+<span class="go">                    chr21                  5052250</span>
+<span class="go">                    chr21                  5053935</span>
+<span class="go">                    chr21                  5053961</span>
+<span class="go">                    chr21                  5063903</span>
+<span class="go">                    chr21                  5063916</span>
+<span class="go">                    chr21                  5064678</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.read_sequence">
+<span class="sig-name descname"><span class="pre">read_sequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicSequence" title="bionumpy.genomic_data.genomic_sequence.GenomicSequence"><span class="pre">GenomicSequence</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.read_sequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.read_sequence" title="Link to this definition"></a></dt>
+<dd><p>Read the genomic sequence from file.</p>
+<p>If a <cite>fasta</cite> file was used to create the Genome object, <cite>filename</cite> can be <cite>None</cite>
+in which case the sequence will be read from that fasta file</p>
+<section id="id24">
+<h3>Parameters<a class="headerlink" href="#id24" title="Link to this heading"></a></h3>
+<p>filename : str</p>
+</section>
+<section id="id25">
+<h3>Returns<a class="headerlink" href="#id25" title="Link to this heading"></a></h3>
+<p>GenomicSequence</p>
+</section>
+<section id="id26">
+<h3>Examples<a class="headerlink" href="#id26" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/small_sequence.fa&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">read_sequence</span><span class="p">()</span>
+<span class="go">GenomicSequence over chromosomes: [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;example_data/small.chrom.sizes&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">read_sequence</span><span class="p">(</span><span class="s1">&#39;example_data/small_sequence.fa&#39;</span><span class="p">)</span>
+<span class="go">GenomicSequence over chromosomes: [&#39;chr1&#39;, &#39;chr2&#39;, &#39;chr3&#39;]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.read_track">
+<span class="sig-name descname"><span class="pre">read_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray" title="bionumpy.genomic_data.genomic_track.GenomicArray"><span class="pre">GenomicArray</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.read_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.read_track" title="Link to this definition"></a></dt>
+<dd><p>Read a bedgraph from file and convert it to a <cite>GenomicArray</cite></p>
+<p>If <cite>stream</cite> is <cite>True</cite> then read the bedgraph in chunks and get
+a lazy evaluated GenomicArray</p>
+<section id="id27">
+<h3>Parameters<a class="headerlink" href="#id27" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Filename for the bedgraph file</p>
+</dd>
+<dt>stream<span class="classifier">bool</span></dt><dd><p>Whether or not to read as stream</p>
+</dd>
+</dl>
+</section>
+<section id="id28">
+<h3>Returns<a class="headerlink" href="#id28" title="Link to this heading"></a></h3>
+<p>GenomicArray</p>
+</section>
+<section id="id29">
+<h3>Examples<a class="headerlink" href="#id29" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s1">&#39;chr1&#39;</span><span class="p">:</span> <span class="mi">30000</span><span class="p">,</span> <span class="s1">&#39;chr2&#39;</span><span class="p">:</span> <span class="mi">31000</span><span class="p">,</span> <span class="s1">&#39;chr3&#39;</span><span class="p">:</span> <span class="mi">32000</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">genome</span><span class="o">.</span><span class="n">read_track</span><span class="p">(</span><span class="s1">&#39;example_data/small_treat_pileup.bdg&#39;</span><span class="p">)</span>
+<span class="go">chr1: [ 0.0 0.0 1.0 ... 0.0 0.0 0.0]</span>
+<span class="go">chr2: [ 0.0 0.0 0.0 ... 0.0 0.0 0.0]</span>
+<span class="go">chr3: [ 0.0 0.0 0.0 ... 0.0 0.0 0.0]</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.size">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#bionumpy.genomic_data.Genome.size" title="Link to this definition"></a></dt>
+<dd><p>The size of the genome</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.Genome.with_ignored_added">
+<span class="sig-name descname"><span class="pre">with_ignored_added</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ignored</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.Genome" title="bionumpy.genomic_data.genome.Genome"><span class="pre">Genome</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genome.html#Genome.with_ignored_added"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.Genome.with_ignored_added" title="Link to this definition"></a></dt>
+<dd><p>Make a new GenomeContext with additional ignored chromosomes. This is useful for allowing but ignoring
+chromosome names that are not in the origin genome.
+Parameters
+———-
+ignored: Iterable[str]</p>
+<section id="id30">
+<h3>Returns<a class="headerlink" href="#id30" title="Link to this heading"></a></h3>
+<p>Genome</p>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicArray">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.genomic_data.</span></span><span class="sig-name descname"><span class="pre">GenomicArray</span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_track.html#GenomicArray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicArray" title="Link to this definition"></a></dt>
+<dd><p>Class for representing data on a genome.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicArray.from_bedgraph">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_bedgraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bedgraph</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BedGraph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GenomicData</span></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_track.html#GenomicArray.from_bedgraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicArray.from_bedgraph" title="Link to this definition"></a></dt>
+<dd><p>Create a genomic array from a bedgraph and genomic context</p>
+<section id="id31">
+<h3>Parameters<a class="headerlink" href="#id31" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>bedgraph<span class="classifier">BedGraph</span></dt><dd><p>Bedgraph with data along the genome</p>
+</dd>
+<dt>genome_context<span class="classifier">GenomeContextBase</span></dt><dd><p>The genome context</p>
+</dd>
+</dl>
+</section>
+<section id="id32">
+<h3>Returns<a class="headerlink" href="#id32" title="Link to this heading"></a></h3>
+<p>‘GenomicData’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicArray.from_global_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_global_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">global_pileup</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomicRunLengthArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray" title="bionumpy.genomic_data.genomic_track.GenomicArray"><span class="pre">GenomicArray</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_track.html#GenomicArray.from_global_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicArray.from_global_data" title="Link to this definition"></a></dt>
+<dd><p>Create the genomic array from data represented on a flat/concatenated genome.</p>
+<section id="id33">
+<h3>Parameters<a class="headerlink" href="#id33" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>global_pileup<span class="classifier">GenomicRunLengthArray</span></dt><dd><p>Array over the concatenated genome</p>
+</dd>
+<dt>genome_context<span class="classifier">GenomeContextBase</span></dt><dd><p>The genome context</p>
+</dd>
+</dl>
+</section>
+<section id="id34">
+<h3>Returns<a class="headerlink" href="#id34" title="Link to this heading"></a></h3>
+<p>‘GenomicArray’</p>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.genomic_data.</span></span><span class="sig-name descname"><span class="pre">GenomicIntervals</span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals" title="Link to this definition"></a></dt>
+<dd><p>Class for representing intervals on a genome</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.clip">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.clip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.clip" title="Link to this definition"></a></dt>
+<dd><p>Clip the intervals so that they are contained in the genome</p>
+<section id="id35">
+<h3>Returns<a class="headerlink" href="#id35" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>‘GenomicIntervals’</dt><dd><p>Clipped intervals</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.extended_to_size">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extended_to_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.extended_to_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.extended_to_size" title="Link to this definition"></a></dt>
+<dd><p>Extend intervals along strand to reach the given size</p>
+<section id="id36">
+<h3>Parameters<a class="headerlink" href="#id36" title="Link to this heading"></a></h3>
+<p>size : int</p>
+</section>
+<section id="id37">
+<h3>Returns<a class="headerlink" href="#id37" title="Link to this heading"></a></h3>
+<p>‘GenomicIntervals’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.from_fields">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">StringArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedArray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.from_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.from_fields" title="Link to this definition"></a></dt>
+<dd><p>Create genomic intervals from fields</p>
+<section id="id38">
+<h3>Parameters<a class="headerlink" href="#id38" title="Link to this heading"></a></h3>
+<p>genome_context: GenomeContextBase
+chromosome: StringArray
+start: np.ndarray
+stop: np.ndarray
+strand: EncodedArray</p>
+</section>
+<section id="id39">
+<h3>Returns<a class="headerlink" href="#id39" title="Link to this heading"></a></h3>
+<p>GenomicIntervals</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.from_interval_stream">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_interval_stream</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interval_stream</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Iterable</span><span class="p"><span class="pre">[</span></span><span class="pre">Interval</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_stranded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.from_interval_stream"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.from_interval_stream" title="Link to this definition"></a></dt>
+<dd><p>Create streamed genomic intervals from a stream of intervals and genome info</p>
+<section id="id40">
+<h3>Parameters<a class="headerlink" href="#id40" title="Link to this heading"></a></h3>
+<p>interval_stream : Iterable[Interval]
+genome_context : GenomeContextBase
+is_stranded : bool</p>
+</section>
+<section id="id41">
+<h3>Returns<a class="headerlink" href="#id41" title="Link to this heading"></a></h3>
+<p>‘GenomicIntervals’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.from_intervals">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_stranded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.from_intervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.from_intervals" title="Link to this definition"></a></dt>
+<dd><p>Create genomic intervals from interval entries and genome info</p>
+<section id="id42">
+<h3>Parameters<a class="headerlink" href="#id42" title="Link to this heading"></a></h3>
+<p>intervals : Interval
+genome_context : GenomeContextBase
+is_stranded : bool</p>
+</section>
+<section id="id43">
+<h3>Returns<a class="headerlink" href="#id43" title="Link to this heading"></a></h3>
+<p>‘GenomicIntervals’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.from_track">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_track</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">track</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray" title="bionumpy.genomic_data.genomic_track.GenomicArray"><span class="pre">GenomicArray</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.from_track"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.from_track" title="Link to this definition"></a></dt>
+<dd><p>Return intervals of contigous areas of nonzero values of track</p>
+<section id="id44">
+<h3>Parameters<a class="headerlink" href="#id44" title="Link to this heading"></a></h3>
+<p>track : GenomicArray</p>
+</section>
+<section id="id45">
+<h3>Returns<a class="headerlink" href="#id45" title="Link to this heading"></a></h3>
+<p>‘GenomicIntervals’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.get_mask">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_mask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray" title="bionumpy.genomic_data.genomic_track.GenomicArray"><span class="pre">GenomicArray</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.get_mask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.get_mask" title="Link to this definition"></a></dt>
+<dd><p>Return a boolean mask of areas covered by any interval</p>
+<section id="id46">
+<h3>Returns<a class="headerlink" href="#id46" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>GenomicArray</dt><dd><p>Genomic mask</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.get_pileup">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_pileup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicArray" title="bionumpy.genomic_data.genomic_track.GenomicArray"><span class="pre">GenomicArray</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.get_pileup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.get_pileup" title="Link to this definition"></a></dt>
+<dd><p>Return a genmic track of counting the number of intervals covering each bp</p>
+<section id="id47">
+<h3>Returns<a class="headerlink" href="#id47" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>GenomicArray</dt><dd><p>Pileup track</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicIntervals.merged">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">merged</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicIntervals" title="bionumpy.genomic_data.genomic_intervals.GenomicIntervals"><span class="pre">GenomicIntervals</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicIntervals.merged"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicIntervals.merged" title="Link to this definition"></a></dt>
+<dd><p>Merge intervals that overlap or lie within distance of eachother</p>
+<section id="id48">
+<h3>Parameters<a class="headerlink" href="#id48" title="Link to this heading"></a></h3>
+<p>distance : int</p>
+</section>
+<section id="id49">
+<h3>Returns<a class="headerlink" href="#id49" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>‘GenomicIntervals’</dt><dd><p>4</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicLocation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.genomic_data.</span></span><span class="sig-name descname"><span class="pre">GenomicLocation</span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicLocation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicLocation" title="Link to this definition"></a></dt>
+<dd><p>Class representing (possibliy stranded) locations in the genome</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicLocation.from_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BNPDataClass</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_stranded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'chromosome'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'position'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strand_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'strand'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation" title="bionumpy.genomic_data.genomic_intervals.GenomicLocation"><span class="pre">GenomicLocation</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicLocation.from_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicLocation.from_data" title="Link to this definition"></a></dt>
+<dd><p>Create GenomicLocation object from a genome context and a bnpdataclass</p>
+<p>The field names for the chromosome, positions and strand can be specified</p>
+<section id="id50">
+<h3>Parameters<a class="headerlink" href="#id50" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>cls<span class="classifier">3</span></dt><dd><p>4</p>
+</dd>
+<dt>data<span class="classifier">BNPDataClass</span></dt><dd><p>The data containing the locations</p>
+</dd>
+<dt>genome_context<span class="classifier">GenomeContextBase</span></dt><dd><p>Genome context for the genome</p>
+</dd>
+<dt>is_stranded<span class="classifier">bool</span></dt><dd><p>Whether or not the locations should be stranded</p>
+</dd>
+<dt>chromosome_name<span class="classifier">str</span></dt><dd><p>Name of the chromosome field in <cite>data</cite></p>
+</dd>
+<dt>position_name<span class="classifier">str</span></dt><dd><p>Name of the position field in the <cite>data</cite></p>
+</dd>
+<dt>strand_name<span class="classifier">str</span></dt><dd><p>Name if the <cite>strand</cite> field int the <cite>data</cite></p>
+</dd>
+</dl>
+</section>
+<section id="id51">
+<h3>Returns<a class="headerlink" href="#id51" title="Link to this heading"></a></h3>
+<p>‘GenomicLocation’</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicLocation.from_fields">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_fields</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chromosome</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">strand</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicLocation" title="bionumpy.genomic_data.genomic_intervals.GenomicLocation"><span class="pre">GenomicLocation</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_intervals.html#GenomicLocation.from_fields"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicLocation.from_fields" title="Link to this definition"></a></dt>
+<dd><p>Create genomic location from a genome context and the needed fields (chromosome and position)</p>
+<section id="id52">
+<h3>Parameters<a class="headerlink" href="#id52" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>genome_context<span class="classifier">GenomeContextBase</span></dt><dd><p>Genome context object for the genome</p>
+</dd>
+<dt>chromosome<span class="classifier">List[str]</span></dt><dd><p>List of chromosome</p>
+</dd>
+<dt>position<span class="classifier">List[int]:</span></dt><dd><p>List of positions</p>
+</dd>
+<dt>strand<span class="classifier">List[str]</span></dt><dd><p>Optional list of strand</p>
+</dd>
+</dl>
+</section>
+<section id="id53">
+<h3>Returns<a class="headerlink" href="#id53" title="Link to this heading"></a></h3>
+<p>‘GenomicLocation’</p>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicAnnotation">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.genomic_data.</span></span><span class="sig-name descname"><span class="pre">GenomicAnnotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/genomic_data/annotation.html#GenomicAnnotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicAnnotation" title="Link to this definition"></a></dt>
+<dd><p>Class to hold a genomic annotations. Basically just a holder for gene, transcript and exon intervals.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicAnnotation.from_gtf_entries">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_gtf_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gtf_entries</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GTFEntry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">GenomeContextBase</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.genomic_data.GenomicAnnotation" title="bionumpy.genomic_data.annotation.GenomicAnnotation"><span class="pre">GenomicAnnotation</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/annotation.html#GenomicAnnotation.from_gtf_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicAnnotation.from_gtf_entries" title="Link to this definition"></a></dt>
+<dd><p>Get a GenomicAnnotation from a set of gtf/gff entries</p>
+<section id="id54">
+<h3>Parameters<a class="headerlink" href="#id54" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>gtf_entries<span class="classifier">GTFEntry</span></dt><dd><p>BNPDataClass with gtf entries</p>
+</dd>
+<dt>genome_context<span class="classifier">GenomeContextBase</span></dt><dd><p>The genome context</p>
+</dd>
+</dl>
+</section>
+<section id="id55">
+<h3>Returns<a class="headerlink" href="#id55" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>‘GenomicAnnotation’</dt><dd><p>Annotatin object holding the genes, transcripts and exons</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicSequence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.genomic_data.</span></span><span class="sig-name descname"><span class="pre">GenomicSequence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indexed_fasta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="io.html#bionumpy.io.IndexedFasta" title="bionumpy.io.indexed_fasta.IndexedFasta"><span class="pre">IndexedFasta</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">genome_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_sequence.html#GenomicSequence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicSequence" title="Link to this definition"></a></dt>
+<dd><p>Class to hold a genomic sequence as a GenomicArray</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicSequence.extract_intervals">
+<span class="sig-name descname"><span class="pre">extract_intervals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Interval</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stranded</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">EncodedRaggedArray</span></span></span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_sequence.html#GenomicSequence.extract_intervals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicSequence.extract_intervals" title="Link to this definition"></a></dt>
+<dd><p>Get the data within the (stranded) intervals</p>
+<section id="id56">
+<h3>Parameters<a class="headerlink" href="#id56" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>intervals<span class="classifier">Interval</span></dt><dd><p>Set of intervals</p>
+</dd>
+<dt>stranded<span class="classifier">bool</span></dt><dd><p>Wheter to reverse intervals on - strand</p>
+</dd>
+</dl>
+</section>
+<section id="id57">
+<h3>Returns<a class="headerlink" href="#id57" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>RunLengthRaggedArray</dt><dd><p>Data for all intervals</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.genomic_data.GenomicSequence.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/genomic_data/genomic_sequence.html#GenomicSequence.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.genomic_data.GenomicSequence.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Create genomic data from a dict of data with chromosomes as keys</p>
+<section id="id58">
+<h3>Parameters<a class="headerlink" href="#id58" title="Link to this heading"></a></h3>
+<p>d : Dict[str, GenomicRunLengthArray]</p>
+</section>
+<section id="id59">
+<h3>Returns<a class="headerlink" href="#id59" title="Link to this heading"></a></h3>
+<p>‘GenomicData’</p>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="genome_arithmetics.html" class="btn btn-neutral float-left" title="Genome arithmetics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="io.html" class="btn btn-neutral float-right" title="IO" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

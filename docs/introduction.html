@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting started with BioNumPy in 10 minutes &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using BioNumPy in your existing project" href="using_bionumpy_in_your_existing_project.html" />
+    <link rel="prev" title="BioNumPy at a glance" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting started with BioNumPy in 10 minutes</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/introduction.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started-with-bionumpy-in-10-minutes">
+<span id="introduction"></span><h1>Getting started with BioNumPy in 10 minutes<a class="headerlink" href="#getting-started-with-bionumpy-in-10-minutes" title="Link to this heading"></a></h1>
+<p>By following this quick guide, you should be able to get started using BioNumPy to analyse your own biological data.</p>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p>To follow this guide, you will need to know some Python and should also ideally know the basics of NumPy or array programming. If you have experience from R, you may already be used to concepts of array programming, such as indexing, slicing and vectorized operations, and the concepts here should be possible to understand. If you need to freshen up on NumPy/array programming, check out the <a class="reference external" href="https://numpy.org/doc/stable/user/quickstart.html">NumPy introduction</a>.</p>
+</section>
+<section id="install-bionumpy">
+<h2>Install BioNumPy<a class="headerlink" href="#install-bionumpy" title="Link to this heading"></a></h2>
+<p>If you have Python 3 already installed, BioNumPy should be straight-forward to install using pip:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>bionumpy
+<span class="c1"># or if you don&#39;t have the pip-command available, try:</span>
+python3<span class="w"> </span>-m<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>bionumpy
+</pre></div>
+</div>
+<p>Note that when you install BioNumPy, NumPy is also automatically installed.</p>
+</section>
+<section id="read-and-analyse-some-data">
+<h2>Read and analyse some data<a class="headerlink" href="#read-and-analyse-some-data" title="Link to this heading"></a></h2>
+<p>In this very short tutorial, we will read a biological dataset and play around with it. We will download a fastq file from the BioNumPy example data, but feel free to use any dataset you want to play around with (see <a class="reference internal" href="source/supported_file_formats.html#supported-file-formats"><span class="std std-ref">supported file formats</span></a>).</p>
+<p>We start by downloading a fastq file:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://github.com/bionumpy/bionumpy/raw/main/example_data/big.fq.gz
+</pre></div>
+</div>
+<p>In the following, we assume you have the big.fq.gz in a directory called <cite>example_data</cite>.</p>
+<p>All BioNumPy programs typically start by importing both NumPy and BioNumPy. As a convention, we import BioNumPy as <cite>bnp</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+
+<span class="c1"># open the file</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>  <span class="c1"># reads the whole file into memory</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output from this tells us that we have a <cite>SequenceEntryWithQuality</cite> with 1000 entries (sequences). This is is the data type that BioNumPy automatically chooses to use when we read a fastq-file. If you instead read a vcf, bam or another format, you will get a different entry type:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>SequenceEntryWithQuality with 1000 entries
+                     name                 sequence                  quality
+  2fa9ee19-5c51-4281-a...  CGGTAGCCAGCTGCGTTCAG...  [10  5  5 12  5  4  3
+  1f9ca490-2f25-484a-8...  GATGCATACTTCGTTCGATT...  [ 5  4  5  4  6  6  5
+  06936a64-6c08-40e9-8...  GTTTTGTCGCTGCGTTCAGT...  [ 3  5  6  7  7  5  4
+  d6a555a1-d8dd-4e55-9...  CGTATGCTTTGAGATTCATT...  [ 2  3  4  4  4  4  6
+  91ca9c6c-12fe-4255-8...  CGGTGTACTTCGTTCCAGCT...  [ 4  3  5  6  3  5  6
+  4dbe5037-abe2-4176-8...  GCAGGTGATGCTTTGGTTCA...  [ 2  3  4  6  7  7  6
+  df3de4e9-48ca-45fc-8...  CATGCTTCGTTGGTTACCTC...  [ 5  5  5  4  7  7  7
+  bfde9b59-2f6d-48e8-8...  CTGTTGTGCGCTTCGTTCAT...  [ 8  8 10  7  8  6  3
+  dbcfd59a-7a96-46a2-9...  CGATTATTTGGTTCGTTCAT...  [ 5  4  2  3  5  2  2
+  a0f83c4e-4c20-4c15-b...  GTTGTACTTTACGTTTCAAT...  [ 3  5 10  6  7  6  6
+</pre></div>
+</div>
+<p>The <cite>data</cite> variable now is a type of <cite>dataclass</cite> with the fields <cite>name</cite>, <cite>sequence</cite> and <cite>quality</cite>. Each of these behaves very much like two-dimensional NumPy-arrays (except that not all rows have the same size, since sequences can vary in length). If you for instance want to find the average base qualities, that is as simple as:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">quality</span><span class="p">)</span>
+<span class="go">11.677166150424176</span>
+</pre></div>
+</div>
+<p>As with NumPy, you can also take the mean and other operations over various axis. Specifying <cite>axis=0</cite> gives you the mean over the first axis, i.e. the mean of the base quality at each base position:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">quality</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> 
+<span class="go">array([5.194, 4.599, 5.591, ..., 5.   , 6.   , 6.   ]...</span>
+</pre></div>
+</div>
+<p>BioNumPy data can also be indexed exactly as you would index NumPy arrays. This means that if you e.g. want to get all the sequence entries with more than 30% G’s, you could use NumPy-syntax like this:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mf">0.3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span><span class="p">[</span><span class="n">mask</span><span class="p">]</span>
+<span class="go">SequenceEntryWithQuality with 13 entries</span>
+<span class="go">                     name                 sequence                  quality</span>
+<span class="go">  28c83abf-8f04-4651-a...  GAGCGCTGGTTCGGTTATCA...  [ 5  3  4  5  3  3  4</span>
+<span class="go">  666246b0-63b1-46b1-8...  CGGTGTAGCGTTTGATCTAG...  [13  3  4  7  2  5  4 1</span>
+<span class="go">  c1bd65c1-e3bb-40e3-8...  CGGTATGCGCTGCGTTCAGT...  [10  3  5  3  4  3  3</span>
+<span class="go">  8153b049-b41a-4413-a...  TAATTGCTGGATATTCCTCG...  [ 3  3  3  8 10  3  3</span>
+<span class="go">  ae639e55-f513-4be3-b...  CGTGTTGCGCCCGTTCAGTT...  [ 3  3  4  5  3  5  4</span>
+<span class="go">  30294e76-a860-4690-9...  CATTTGTACTTCCGTTCAAT...  [ 8  5  7  9  8  4  5</span>
+<span class="go">  5f404562-4c04-4b6d-a...  CGGTGATGCTTTGGTTACGG...  [12  3  7  8  4  2  2</span>
+<span class="go">  c789cd2e-01ef-4aac-8...  CTGGTGGCCGCTGGTTCGAT...  [ 7  3  2  5  6  2  3</span>
+<span class="go">  3d0b3924-3afc-4f48-9...  CAGTGTACTTCGTTCAGTTT...  [ 7  2  3  7  4  8  8 1</span>
+<span class="go">  d053ad32-9857-4440-b...  GTTGTAGCGCTACGTTTGGT...  [ 4  3  4  6  5  7  7</span>
+</pre></div>
+</div>
+</section>
+<section id="final-notes">
+<h2>Final notes<a class="headerlink" href="#final-notes" title="Link to this heading"></a></h2>
+<p>The above examples shows how to use BioNumPy for a specific file format and dataset, but the concept is the same for all datasets. BioNumPy should be thought of as more of a toolkit rather than a collections of functions/modules. Once you learn how to use the toolkit, you should be able to very efficiently analyse many types of biological datasets.</p>
+<p>Continue to see an overview of <a class="reference internal" href="index.html#what-can-you-do"><span class="std std-ref">what you can do with bionumpy</span></a>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="BioNumPy at a glance" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="using_bionumpy_in_your_existing_project.html" class="btn btn-neutral float-right" title="Using BioNumPy in your existing project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

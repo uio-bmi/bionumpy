@@ -1,0 +1,236 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.genomic_data.genomic_sequence &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.genomic_data.genomic_sequence</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.genomic_data.genomic_sequence</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Union</span>
+<span class="kn">from</span> <span class="nn">.genomic_track</span> <span class="kn">import</span> <span class="n">GenomicData</span>
+<span class="kn">from</span> <span class="nn">.genome_context</span> <span class="kn">import</span> <span class="n">GenomeContext</span>
+<span class="kn">from</span> <span class="nn">..datatypes</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="kn">from</span> <span class="nn">..io.indexed_fasta</span> <span class="kn">import</span> <span class="n">IndexedFasta</span>
+<span class="kn">from</span> <span class="nn">..sequence</span> <span class="kn">import</span> <span class="n">get_reverse_complement</span>
+<span class="kn">from</span> <span class="nn">..encodings</span> <span class="kn">import</span> <span class="n">DNAEncoding</span><span class="p">,</span> <span class="n">ACGTnEncoding</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">as_encoded_array</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span>
+
+
+<span class="k">def</span> <span class="nf">dna_encode</span><span class="p">(</span><span class="n">output</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="n">ACGTnEncoding</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="GenomicSequence">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicSequence">[docs]</a>
+<span class="k">class</span> <span class="nc">GenomicSequence</span><span class="p">(</span><span class="n">GenomicData</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Class to hold a genomic sequence as a GenomicArray&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">indexed_fasta</span><span class="p">:</span> <span class="n">IndexedFasta</span><span class="p">,</span> <span class="n">genome_context</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span> <span class="o">=</span> <span class="n">genome_context</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_fasta</span> <span class="o">=</span> <span class="n">indexed_fasta</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">genome_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">GenomeContext</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fasta</span><span class="o">.</span><span class="n">get_contig_lengths</span><span class="p">())</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_genome_context</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;GenomicSequence over chromosomes: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fasta</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_indexed_fasta</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">indexed_fasta</span><span class="p">:</span> <span class="n">IndexedFasta</span><span class="p">,</span> <span class="n">genome_context</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicSequenceIndexedFasta&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GenomicSequenceIndexedFasta</span><span class="p">(</span><span class="n">indexed_fasta</span><span class="p">,</span> <span class="n">genome_context</span><span class="p">)</span>
+
+<div class="viewcode-block" id="GenomicSequence.from_dict">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicSequence.from_dict">[docs]</a>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">sequence_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="n">GenomicSequenceDict</span><span class="p">(</span><span class="n">sequence_dict</span><span class="p">)</span></div>
+
+
+    <span class="k">def</span> <span class="nf">extract_chromsome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">chromosome</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="n">dna_encode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_fasta</span><span class="p">[</span><span class="n">chromosome</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_extract_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">NotImplemented</span>
+
+    <span class="k">def</span> <span class="nf">_index_boolean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">boolean_array</span><span class="p">:</span> <span class="n">GenomicData</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_intervals</span><span class="p">(</span><span class="n">boolean_array</span><span class="o">.</span><span class="n">get_data</span><span class="p">(),</span> <span class="n">stranded</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+<div class="viewcode-block" id="GenomicSequence.extract_intervals">
+<a class="viewcode-back" href="../../../modules/genomic_data.html#bionumpy.genomic_data.GenomicSequence.extract_intervals">[docs]</a>
+    <span class="k">def</span> <span class="nf">extract_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">stranded</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedRaggedArray</span><span class="p">:</span>
+        <span class="n">sequences</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_extract_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+        <span class="n">sequences</span> <span class="o">=</span> <span class="n">dna_encode</span><span class="p">(</span><span class="n">sequences</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stranded</span><span class="p">:</span>
+            <span class="n">sequences</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">strand</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">)[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span>
+                                 <span class="n">sequences</span><span class="p">,</span>
+                                 <span class="n">get_reverse_complement</span><span class="p">(</span><span class="n">sequences</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">sequences</span></div>
+</div>
+
+
+
+<span class="k">class</span> <span class="nc">GenomicSequenceIndexedFasta</span><span class="p">(</span><span class="n">GenomicSequence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;GenomicSeqeuence with an Indexed Fasta file as backend&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">_extract_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fasta</span><span class="o">.</span><span class="n">get_interval_sequences</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GenomicSequenceDict</span><span class="p">(</span><span class="n">GenomicSequence</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;GenomicSeqeuence with a sequence dict as backend&#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">target_encoding</span><span class="o">=</span><span class="n">ACGTnEncoding</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">sequence_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+    <span class="k">def</span> <span class="nf">_extract_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">as_encoded_array</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="p">[</span><span class="n">interval</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">to_string</span><span class="p">()][</span><span class="nb">int</span><span class="p">(</span><span class="n">interval</span><span class="o">.</span><span class="n">start</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">interval</span><span class="o">.</span><span class="n">stop</span><span class="p">)]</span>
+             <span class="k">for</span> <span class="n">interval</span> <span class="ow">in</span> <span class="n">intervals</span><span class="p">],</span>
+            <span class="n">target_encoding</span><span class="o">=</span><span class="n">DNAEncoding</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">genome_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">GenomeContext</span><span class="p">({</span><span class="n">name</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

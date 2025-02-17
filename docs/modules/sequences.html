@@ -1,0 +1,419 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sequences &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Streams" href="streams.html" />
+    <link rel="prev" title="IO" href="io.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="io.html">IO</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sequences</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-documentation">API documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.sequence.get_kmers"><code class="docutils literal notranslate"><span class="pre">get_kmers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.sequence.get_minimizers"><code class="docutils literal notranslate"><span class="pre">get_minimizers()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.sequence.get_motif_scores"><code class="docutils literal notranslate"><span class="pre">get_motif_scores()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.sequence.count_encoded"><code class="docutils literal notranslate"><span class="pre">count_encoded()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.sequence.match_string"><code class="docutils literal notranslate"><span class="pre">match_string()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.sequence.PWM"><code class="docutils literal notranslate"><span class="pre">PWM</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.sequence.PWM.calculate_score"><code class="docutils literal notranslate"><span class="pre">PWM.calculate_score()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.sequence.PWM.calculate_scores"><code class="docutils literal notranslate"><span class="pre">PWM.calculate_scores()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.sequence.PWM.from_counts"><code class="docutils literal notranslate"><span class="pre">PWM.from_counts()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.sequence.PWM.from_dict"><code class="docutils literal notranslate"><span class="pre">PWM.from_dict()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Sequences</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/sequences.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sequences">
+<h1>Sequences<a class="headerlink" href="#sequences" title="Link to this heading"></a></h1>
+<p>The sequence module of BioNumPy provides various functions for analysing sequences, such as getting kmers and minizers or computing motif scores across sequences.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="n">file</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span>
+<span class="n">sequence</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">sequence</span>
+<span class="n">sequence</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">change_encoding</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="n">kmers</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">get_kmers</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="mi">31</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">kmers</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># first three sequences, first 2 kmers</span>
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[CGGTAGCCAGCTGCGTTCAGTATGGAAGATT, GGTAGCCAGCTGCGTTCAGTATGGAAGATTT]
+[GATGCATACTTCGTTCGATTTCGTTTCAACT, ATGCATACTTCGTTCGATTTCGTTTCAACTG]
+[GTTTTGTCGCTGCGTTCAGTTTATGGGTGCG, TTTTGTCGCTGCGTTCAGTTTATGGGTGCGG]
+</pre></div>
+</div>
+<section id="api-documentation">
+<h2>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.sequence.get_kmers">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.sequence.</span></span><span class="sig-name descname"><span class="pre">get_kmers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedRaggedArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">EncodedArray</span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/kmers.html#get_kmers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.get_kmers" title="Link to this definition"></a></dt>
+<dd><p>Get kmers for sequences.
+Sequences should be encoded with an AlphabetEncoding (e.g. DNAEncoding).
+Use bnp.change_encoding if your sequences do not have a suitable encoding.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>sequence<span class="classifier">EncodedRaggedArray</span></dt><dd><p>Sequences to get kmers from</p>
+</dd>
+<dt>k<span class="classifier">int</span></dt><dd><p>The kmer size (1-31)</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>EncodedRaggedArray</dt><dd><p>Kmers from the sequences.</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">encoded_array</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">([</span><span class="s2">&quot;ACTG&quot;</span><span class="p">,</span> <span class="s2">&quot;AAA&quot;</span><span class="p">,</span> <span class="s2">&quot;TTGGC&quot;</span><span class="p">],</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">get_kmers</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">encoded_ragged_array([[ACT, CTG],</span>
+<span class="go">                      [AAA],</span>
+<span class="go">                      [TTG, TGG, GGC]], 3merEncoding(AlphabetEncoding(&#39;ACGT&#39;)))</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">sequence</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">change_encoding</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">get_kmers</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="mi">31</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># first three kmers of first sequence</span>
+<span class="go">encoded_array([CGGTAGCCAGCTGCGTTCAGTATGGAAGATT, GGTAGCCAGCTGCGTTCAGTATGGAAGATTT, GTAGCCAGCTGCGTTCAGTATGGAAGATTTG], 31merEncoding(AlphabetEncoding(&#39;ACGT&#39;)))</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.sequence.get_minimizers">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.sequence.</span></span><span class="sig-name descname"><span class="pre">get_minimizers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedRaggedArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">window_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">EncodedRaggedArray</span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/minimizers.html#get_minimizers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.get_minimizers" title="Link to this definition"></a></dt>
+<dd><p>Get minimizers for sequences.
+Sequences should be encoded with an AlphabetEncoding (e.g. DNAEncoding).</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>sequence<span class="classifier">EncodedRaggedArray</span></dt><dd><p>Sequences to get minimizers from</p>
+</dd>
+<dt>k<span class="classifier">int</span></dt><dd><p>The kmer size</p>
+</dd>
+<dt>window_size<span class="classifier">int</span></dt><dd><p>The window size</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>EncodedRaggedArray</dt><dd><p>Minimizers from the sequences.</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">encoded_array</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">([</span><span class="s2">&quot;ACTG&quot;</span><span class="p">,</span> <span class="s2">&quot;AAA&quot;</span><span class="p">,</span> <span class="s2">&quot;TTGGC&quot;</span><span class="p">],</span> <span class="n">bnp</span><span class="o">.</span><span class="n">DNAEncoding</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">get_minimizers</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">encoded_ragged_array([[AC],</span>
+<span class="go">                      [],</span>
+<span class="go">                      [GG, GC]], 2merEncoding(AlphabetEncoding(&#39;ACGT&#39;)))</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.sequence.get_motif_scores">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.sequence.</span></span><span class="sig-name descname"><span class="pre">get_motif_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedRaggedArray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pwm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#bionumpy.sequence.PWM" title="bionumpy.sequence.position_weight_matrix.PWM"><span class="pre">PWM</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">RaggedArray</span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/position_weight_matrix.html#get_motif_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.get_motif_scores" title="Link to this definition"></a></dt>
+<dd><p>Computes motif scores for a motif on a sequence.
+Returns a RaggedArray with the score at each position in every read.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<p>sequence: EncodedRaggedArray
+motif: PositionWeightMatrix</p>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>RaggedArray</dt><dd><p>A numeric RaggedArray. Contains one row for every read
+with the scores for every position of that read.</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pwm</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">position_weight_matrix</span><span class="o">.</span><span class="n">PWM</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="s2">&quot;G&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s2">&quot;T&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequences</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">([</span><span class="s2">&quot;ACTGAC&quot;</span><span class="p">,</span> <span class="s2">&quot;CA&quot;</span><span class="p">,</span> <span class="s2">&quot;GG&quot;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">get_motif_scores</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">pwm</span><span class="p">)</span>
+<span class="go">ragged_array([5.99146455       -inf       -inf       -inf 5.99146455]</span>
+<span class="go">[2.77258872]</span>
+<span class="go">[-inf])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.sequence.count_encoded">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.sequence.</span></span><span class="sig-name descname"><span class="pre">count_encoded</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedArrayLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">weights</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">-1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">EncodedCounts</span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/count_encoded.html#count_encoded"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.count_encoded" title="Link to this definition"></a></dt>
+<dd><p>Count the occurances of encoded entries. Works on any encoding with finite alphabet.</p>
+<section id="id7">
+<h3>Parameters<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<p>values : EncodedArrayLike
+weights : ArrayLike</p>
+<blockquote>
+<div><p>Weights for each entry</p>
+</div></blockquote>
+<dl class="simple">
+<dt>axis<span class="classifier">int</span></dt><dd><p>0 for column counts, -1 or 1 for row counts None for flattened counts</p>
+</dd>
+</dl>
+</section>
+<section id="id8">
+<h3>Returns<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<p>EncodedCounts</p>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.sequence.match_string">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.sequence.</span></span><span class="sig-name descname"><span class="pre">match_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedArrayLike</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">matching_sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">SingleEncodedArrayLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/string_matcher.html#match_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.match_string" title="Link to this definition"></a></dt>
+<dd><p>Matches a sequence aginst sequences and returns a boolean RaggedArray representing positions
+where the sequence matches.
+Parameters
+———-
+sequence :
+matching_sequence :</p>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>ArrayLike</dt><dd><p>A boolean RaggedArray representing positions where the sequence matches.</p>
+</dd>
+</dl>
+</section>
+<section id="id10">
+<h3>Examples<a class="headerlink" href="#id10" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sequence</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">([</span><span class="s1">&#39;ACGT&#39;</span><span class="p">,</span> <span class="s1">&#39;TACTAC&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">matching_sequence</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">as_encoded_array</span><span class="p">(</span><span class="s1">&#39;AC&#39;</span><span class="p">,</span> <span class="n">sequence</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bnp</span><span class="o">.</span><span class="n">match_string</span><span class="p">(</span><span class="n">sequence</span><span class="p">,</span> <span class="n">matching_sequence</span><span class="p">)</span>
+<span class="go">ragged_array([ True False False]</span>
+<span class="go">[False  True False False  True])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.sequence.PWM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.sequence.</span></span><span class="sig-name descname"><span class="pre">PWM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/sequence/position_weight_matrix.html#PWM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.PWM" title="Link to this definition"></a></dt>
+<dd><p>Class representing a Position Weight Matrix. Calculates scores based on
+the log likelihood ratio between the motif and a background probability</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.sequence.PWM.calculate_score">
+<span class="sig-name descname"><span class="pre">calculate_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedArrayLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/position_weight_matrix.html#PWM.calculate_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.PWM.calculate_score" title="Link to this definition"></a></dt>
+<dd><p>Calculates the pwm score for a sequence of the same length as the motif</p>
+<section id="id11">
+<h3>Parameters<a class="headerlink" href="#id11" title="Link to this heading"></a></h3>
+<p>sequence : EncodedArrayLike</p>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.sequence.PWM.calculate_scores">
+<span class="sig-name descname"><span class="pre">calculate_scores</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequence</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">EncodedArrayLike</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/position_weight_matrix.html#PWM.calculate_scores"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.PWM.calculate_scores" title="Link to this definition"></a></dt>
+<dd><p>Calculate motif scores for an entire sequence</p>
+<section id="id12">
+<h3>Parameters<a class="headerlink" href="#id12" title="Link to this heading"></a></h3>
+<p>sequence : EncodedArrayLike</p>
+</section>
+<section id="id13">
+<h3>Returns<a class="headerlink" href="#id13" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>ArrayLike</dt><dd><p>Motif scores for all valid and invalid windows</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.sequence.PWM.from_counts">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_counts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">counts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.sequence.PWM" title="bionumpy.sequence.position_weight_matrix.PWM"><span class="pre">PWM</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/position_weight_matrix.html#PWM.from_counts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.PWM.from_counts" title="Link to this definition"></a></dt>
+<dd><p>Create a PWM object from a dict of letters to position counts</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.sequence.PWM.from_dict">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dictionary</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Buffer</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">_SupportsArray</span><span class="p"><span class="pre">[</span></span><span class="pre">dtype</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">_NestedSequence</span><span class="p"><span class="pre">[</span></span><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">complex</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.sequence.PWM" title="bionumpy.sequence.position_weight_matrix.PWM"><span class="pre">PWM</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/sequence/position_weight_matrix.html#PWM.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.sequence.PWM.from_dict" title="Link to this definition"></a></dt>
+<dd><p>Create a PWM object from a dict of letters to position probabilities</p>
+<p>This takes raw probabilities as input. Not log
+likelihood(ratios)</p>
+<section id="id14">
+<h3>Parameters<a class="headerlink" href="#id14" title="Link to this heading"></a></h3>
+<p>cls :
+dictionary : Dict[str, ArrayLike]</p>
+<blockquote>
+<div><p>Mapping of alphabet letters to position probability scores</p>
+</div></blockquote>
+<dl class="simple">
+<dt>background<span class="classifier">Dict[str, float]</span></dt><dd><p>Background probabilities. By default assume uniform
+probabilities</p>
+</dd>
+</dl>
+</section>
+<section id="id15">
+<h3>Returns<a class="headerlink" href="#id15" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>“PWM”</dt><dd><p>Position Weight Matrix object with log-likelihood ratios</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="io.html" class="btn btn-neutral float-left" title="IO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="streams.html" class="btn btn-neutral float-right" title="Streams" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

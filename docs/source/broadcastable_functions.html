@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broadcastable Functions &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BnpDataclass" href="../modules/bnpdataclass.html" />
+    <link rel="prev" title="Working with Multiple Files/Data Sources" href="multiple_data_sources.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Broadcastable Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elementwise-broadcasting-in-numpy">Elementwise broadcasting in NumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vectorwise-broadcasting">Vectorwise broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sequence-broadcasting">Sequence broadcasting</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Broadcastable Functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/source/broadcastable_functions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="broadcastable-functions">
+<h1>Broadcastable Functions<a class="headerlink" href="#broadcastable-functions" title="Link to this heading"></a></h1>
+<p>A key element of using BioNumPy efficiently is being able to write broadcastable functions on sequences.
+This will let NumPy and BioNumPy handle the business of applying the function to large sets of sequences.
+Below is a short description of how normal broadcasting works in NumPy, and how this can be utilized to make broadcastable sequence functions.</p>
+<section id="elementwise-broadcasting-in-numpy">
+<h2>Elementwise broadcasting in NumPy<a class="headerlink" href="#elementwise-broadcasting-in-numpy" title="Link to this heading"></a></h2>
+<p>One of the main functionalities of NumPy is to apply elementwise operations to large arrays of data. For functions with more that one parameters (such as adding or multiplying) this requires that the arrays are somewhat of the same shape. Of course, if the arrays have exactly the same shape, the elementwise operations is just applied to corresponding elements of the array</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">200</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+<span class="go">array([[  2,  12, 103],</span>
+<span class="go">       [  6,  25, 206]])</span>
+</pre></div>
+</div>
+<p>Broadcasting comes into play when one (or both) of the arrays is missing data in one of the dimensions</p>
+</section>
+<section id="vectorwise-broadcasting">
+<h2>Vectorwise broadcasting<a class="headerlink" href="#vectorwise-broadcasting" title="Link to this heading"></a></h2>
+<p>Elementwise broadcasting is quite common to utilize. But one can also write functions that broadcast functions on vectors. An example is the dot product of vectors. The dot product maps two vectors into a scalar by summing the elementwise products.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
+<span class="go">56</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">((</span><span class="n">v</span><span class="o">*</span><span class="n">w</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+<span class="go">56</span>
+</pre></div>
+</div>
+<p>Now the broadcasting does not work as it would with the elementwise operations. A dot product between <cite>[3, 2, 1]</cite> and <cite>[1]</cite>, will yield an error since it is not natural to think that the ones should be broadcasted to a vector. For vector functions, the last axis needs to be of the same size. For all the other axes, the broadcasting works as usual.</p>
+<p>To illustrate the point, we can look at the matrix multiplication <cite>&#64;</cite>. Here the matrices are the fundamental elements, and so a <cite>(2, 5, 3)</cite> array is interpreted as two 5x3 matrices as apposed to ten  size 3 vectors.</p>
+</section>
+<section id="sequence-broadcasting">
+<h2>Sequence broadcasting<a class="headerlink" href="#sequence-broadcasting" title="Link to this heading"></a></h2>
+<p>This leads us to the main point of sequence broadcasting. We want to write our sequence functions in a way that it will interpret n-dimensional arrays as (n-1)-dimensional arrays of sequences, and broadcast accordingly. Lets say we have a function that counts the number of “G“‘s in a sequence. A simple solution would be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_gs</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, if we give this function an array of 10 sequences, it will just count the number of ‘G’s in the whole set, not for each individual sequence. I.e. it does not broadcast as we want. If however we give the sum the keyword <cite>axis=-1</cite>, it will always sum over each sequence individually, no matter the shape of the array:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">count_gs</span><span class="p">(</span><span class="n">sequence</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">sequence</span> <span class="o">==</span> <span class="s2">&quot;G&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This trick of doing reductions along the last axis will often be enough to make sequence-&gt;scalar functions broadcast as sequences (reductions are for instance <cite>np.sum, np.max, np.argmax, np.mean</cite> or other functions that map arrays to scalars).</p>
+<p>Another general rule is to add axis to the very end, when adding axes to an array. This is not so common with sequences, but one example is one-hot encoding. One hot encoding maps letters in an alphabet of size <cite>N</cite> to <cite>n</cite>-dimensional binary vectors. For a single letter, this function could be written:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_hot</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">letter</span> <span class="o">==</span> <span class="n">alphabet</span>
+</pre></div>
+</div>
+<p>This works for a single letter, but would fail for even a single sequence. To make it work for a single sequence, we could add a dimension to the letter. This is anyways a reasonable thing to do, since one-hot ecoding does indeed add a dimension to your input:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_hot</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">letter</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">==</span> <span class="n">alphabet</span>
+</pre></div>
+</div>
+<p>However, this will fail for arrays of sequences, since it assumes that the <cite>letter</cite> array is one-dimensional. The best, most broadcastable and general, solution is to add the last axis using a <cite>…</cite> to denote the exisitng axes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">one_hot</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">letter</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span> <span class="o">==</span> <span class="n">alphabet</span>
+</pre></div>
+</div>
+<p>This will work for any-dimensional arrays of sequences.</p>
+<p>Now we have seen how to make functions that removes an axis broadcastable, and functions that add an axis. Of course, functions that keep the number of axes are often trivially broadcastable, so with these two tricks, we can often make a sequence function broadcastable :)</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="multiple_data_sources.html" class="btn btn-neutral float-left" title="Working with Multiple Files/Data Sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../modules/bnpdataclass.html" class="btn btn-neutral float-right" title="BnpDataclass" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

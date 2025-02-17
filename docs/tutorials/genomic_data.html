@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genomic Data &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Genomic Data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/tutorials/genomic_data.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="genomic-data">
+<span id="multi-genomic-data"></span><h1>Genomic Data<a class="headerlink" href="#genomic-data" title="Link to this heading"></a></h1>
+<p>This tutorial assumes that you have read Genomic Data introduction and will cover some use-cases where several data sources are used.</p>
+<section id="tss-plot">
+<h2>TSS-plot<a class="headerlink" href="#tss-plot" title="Link to this heading"></a></h2>
+<p>Here we want to see how the signal from a chip-seq experiment looks around the transcription start sites. In order to do this, we use a wig file from ENCODE, (converted from bigwig by using bigWigToWig), and an annotation file for the reference genome (<cite>.gtf</cite>). Note that since the <cite>wig</cite> file is very big, we cannot fit it into memory at once, so we have to read it as a stream. This also means that the chromosome order needs to be adapted to the order in the wig file, which in this case is alphabetically sorted. We therefore give the <cite>sort_names=True</cite> option to the <cite>Genome</cite> object. In addition, we have to call <cite>bnp.compute</cite> on the resulting mean signal in order to actually compute it (When data is read as a stream, all computations on that data is lazily evaluated)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="kn">import</span> <span class="nn">plotly.graph_objects</span> <span class="k">as</span> <span class="nn">go</span>
+
+<span class="k">def</span> <span class="nf">tss_plot</span><span class="p">(</span><span class="n">wig_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chrom_sizes_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">annotation_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="c1"># Read genome and transcripts</span>
+    <span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">chrom_sizes_filename</span><span class="p">,</span> <span class="n">sort_names</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># The wig file is alphbetically sorted</span>
+    <span class="n">annotation</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_annotation</span><span class="p">(</span><span class="n">annotation_filename</span><span class="p">)</span>
+    <span class="n">transcripts</span> <span class="o">=</span> <span class="n">annotation</span><span class="o">.</span><span class="n">transcripts</span>
+
+    <span class="c1"># Get transcript start locations and make windows around them</span>
+    <span class="n">tss</span> <span class="o">=</span> <span class="n">transcripts</span><span class="o">.</span><span class="n">get_location</span><span class="p">(</span><span class="s1">&#39;start&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">sorted</span><span class="p">()</span> <span class="c1"># Make sure the transcripts are sorted alphabetically</span>
+    <span class="n">windows</span> <span class="o">=</span> <span class="n">tss</span><span class="o">.</span><span class="n">get_windows</span><span class="p">(</span><span class="n">flank</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+    <span class="c1"># Get mean read pileup within these windows and plot</span>
+    <span class="n">track</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_track</span><span class="p">(</span><span class="n">wig_filename</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">signals</span> <span class="o">=</span> <span class="n">track</span><span class="p">[</span><span class="n">windows</span><span class="p">]</span>
+    <span class="n">mean_signal</span> <span class="o">=</span> <span class="n">signals</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">mean_signal</span><span class="p">)</span>  <span class="c1"># Compute the actual value</span>
+    <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">to_array</span><span class="p">(),</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Read pileup relative to TSS start&quot;</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;Position relative to TSS start&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;Mean read pileup&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>If we run this with chip-seq signal from a CTCF-transcription factor signal we get the follwoing signal.</p>
+<img alt="../_images/tss_plot_ENCFF994MIH.png" src="../_images/tss_plot_ENCFF994MIH.png" />
+</section>
+<section id="variant-pileup">
+<h2>Variant pileup<a class="headerlink" href="#variant-pileup" title="Link to this heading"></a></h2>
+<p>It’s interresting to also see, how the read pileups look around common variants. To do this, we make a similar plot around the locations in a vcf file. In this case, the vcf file has doesnt have  the ‘chr’ prefix in their chromosome names, i.e (‘2’ instead of ‘chr2’), so we specify the <cite>has_numeric_chromosomes</cite> flag when creating genomic locations. Instead of using the p-value scores, we here create a pileup directly from the <cite>bam</cite> file.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">vcf_plot</span><span class="p">(</span><span class="n">wig_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chrom_sizes_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">vcf_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="c1"># Read genome and variants</span>
+    <span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">chrom_sizes_filename</span><span class="p">)</span>
+    <span class="n">variants</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_locations</span><span class="p">(</span><span class="n">vcf_filename</span><span class="p">,</span> <span class="n">has_numeric_chromosomes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Get windows around variants and get read pileup in these windows</span>
+    <span class="n">flank</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">windows</span> <span class="o">=</span> <span class="n">variants</span><span class="o">.</span><span class="n">get_windows</span><span class="p">(</span><span class="n">flank</span><span class="o">=</span><span class="n">flank</span><span class="p">)</span>
+    <span class="n">reads</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_intervals</span><span class="p">(</span><span class="n">wig_filename</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">stranded</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">track</span> <span class="o">=</span> <span class="n">reads</span><span class="o">.</span><span class="n">get_pileup</span><span class="p">()</span>
+    <span class="n">signals</span> <span class="o">=</span> <span class="n">track</span><span class="p">[</span><span class="n">windows</span><span class="p">]</span>
+
+    <span class="c1"># Get mean signal inside these windows and plot</span>
+    <span class="n">mean_signal</span> <span class="o">=</span> <span class="n">signals</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">mean_signal</span><span class="p">)</span>
+    <span class="n">signal</span> <span class="o">=</span> <span class="n">signal</span><span class="o">.</span><span class="n">to_array</span><span class="p">()</span>
+
+    <span class="n">px</span><span class="o">.</span><span class="n">line</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">flank</span><span class="p">,</span> <span class="n">flank</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Read pileup relative to common variants&quot;</span><span class="p">,</span>
+            <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="s2">&quot;Position relative to variant location&quot;</span><span class="p">,</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="s2">&quot;Mean read pileup&quot;</span><span class="p">})</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/vcf_plot.png" src="../_images/vcf_plot.png" />
+</section>
+<section id="summit-plot">
+<h2>Summit plot<a class="headerlink" href="#summit-plot" title="Link to this heading"></a></h2>
+<p>It’s useful to see how the reads align on both sides of the summits we find from peak calling. In order to do this, we create one pileup from reads on the negative strand, and one for the positive strand, and we see how these look around the peak summits:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">summit_plot</span><span class="p">(</span><span class="n">bam_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">chrom_sizes_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">peak_filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="c1"># Read genome and peaks</span>
+    <span class="n">genome</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">Genome</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">chrom_sizes_filename</span><span class="p">)</span><span class="o">.</span><span class="n">with_ignored_added</span><span class="p">([</span><span class="s1">&#39;chrEBV&#39;</span><span class="p">])</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">peak_filename</span><span class="p">,</span> <span class="n">buffer_type</span><span class="o">=</span><span class="n">bnp</span><span class="o">.</span><span class="n">NarrowPeakBuffer</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="n">location_entries</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">LocationEntry</span><span class="p">(</span><span class="n">peaks</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">peaks</span><span class="o">.</span><span class="n">start</span><span class="o">+</span><span class="n">peaks</span><span class="o">.</span><span class="n">summit</span><span class="p">)</span>
+    <span class="c1"># Create locations of peaks summits</span>
+    <span class="n">summits</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">get_locations</span><span class="p">(</span><span class="n">location_entries</span><span class="p">)</span><span class="o">.</span><span class="n">sorted</span><span class="p">()</span>
+
+    <span class="c1"># Create windows around summits and extract read pileup</span>
+    <span class="n">windows</span> <span class="o">=</span> <span class="n">summits</span><span class="o">.</span><span class="n">get_windows</span><span class="p">(</span><span class="n">flank</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">reads</span> <span class="o">=</span> <span class="n">genome</span><span class="o">.</span><span class="n">read_intervals</span><span class="p">(</span><span class="n">bam_filename</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stranded</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Get mean pileup for reads with negative and positive strand</span>
+    <span class="n">signals_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">strand</span><span class="p">:</span> <span class="n">reads</span><span class="p">[</span><span class="n">reads</span><span class="o">.</span><span class="n">strand</span> <span class="o">==</span> <span class="n">strand</span><span class="p">]</span><span class="o">.</span><span class="n">get_pileup</span><span class="p">()[</span><span class="n">windows</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="k">for</span> <span class="n">strand</span> <span class="ow">in</span> <span class="s1">&#39;+-&#39;</span><span class="p">}</span>
+    <span class="n">signals_dict</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">signals_dict</span><span class="p">)</span>
+    <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">(</span>
+              <span class="p">[</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">y</span><span class="o">=</span><span class="n">signal</span><span class="o">.</span><span class="n">to_array</span><span class="p">(),</span> <span class="n">name</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">strand</span><span class="si">}</span><span class="s1"> Strand&#39;</span><span class="p">)</span>
+               <span class="k">for</span> <span class="n">strand</span><span class="p">,</span> <span class="n">signal</span> <span class="ow">in</span> <span class="n">signals_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()],</span>
+              <span class="n">layout</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;title&#39;</span><span class="p">:</span> <span class="s1">&#39;Summit plot&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;xaxis_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Distance from peak summit&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;yaxis_title&#39;</span><span class="p">:</span> <span class="s1">&#39;Read coverage&#39;</span><span class="p">})</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="../_images/summit_plot.png" src="../_images/summit_plot.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

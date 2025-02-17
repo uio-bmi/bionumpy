@@ -1,0 +1,207 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design principles and code overview &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Implementing encodings" href="encodings.html" />
+    <link rel="prev" title="Writing documentation" href="writing_documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../developer_guide.html">Developer guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting started and how to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setting_up_development_environment.html">Setting up your development environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">How we do testing in BioNumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="making_examples.html">Making examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_documentation.html">Writing documentation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Design principles and code overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vectorized-file-i-o">Vectorized File I/O</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bnpdataclass"><cite>&#64;bnpdataclass</cite></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#utility-functions">Utility Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#encodings">Encodings</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="encodings.html">Implementing encodings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer_guide.html">Developer guide</a></li>
+      <li class="breadcrumb-item active">Design principles and code overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer_guide/design_principles.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="design-principles-and-code-overview">
+<span id="design-principles"></span><h1>Design principles and code overview<a class="headerlink" href="#design-principles-and-code-overview" title="Link to this heading"></a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>BioNumpy has a quite clear design principle which can aid you in contributing code. The functionality provided by BioNumpy is divided into three parts:</p>
+<ul class="simple">
+<li><p>Vectorized parsing of input files</p></li>
+<li><p>Data handling using bnpdataclass</p></li>
+<li><p>Utility functions for various kinds of data</p></li>
+<li><p>Encoding of data into readable</p></li>
+</ul>
+</section>
+<section id="vectorized-file-i-o">
+<h2>Vectorized File I/O<a class="headerlink" href="#vectorized-file-i-o" title="Link to this heading"></a></h2>
+<p>BioNumpy already supports a wide range of file formats. The file I/O itself is handled by <cite>NpDataClassReader</cite> which delegates the responsibility of parsing specific file formats to <cite>FileBuffer</cite>. Thus supporting a new file format should be done by subclassing <cite>FileBuffer</cite> in one way or another. This is also the case when interpreting an existing format in a different way. For instance a .bam can be read as alignments using the normal <cite>BamBuffer</cite> or genomic intervals using <cite>BamIntervalBuffer</cite>. A file buffer has three functions it needs to support, either explicitly or by inheritance.</p>
+<ul class="simple">
+<li><p><cite>read_header</cite> is a classmethod responsible for reading in the information contained in the header of the file. This header information is later passed to the <cite>from_raw_buffer</cite>, and can so inform how buffers should be parsed. At the least, this method should read through the header portion of a file such that the file pointer get set to the start of the data</p></li>
+<li><p><cite>from_raw_buffer</cite> is a classmethod responsible for detecting where in a raw buffer the last complete entry ends, and create a <cite>FileBuffer</cite> from the complete entries. This method should do as little as possible, since it cannot be parallelized.</p></li>
+<li><p><cite>get_data</cite> is responsible for converting the text in the buffer into the correct data types. The output should be a <cite>&#64;npdataclass</cite> object.</p></li>
+<li><p><cite>from_data</cite> is optional and is used for file output. It takes in a <cite>&#64;npdataclass</cite> object, and should convert it to a buffer that can be written directly to file.</p></li>
+</ul>
+<p>A good <cite>FileBuffer</cite> subclass should do all time-consuming operations using vectroized numpy code. That means moving the relevant bytes/characters into arrays using numpy/RaggedArray indexing, and all encoding is done using numpy. Parsing of the header should however usually be done using as readable python code as possible.</p>
+</section>
+<section id="bnpdataclass">
+<h2><cite>&#64;bnpdataclass</cite><a class="headerlink" href="#bnpdataclass" title="Link to this heading"></a></h2>
+<p>The main flow of a bionumpy program is to read data from file into a <cite>&#64;bnpdataclass</cite> object. <cite>&#64;bnpdataclass</cite> is based on the <cite>dataclasses.dataclass</cite> principle where the only thing you specify to create a <cite>bnpdataclass</cite> class is the names and types of it’s fields. The added functionality of <cite>bnpdataclass</cite> is that it only accepts variables that are either numpy arrays, or objects that can be indexed like numpy arrays. This way a <cite>bnpdataclass</cite> object can itself be indexed like a numpy array. In addition it does implicit format conversion to match what is specified in the field types.</p>
+<p>Crucial to the concept of <cite>bnpdataclass</cite> is that it is a dataclass, not an object. I.e. all of it’s memebers are public, but it has not methods. Thus adding functionality in a <cite>bnpdataclass</cite> is not allowed, and should be instead implemented as utility functions.</p>
+</section>
+<section id="utility-functions">
+<h2>Utility Functions<a class="headerlink" href="#utility-functions" title="Link to this heading"></a></h2>
+<p>Representing sequences as encoded ragged arrays and storing them together with other data in dataclasses allows for writing a lot of functionality using standard numpy expressions, which is one goal of BioNumPy. A lot of times this can also make code that make a lot of sense in the biological sequence domain. For instance <cite>alignments[alignments.cigar_op[:, 1] != “S”]</cite> is written using only numpy syntax, but it is clear for someone with domain knowledge that this selects the alignments that does not start with a softclip. It will however be cases where the numpy syntax itself does not reveal the code’s intent clearly to one with domain knowledge, or where the numpy code itself gets so complicated that it is worth to wrap it in a function. In these cases, utility functions should be written. For instance <cite>(variant.ref_seq.shape.length == 1) &amp; (variant.alt_seq.shape.length == 1)</cite> .</p>
+</section>
+<section id="encodings">
+<h2>Encodings<a class="headerlink" href="#encodings" title="Link to this heading"></a></h2>
+<p>A key part of BioNumpy is representing things that are not numbers as numbers, throgugh enocdings. For instance DNA bases are represented as <cite>[0, 1, 2, 3]</cite> . A very important thing is that sunch encoded data should never live without teh functions to decode it. This is accomplished through the <cite>EncodedArray</cite> class which is a <cite>numpy</cite> array with an encoding attribute.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="writing_documentation.html" class="btn btn-neutral float-left" title="Writing documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="encodings.html" class="btn btn-neutral float-right" title="Implementing encodings" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

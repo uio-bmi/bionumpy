@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.arithmetics.intervals &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.arithmetics.intervals</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.arithmetics.intervals</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
+<span class="kn">import</span> <span class="nn">numpy.typing</span> <span class="k">as</span> <span class="nn">npt</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">npstructures</span> <span class="kn">import</span> <span class="n">RunLength2dArray</span><span class="p">,</span> <span class="n">RunLengthArray</span>
+<span class="kn">from</span> <span class="nn">bionumpy.encodings.string_encodings</span> <span class="kn">import</span> <span class="n">StringEncoding</span>
+<span class="kn">from</span> <span class="nn">.bedgraph</span> <span class="kn">import</span> <span class="n">BedGraph</span>
+<span class="kn">from</span> <span class="nn">..streams.decorators</span> <span class="kn">import</span> <span class="n">streamable</span>
+<span class="kn">from</span> <span class="nn">..streams.grouped</span> <span class="kn">import</span> <span class="n">chromosome_map</span>
+<span class="kn">from</span> <span class="nn">..datatypes</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass</span> <span class="kn">import</span> <span class="n">bnpdataclass</span>
+<span class="kn">from</span> <span class="nn">..string_array</span> <span class="kn">import</span> <span class="n">StringArray</span>
+<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">interleave</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass</span> <span class="kn">import</span> <span class="n">replace</span>
+
+
+<span class="k">class</span> <span class="nc">GenomicRunLengthArray</span><span class="p">(</span><span class="n">RunLengthArray</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">to_array</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert the runlength array to a normal numpy array</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        np.ndarray</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,))</span>
+        <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">values</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint64</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">values</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint32</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">values</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float16</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint16</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">shape</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="n">op</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">logical_xor</span> <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="nb">bool</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_xor</span>
+        <span class="n">diffs</span> <span class="o">=</span> <span class="n">op</span><span class="p">(</span><span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="n">array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span> <span class="o">=</span> <span class="n">diffs</span>
+        <span class="n">array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_starts</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">op</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">array</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">array</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_values</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_intervals</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">starts</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">ends</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">npt</span><span class="o">.</span><span class="n">ArrayLike</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;GenomicRunLengthArray&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Constuct a runlength array from a set of intervals and values</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        starts : ArrayLike</span>
+<span class="sd">        ends : ArrayLike</span>
+<span class="sd">        size : int</span>
+<span class="sd">        values : ArrayLike</span>
+<span class="sd">        default_value :</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        &#39;RunLengthArray&#39;</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">ends</span> <span class="o">&gt;</span> <span class="n">starts</span><span class="p">),</span> <span class="p">(</span><span class="n">ends</span><span class="p">[</span><span class="n">ends</span><span class="o">&lt;=</span><span class="n">starts</span><span class="p">],</span> <span class="n">starts</span><span class="p">[</span><span class="n">ends</span> <span class="o">&lt;=</span> <span class="n">starts</span><span class="p">])</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">&gt;=</span> <span class="n">ends</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">prefix</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">starts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+        <span class="n">postfix</span> <span class="o">=</span> <span class="p">[</span><span class="n">size</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ends</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">size</span><span class="p">)</span> <span class="k">else</span> <span class="p">[]</span>
+
+        <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">postfix</span><span class="p">)</span> <span class="o">+</span> <span class="n">starts</span><span class="o">.</span><span class="n">size</span> <span class="o">+</span> <span class="n">ends</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+            <span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">prefix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">postfix</span><span class="p">):</span>
+            <span class="n">events</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">starts</span>
+            <span class="n">events</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ends</span>
+            <span class="n">events</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">postfix</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">events</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">starts</span>
+            <span class="n">events</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">ends</span>
+
+        <span class="n">tmp</span> <span class="o">=</span> <span class="n">values</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">Number</span><span class="p">):</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">events</span><span class="o">.</span><span class="n">size</span><span class="o">//</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">)</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+            <span class="n">values</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_value</span>
+            <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">tmp</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">interleave</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">default_value</span><span class="p">,</span> <span class="n">values</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">values</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">ends</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">size</span><span class="p">:</span>
+                <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">default_value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">starts</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">starts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+
+        <span class="n">values</span> <span class="o">=</span> <span class="n">values</span><span class="p">[:(</span><span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">values</span><span class="p">,</span> <span class="n">do_clean</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_bedgraph</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">bedgraph</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">bedgraph</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span>
+                       <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="c1"># assert bedgraph.start[0] == 0, bedgraph</span>
+        <span class="n">missing_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">bedgraph</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">!=</span> <span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">missing_idx</span><span class="p">):</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bedgraph</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">missing_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="n">missing_idx</span><span class="p">])</span>
+            <span class="n">value</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">bedgraph</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">missing_idx</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">start</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="p">(</span><span class="n">bedgraph</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">bedgraph</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">size</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">size</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">size</span> <span class="o">==</span> <span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="p">[</span><span class="n">bedgraph</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">size</span><span class="p">])</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">events</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">events</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">events</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">to_bedgraph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">BedGraph</span><span class="p">([</span><span class="n">sequence_name</span><span class="p">]</span><span class="o">*</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">starts</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">starts</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">ends</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_rle</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">rle</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">rle</span><span class="o">.</span><span class="n">_events</span><span class="p">,</span> <span class="n">rle</span><span class="o">.</span><span class="n">_values</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">extract_intervals</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">intervals</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">intervals</span><span class="p">]</span>
+
+
+<span class="nd">@bnpdataclass</span>
+<span class="k">class</span> <span class="nc">RawInterval</span><span class="p">:</span>
+    <span class="n">start</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">stop</span><span class="p">:</span> <span class="nb">int</span>
+
+
+<div class="viewcode-block" id="get_pileup">
+<a class="viewcode-back" href="../../../modules/genome_arithmetics.html#bionumpy.arithmetics.get_pileup">[docs]</a>
+<span class="k">def</span> <span class="nf">get_pileup</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">chromosome_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GenomicRunLengthArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get the number of intervals that overlap each position of the chromosome/contig</span>
+
+<span class="sd">    This uses run length encoded arrays to handle the sparse data that</span>
+<span class="sd">    we get from intervals.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intervals : Interval,</span>
+<span class="sd">        Intervals on the same chromosome/contig</span>
+<span class="sd">    chromosome_size : int</span>
+<span class="sd">        size of the chromsome/contig</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from bionumpy.datatypes import Interval</span>
+<span class="sd">    &gt;&gt;&gt; from bionumpy.arithmetics import get_boolean_mask, get_pileup</span>
+<span class="sd">    &gt;&gt;&gt; intervals = Interval([&quot;chr1&quot;, &quot;chr1&quot;, &quot;chr1&quot;], [3, 5, 10], [8, 7, 12])</span>
+<span class="sd">    &gt;&gt;&gt; pileup = get_pileup(intervals, 20)</span>
+<span class="sd">    &gt;&gt;&gt; print(pileup)</span>
+<span class="sd">    [0 0 0 1 1 2 2 1 0 0 1 1 0 0 0 0 0 0 0 0]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GenomicRunLengthArray</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">chromosome_size</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">))</span>
+    <span class="n">rla</span> <span class="o">=</span> <span class="n">RunLength2dArray</span><span class="o">.</span><span class="n">from_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">chromosome_size</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">GenomicRunLengthArray</span><span class="o">.</span><span class="n">from_rle</span><span class="p">(</span><span class="n">rla</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="get_boolean_mask">
+<a class="viewcode-back" href="../../../modules/genome_arithmetics.html#bionumpy.arithmetics.get_boolean_mask">[docs]</a>
+<span class="k">def</span> <span class="nf">get_boolean_mask</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">chromosome_size</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Get a boolean mask representing where any inteval hits</span>
+
+<span class="sd">    Uses run length encoded binary arrays to represent the areas</span>
+<span class="sd">    covered by any interval. The mask that is returned supports numpy ufuncs, </span>
+<span class="sd">    so that you can run logical operations on them s.a. `&amp; | ~` and also </span>
+<span class="sd">    numpy indexing so you can use it to filter positions and intervals.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intervals : Interval</span>
+<span class="sd">        Intervals on the same chromosome/contig</span>
+<span class="sd">    chromosome_size : int</span>
+<span class="sd">        The size of the chromosome/contig</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; intervals = Interval([&quot;chr1&quot;, &quot;chr1&quot;, &quot;chr1&quot;], [3, 5, 10], [8, 7, 12])</span>
+<span class="sd">    &gt;&gt;&gt; print(intervals)</span>
+<span class="sd">    Interval with 3 entries</span>
+<span class="sd">                   chromosome                    start                     stop</span>
+<span class="sd">                         chr1                        3                        8</span>
+<span class="sd">                         chr1                        5                        7</span>
+<span class="sd">                         chr1                       10                       12</span>
+<span class="sd">    &gt;&gt;&gt; mask = get_boolean_mask(intervals, 20)</span>
+<span class="sd">    &gt;&gt;&gt; print(mask.astype(int))</span>
+<span class="sd">    [0 0 0 1 1 1 1 1 0 0 1 1 0 0 0 0 0 0 0 0]</span>
+
+<span class="sd">    Get complement of the mask:</span>
+
+<span class="sd">    &gt;&gt;&gt; complement = ~mask</span>
+<span class="sd">    &gt;&gt;&gt; print(complement.astype(int))</span>
+<span class="sd">    [1 1 1 0 0 0 0 0 1 1 0 0 1 1 1 1 1 1 1 1]</span>
+
+<span class="sd">    Get the intersections (`&amp;`) and union (`|`) of the mask and another mask</span>
+
+<span class="sd">    &gt;&gt;&gt; other_mask = get_boolean_mask(Interval([&quot;chr1&quot;], [9], [15]), 20)</span>
+<span class="sd">    &gt;&gt;&gt; intersection = mask &amp; other_mask</span>
+<span class="sd">    &gt;&gt;&gt; print(intersection.astype(int))</span>
+<span class="sd">    [0 0 0 0 0 0 0 0 0 0 1 1 0 0 0 0 0 0 0 0]</span>
+<span class="sd">    &gt;&gt;&gt; union = mask | other_mask</span>
+<span class="sd">    &gt;&gt;&gt; print(union.astype(int))</span>
+<span class="sd">    [0 0 0 1 1 1 1 1 0 1 1 1 1 1 1 0 0 0 0 0]</span>
+
+<span class="sd">    Find wether some positions overlap the mask:</span>
+<span class="sd">    &gt;&gt;&gt; print(other_mask[intervals.start])</span>
+<span class="sd">    [False False  True]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span> <span class="o">&lt;=</span> <span class="n">chromosome_size</span><span class="p">),</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">),</span> <span class="n">chromosome_size</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">GenomicRunLengthArray</span><span class="o">.</span><span class="n">from_intervals</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">chromosome_size</span><span class="p">),</span> <span class="n">default_value</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="n">merged</span> <span class="o">=</span> <span class="n">merge_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">)])</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">merged</span><span class="o">.</span><span class="n">start</span> <span class="o">!=</span> <span class="n">merged</span><span class="o">.</span><span class="n">stop</span>
+    <span class="k">return</span> <span class="n">GenomicRunLengthArray</span><span class="o">.</span><span class="n">from_intervals</span><span class="p">(</span><span class="n">merged</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="n">m</span><span class="p">],</span> <span class="n">merged</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="n">m</span><span class="p">],</span>
+                                                <span class="n">size</span><span class="o">=</span><span class="n">chromosome_size</span><span class="p">,</span> <span class="n">default_value</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></div>
+
+<span class="c1"># merged.start, merged.stop, </span>
+
+
+<span class="k">def</span> <span class="nf">human_key_func</span><span class="p">(</span><span class="n">chrom_name</span><span class="p">):</span>
+    <span class="k">assert</span> <span class="n">chrom_name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;chr&quot;</span><span class="p">),</span> <span class="n">chrom_name</span>
+    <span class="n">parts</span> <span class="o">=</span> <span class="n">chrom_name</span><span class="p">[</span><span class="mi">3</span><span class="p">:]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">chrom_name</span>
+    <span class="n">is_numeric</span> <span class="o">=</span> <span class="mi">1</span><span class="o">-</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">is_numeric</span> <span class="k">else</span> <span class="nb">int</span><span class="p">(</span><span class="n">parts</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">is_numeric</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="sort_intervals">
+<a class="viewcode-back" href="../../../modules/genome_arithmetics.html#bionumpy.arithmetics.sort_intervals">[docs]</a>
+<span class="k">def</span> <span class="nf">sort_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">chromosome_key_function</span><span class="p">:</span> <span class="nb">callable</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="n">sort_order</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Interval</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort intervals on &quot;chromosome&quot;, &quot;start&quot;, &quot;stop&quot;</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intervals : Interval</span>
+<span class="sd">        Unsorted intervals</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Interval</span>
+<span class="sd">        Sorted intervals</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">StringEncoding</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">intervals</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">sort_order</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">chromosome_key_function</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sort_order</span><span class="p">)}</span><span class="o">.</span><span class="fm">__getitem__</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">((</span><span class="n">chromosome_key_function</span><span class="p">(</span><span class="n">interval</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">to_string</span><span class="p">()),</span> <span class="n">interval</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">interval</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+               <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">interval</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">intervals</span><span class="p">))</span>
+    <span class="n">indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">itemgetter</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">intervals</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span></div>
+
+
+<span class="k">def</span> <span class="nf">fast_sort_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Interval</span><span class="p">:</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="s1">&#39;encoding&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span> <span class="n">StringEncoding</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">intervals</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">StringArray</span><span class="p">):</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="o">.</span><span class="n">raw</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="n">intervals</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="s1">&#39;Fast sort intervals only works with StringEncoding and StringArray&#39;</span>
+
+
+
+<span class="nd">@chromosome_map</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">merge_intervals</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">distance</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Interval</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Merge a set of sorted intervals</span>
+
+<span class="sd">    Merges any overlapping intervals into a single interval.</span>
+<span class="sd">    If `distance` is specified, will merge any intervals that are closer</span>
+<span class="sd">    than `distance` apart.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intervals : Interval</span>
+<span class="sd">        The sorted intervals to be merged</span>
+<span class="sd">    distance : int</span>
+<span class="sd">        Max distance for merging</span>
+
+<span class="sd">    Return</span>
+<span class="sd">    --------</span>
+<span class="sd">    Merged Intervals</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">intervals</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]),</span> <span class="s2">&quot;merge_intervals requires intervals sorted on start position&quot;</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="o">.</span><span class="n">accumulate</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">stops</span> <span class="o">+=</span> <span class="n">distance</span>
+    <span class="n">valid_start_mask</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">&gt;</span> <span class="n">stops</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># intervals[:-1].stop</span>
+    <span class="n">start_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(([</span><span class="kc">True</span><span class="p">],</span> <span class="n">valid_start_mask</span><span class="p">))</span>
+    <span class="n">stop_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">valid_start_mask</span><span class="p">,</span> <span class="p">[</span><span class="kc">True</span><span class="p">]))</span>
+    <span class="n">new_interval</span> <span class="o">=</span> <span class="n">intervals</span><span class="p">[</span><span class="n">start_mask</span><span class="p">]</span>
+    <span class="n">new_interval</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stops</span><span class="p">[</span><span class="n">stop_mask</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">distance</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">new_interval</span><span class="o">.</span><span class="n">stop</span> <span class="o">-=</span> <span class="n">distance</span>
+    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">new_interval</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">&gt;</span> <span class="n">new_interval</span><span class="o">.</span><span class="n">stop</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">new_interval</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">&gt;</span> <span class="n">new_interval</span><span class="o">.</span><span class="n">stop</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">new_interval</span>
+
+
+<span class="nd">@chromosome_map</span><span class="p">(</span><span class="n">reduction</span><span class="o">=</span><span class="nb">sum</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">count_overlap</span><span class="p">(</span><span class="n">intervals_a</span><span class="p">,</span> <span class="n">intervals_b</span><span class="p">):</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">intervals_a</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">intervals_b</span><span class="o">.</span><span class="n">start</span><span class="p">])</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">intervals_a</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">intervals_b</span><span class="o">.</span><span class="n">stop</span><span class="p">])</span>
+    <span class="n">starts</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;mergesort&quot;</span><span class="p">)</span>
+    <span class="n">stops</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;mergesort&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">stops</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">starts</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="mi">0</span><span class="p">))</span>
+
+
+<span class="nd">@streamable</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">intersect</span><span class="p">(</span><span class="n">intervals_a</span><span class="p">,</span> <span class="n">intervals_b</span><span class="p">):</span>
+    <span class="n">all_intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">intervals_a</span><span class="p">,</span> <span class="n">intervals_b</span><span class="p">])</span>
+    <span class="n">all_intervals</span> <span class="o">=</span> <span class="n">all_intervals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">all_intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;mergesort&quot;</span><span class="p">)]</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">all_intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;mergesort&quot;</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">stops</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">all_intervals</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">all_intervals</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">mask</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stops</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="nd">@streamable</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">global_intersect</span><span class="p">(</span><span class="n">intervals_b</span><span class="p">,</span> <span class="n">intervals_a</span><span class="p">):</span>
+    <span class="n">all_intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">intervals_a</span><span class="p">,</span> <span class="n">intervals_b</span><span class="p">])</span>
+    <span class="n">all_intervals</span> <span class="o">=</span> <span class="n">all_intervals</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">((</span><span class="n">all_intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">all_intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">))]</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="n">all_intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">lexsort</span><span class="p">((</span><span class="n">all_intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">,</span> <span class="n">all_intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">))]</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">stops</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">all_intervals</span><span class="o">.</span><span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">all_intervals</span><span class="p">[</span><span class="mi">1</span><span class="p">:][</span><span class="n">mask</span><span class="p">]</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">stop</span> <span class="o">=</span> <span class="n">stops</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">mask</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">unique_intersect</span><span class="p">(</span><span class="n">intervals_a</span><span class="p">,</span> <span class="n">intervals_b</span><span class="p">,</span> <span class="n">genome_size</span><span class="p">):</span>
+    <span class="n">genome_mask</span> <span class="o">=</span> <span class="n">get_boolean_mask</span><span class="p">(</span><span class="n">intervals_b</span><span class="p">,</span> <span class="n">genome_size</span><span class="p">)</span>
+    <span class="n">entry_mask</span> <span class="o">=</span> <span class="n">genome_mask</span><span class="p">[</span><span class="n">intervals_a</span><span class="p">]</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">intervals_a</span><span class="p">[</span><span class="n">entry_mask</span><span class="p">]</span>
+
+
+<span class="nd">@chromosome_map</span><span class="p">()</span>
+<span class="k">def</span> <span class="nf">extend</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">both</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">forward</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="n">directed</span> <span class="o">=</span> <span class="p">(</span><span class="n">forward</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">reverse</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">undirected</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="p">(</span><span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">sum</span><span class="p">([</span><span class="n">both</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">,</span> <span class="n">directed</span><span class="p">,</span> <span class="n">undirected</span><span class="p">])</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">both</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> 
+                                   <span class="n">start</span><span class="o">=</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">-</span><span class="n">both</span><span class="p">,</span>
+                                   <span class="n">stop</span><span class="o">=</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">+</span><span class="n">both</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">undirected</span><span class="p">:</span>
+        <span class="n">starts</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">start</span><span class="o">-</span><span class="n">left</span> <span class="k">if</span> <span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">interval</span><span class="o">.</span><span class="n">start</span>
+        <span class="n">stops</span> <span class="o">=</span> <span class="n">interval</span><span class="o">.</span><span class="n">stop</span><span class="o">+</span><span class="n">right</span> <span class="k">if</span> <span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">interval</span><span class="o">.</span><span class="n">stop</span>
+        <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> 
+                            <span class="n">start</span><span class="o">=</span><span class="n">starts</span><span class="p">,</span>
+                            <span class="n">stop</span><span class="o">=</span><span class="n">stops</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">directed</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">forward</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">forward</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">reverse</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">reverse</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+            <span class="n">intervals</span><span class="p">,</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">interval</span><span class="o">.</span><span class="n">strand</span><span class="o">==</span><span class="s2">&quot;+&quot;</span><span class="p">,</span>
+                             <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">-</span><span class="n">reverse</span><span class="p">,</span>
+                             <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">-</span><span class="n">forward</span><span class="p">),</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">interval</span><span class="o">.</span><span class="n">strand</span><span class="o">==</span><span class="s2">&quot;+&quot;</span><span class="p">,</span>
+                             <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">+</span><span class="n">forward</span><span class="p">,</span>
+                             <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">+</span><span class="n">reverse</span><span class="p">)</span>
+            <span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">extend_to_size</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">fragment_length</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">chromosome_size</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Interval</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Extend/shrink intervals to match the given length. Stranded</span>
+
+<span class="sd">    For intervals on the + strand, keep the start coordinate and</span>
+<span class="sd">    adjust the stop coordinate. For - intervals keep the stop</span>
+<span class="sd">    coordinate and adjust the start</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intervals : Interval</span>
+<span class="sd">    fragment_length : int</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Interval</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">is_forward</span> <span class="o">=</span> <span class="n">intervals</span><span class="o">.</span><span class="n">strand</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_forward</span><span class="p">,</span>
+                     <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                     <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="o">-</span><span class="n">fragment_length</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">is_forward</span><span class="p">,</span>
+                    <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="o">+</span><span class="n">fragment_length</span><span class="p">,</span> <span class="n">chromosome_size</span><span class="p">),</span>
+                    <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span>
+        <span class="n">intervals</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+        <span class="n">stop</span><span class="o">=</span><span class="n">stop</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">pileup</span><span class="p">(</span><span class="n">intervals</span><span class="p">):</span>
+    <span class="n">chroms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">chromosome</span><span class="p">])</span>
+
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">,</span>
+                                <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">))</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="n">kind</span><span class="o">=</span><span class="s2">&quot;mergesort&quot;</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">args</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">intervals</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="n">args</span><span class="p">]</span>
+    <span class="n">intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">lib</span><span class="o">.</span><span class="n">stride_tricks</span><span class="o">.</span><span class="n">sliding_window_view</span><span class="p">(</span><span class="n">positions</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">intervals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">intervals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+    <span class="n">intervals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">intervals</span><span class="p">,</span> <span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">==</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">intervals</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">mask</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">intervals</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">mask</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">BedGraph</span><span class="p">(</span><span class="n">chroms</span><span class="p">[:</span><span class="n">values</span><span class="o">.</span><span class="n">size</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">starts</span><span class="p">,</span> <span class="n">stops</span><span class="p">,</span> <span class="n">values</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">clip</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">Interval</span><span class="p">,</span> <span class="n">chrom_sizes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Interval</span><span class="p">:</span> 
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Clip intervals so that all intervals are contained in their corresponding chromosome</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    intervals : Interval</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Interval</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">replace</span><span class="p">(</span>
+        <span class="n">intervals</span><span class="p">,</span>
+        <span class="n">start</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">start</span><span class="p">),</span>
+        <span class="n">stop</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">chrom_sizes</span><span class="p">,</span> <span class="n">intervals</span><span class="o">.</span><span class="n">stop</span><span class="p">))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

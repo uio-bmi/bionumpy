@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IO &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sequences" href="sequences.html" />
+    <link rel="prev" title="Genomic Data" href="genomic_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">IO</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#api-documentation">API documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.bnp_open"><code class="docutils literal notranslate"><span class="pre">bnp_open()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.open_indexed"><code class="docutils literal notranslate"><span class="pre">open_indexed()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.count_entries"><code class="docutils literal notranslate"><span class="pre">count_entries()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.BedBuffer"><code class="docutils literal notranslate"><span class="pre">BedBuffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.VCFBuffer"><code class="docutils literal notranslate"><span class="pre">VCFBuffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.FastQBuffer"><code class="docutils literal notranslate"><span class="pre">FastQBuffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.TwoLineFastaBuffer"><code class="docutils literal notranslate"><span class="pre">TwoLineFastaBuffer</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bionumpy.io.IndexedFasta"><code class="docutils literal notranslate"><span class="pre">IndexedFasta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.io.IndexedFasta.get_contig_lengths"><code class="docutils literal notranslate"><span class="pre">IndexedFasta.get_contig_lengths()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bionumpy.io.IndexedFasta.get_interval_sequences"><code class="docutils literal notranslate"><span class="pre">IndexedFasta.get_interval_sequences()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">IO</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/modules/io.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="io">
+<h1>IO<a class="headerlink" href="#io" title="Link to this heading"></a></h1>
+<p>The IO module provides functions and classes for reading and writing files. Central access points are the <cite>open</cite> function for reading files, the <cite>open_indexed</cite> function for reading indexed files, and the <cite>count_entries</cite> function for counting entries in a file.</p>
+<p>In addition, several <cite>FileBuffer</cite> classes are exposed, that can be used to specify how a file should be interpreted. Giving these as <cite>buffer_type</cite> argument to <cite>open</cite> overrides any automatic format detection based on filename suffix</p>
+<section id="api-documentation">
+<h2>API documentation<a class="headerlink" href="#api-documentation" title="Link to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.io.bnp_open">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">bnp_open</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lazy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">NpDataclassReader</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">NpBufferedWriter</span></span></span><a class="reference internal" href="../_modules/bionumpy/io/files.html#bnp_open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.bnp_open" title="Link to this definition"></a></dt>
+<dd><p>Open a file according to its suffix</p>
+<p>Open a <cite>NpDataclassReader</cite> file object, that can be used to read the file,
+either in chunks or completely. Files read in chunks can be used together with
+the <cite>&#64;bnp.streamable</cite> decorator to call a function on all chunks in the file
+and optionally reduce the results.</p>
+<p>If <cite>mode=”w”</cite> it opens a writer object.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Name of the file to open</p>
+</dd>
+<dt>mode<span class="classifier">str</span></dt><dd><p>Either “w” or “r”</p>
+</dd>
+<dt>buffer_type<span class="classifier">FileBuffer</span></dt><dd><p>A <cite>FileBuffer</cite> class to specify how the data in the file should be interpreted</p>
+</dd>
+<dt>lazy<span class="classifier">bool</span></dt><dd><p>If True, the data will be read lazily, i. e. only when it is accessed. This is useful
+to speed up reading of large files, but it is more memory demanding</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>NpDataclassReader</dt><dd><p>A file reader object</p>
+</dd>
+</dl>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_data</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">all_data</span><span class="p">)</span>
+<span class="go">SequenceEntryWithQuality with 1000 entries</span>
+<span class="go">                     name                 sequence                  quality</span>
+<span class="go">  2fa9ee19-5c51-4281-a...  CGGTAGCCAGCTGCGTTCAG...  [10  5  5 12  5  4  3  </span>
+<span class="go">  1f9ca490-2f25-484a-8...  GATGCATACTTCGTTCGATT...  [ 5  4  5  4  6  6  5  </span>
+<span class="go">  06936a64-6c08-40e9-8...  GTTTTGTCGCTGCGTTCAGT...  [ 3  5  6  7  7  5  4  </span>
+<span class="go">  d6a555a1-d8dd-4e55-9...  CGTATGCTTTGAGATTCATT...  [ 2  3  4  4  4  4  6  </span>
+<span class="go">  91ca9c6c-12fe-4255-8...  CGGTGTACTTCGTTCCAGCT...  [ 4  3  5  6  3  5  6  </span>
+<span class="go">  4dbe5037-abe2-4176-8...  GCAGGTGATGCTTTGGTTCA...  [ 2  3  4  6  7  7  6  </span>
+<span class="go">  df3de4e9-48ca-45fc-8...  CATGCTTCGTTGGTTACCTC...  [ 5  5  5  4  7  7  7  </span>
+<span class="go">  bfde9b59-2f6d-48e8-8...  CTGTTGTGCGCTTCGTTCAT...  [ 8  8 10  7  8  6  3  </span>
+<span class="go">  dbcfd59a-7a96-46a2-9...  CGATTATTTGGTTCGTTCAT...  [ 5  4  2  3  5  2  2  </span>
+<span class="go">  a0f83c4e-4c20-4c15-b...  GTTGTACTTTACGTTTCAAT...  [ 3  5 10  6  7  6  6  </span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">first_chunk</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_chunk</span><span class="p">(</span><span class="mi">300000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">first_chunk</span><span class="p">)</span>
+<span class="go">SequenceEntryWithQuality with 511 entries</span>
+<span class="go">                     name                 sequence                  quality</span>
+<span class="go">  2fa9ee19-5c51-4281-a...  CGGTAGCCAGCTGCGTTCAG...  [10  5  5 12  5  4  3  </span>
+<span class="go">  1f9ca490-2f25-484a-8...  GATGCATACTTCGTTCGATT...  [ 5  4  5  4  6  6  5  </span>
+<span class="go">  06936a64-6c08-40e9-8...  GTTTTGTCGCTGCGTTCAGT...  [ 3  5  6  7  7  5  4  </span>
+<span class="go">  d6a555a1-d8dd-4e55-9...  CGTATGCTTTGAGATTCATT...  [ 2  3  4  4  4  4  6  </span>
+<span class="go">  91ca9c6c-12fe-4255-8...  CGGTGTACTTCGTTCCAGCT...  [ 4  3  5  6  3  5  6  </span>
+<span class="go">  4dbe5037-abe2-4176-8...  GCAGGTGATGCTTTGGTTCA...  [ 2  3  4  6  7  7  6  </span>
+<span class="go">  df3de4e9-48ca-45fc-8...  CATGCTTCGTTGGTTACCTC...  [ 5  5  5  4  7  7  7  </span>
+<span class="go">  bfde9b59-2f6d-48e8-8...  CTGTTGTGCGCTTCGTTCAT...  [ 8  8 10  7  8  6  3  </span>
+<span class="go">  dbcfd59a-7a96-46a2-9...  CGATTATTTGGTTCGTTCAT...  [ 5  4  2  3  5  2  2  </span>
+<span class="go">  a0f83c4e-4c20-4c15-b...  GTTGTACTTTACGTTTCAAT...  [ 3  5 10  6  7  6  6  </span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">all_chunks</span> <span class="o">=</span> <span class="n">bnp</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;example_data/big.fq.gz&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_chunks</span><span class="p">(</span><span class="mi">300000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">all_chunks</span><span class="p">:</span>
+<span class="gp">... </span>      <span class="nb">print</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">SequenceEntryWithQuality with 511 entries</span>
+<span class="go">                     name                 sequence                  quality</span>
+<span class="go">  2fa9ee19-5c51-4281-a...  CGGTAGCCAGCTGCGTTCAG...  [10  5  5 12  5  4  3  </span>
+<span class="go">  1f9ca490-2f25-484a-8...  GATGCATACTTCGTTCGATT...  [ 5  4  5  4  6  6  5  </span>
+<span class="go">  06936a64-6c08-40e9-8...  GTTTTGTCGCTGCGTTCAGT...  [ 3  5  6  7  7  5  4  </span>
+<span class="go">  d6a555a1-d8dd-4e55-9...  CGTATGCTTTGAGATTCATT...  [ 2  3  4  4  4  4  6  </span>
+<span class="go">  91ca9c6c-12fe-4255-8...  CGGTGTACTTCGTTCCAGCT...  [ 4  3  5  6  3  5  6  </span>
+<span class="go">  4dbe5037-abe2-4176-8...  GCAGGTGATGCTTTGGTTCA...  [ 2  3  4  6  7  7  6  </span>
+<span class="go">  df3de4e9-48ca-45fc-8...  CATGCTTCGTTGGTTACCTC...  [ 5  5  5  4  7  7  7  </span>
+<span class="go">  bfde9b59-2f6d-48e8-8...  CTGTTGTGCGCTTCGTTCAT...  [ 8  8 10  7  8  6  3  </span>
+<span class="go">  dbcfd59a-7a96-46a2-9...  CGATTATTTGGTTCGTTCAT...  [ 5  4  2  3  5  2  2  </span>
+<span class="go">  a0f83c4e-4c20-4c15-b...  GTTGTACTTTACGTTTCAAT...  [ 3  5 10  6  7  6  6  </span>
+<span class="go">SequenceEntryWithQuality with 489 entries</span>
+<span class="go">                     name                 sequence                  quality</span>
+<span class="go">  5f27fb90-2cb0-43d0-a...  CGTTGCTGATTCAGCATCAA...  [ 5  3  2  3  2  2  4  </span>
+<span class="go">  e23294d9-0079-4345-a...  CGAGCCGCTTCGTTCCGGTT...  [ 4  5  3  3  3  4  3  </span>
+<span class="go">  56736851-ccc9-41a6-9...  CGGTGCCTTCGTTCATTTCT...  [ 8  3  7  7  3  1  2  </span>
+<span class="go">  f156362d-d380-480d-8...  CTGTTGCGCCCCGGAACAGT...  [ 7 11  9  4  4  4  3  </span>
+<span class="go">  300f89ef-608a-463f-8...  CATACTTTGGTTCATTCTGT...  [ 3  2  4  4  4  4  5  </span>
+<span class="go">  755b1702-4560-4c04-a...  GGTATACTTGCCCTACGTTC...  [10  9 13  6  3  3  4  </span>
+<span class="go">  98de4f6b-d094-41e8-9...  GTTGTACTTCGTTCAGTTTC...  [ 4  5  6  4  7  6  6  </span>
+<span class="go">  00ac3f41-f735-49e5-9...  GTTGTACTTCGTTCAGCTCT...  [ 3  4  5  4  4 10 12 1</span>
+<span class="go">  f92d30bc-f77f-401e-9...  GTTGTACTGCTTCGTTCAGT...  [ 6  3  4  3  6  3  2  </span>
+<span class="go">  7e2c14c0-0662-4cc3-8...  TGATACATTACTTCGTTCGA...  [ 3  8  4  7  2  4  3  </span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.io.open_indexed">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">open_indexed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#bionumpy.io.IndexedFasta" title="bionumpy.io.indexed_fasta.IndexedFasta"><span class="pre">IndexedFasta</span></a></span></span><a class="reference internal" href="../_modules/bionumpy/io/indexed_files.html#open_indexed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.open_indexed" title="Link to this definition"></a></dt>
+<dd><p>Open an indexed fasta (for now) file with random access</p>
+<p>If an index is not already present for the file, create it</p>
+<section id="id1">
+<h3>Parameters<a class="headerlink" href="#id1" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>The filename of the file</p>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h3>Returns<a class="headerlink" href="#id2" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>IndexedFasta</dt><dd><p>An Indexed fasta object that supports random access on
+chromosome or intervals</p>
+</dd>
+</dl>
+</section>
+<section id="id3">
+<h3>Examples<a class="headerlink" href="#id3" title="Link to this heading"></a></h3>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bionumpy</span> <span class="kn">import</span> <span class="n">open_indexed</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reference</span> <span class="o">=</span> <span class="n">open_indexed</span><span class="p">(</span><span class="s2">&quot;example_data/small_genome.fa&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reference</span>
+<span class="go">Indexed Fasta File with chromosome sizes: {&#39;0&#39;: 80, &#39;1&#39;: 80, &#39;2&#39;: 80, &#39;3&#39;: 80}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reference</span><span class="p">[</span><span class="s2">&quot;1&quot;</span><span class="p">]</span>
+<span class="go">encoded_array(&#39;gcttggtatgaaaacccatc...&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">bionumpy.datatypes</span> <span class="kn">import</span> <span class="n">Interval</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">intervals</span> <span class="o">=</span> <span class="n">Interval</span><span class="o">.</span><span class="n">from_entry_tuples</span><span class="p">([(</span><span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">reference</span><span class="o">.</span><span class="n">get_interval_sequences</span><span class="p">(</span><span class="n">intervals</span><span class="p">)</span>
+<span class="go">encoded_ragged_array([&#39;aaaacccatc&#39;,</span>
+<span class="go">                      &#39;ggccgttttt&#39;])</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="bionumpy.io.count_entries">
+<span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">count_entries</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">FileBuffer</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="reference internal" href="../_modules/bionumpy/io/files.html#count_entries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.count_entries" title="Link to this definition"></a></dt>
+<dd><p>Count the number of entries in the file</p>
+<p>By default it uses the file suffix to imply the file format. But
+a specific <cite>FileBuffer</cite> can be provided.</p>
+<section id="id4">
+<h3>Parameters<a class="headerlink" href="#id4" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>filename<span class="classifier">str</span></dt><dd><p>Name of the file to count the entries of</p>
+</dd>
+<dt>buffer_type<span class="classifier">FileBuffer</span></dt><dd><p>A <cite>FileBuffer</cite> class to specify how the data in the file should be interpreted</p>
+</dd>
+</dl>
+</section>
+<section id="id5">
+<h3>Returns<a class="headerlink" href="#id5" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>int</dt><dd><p>The number of entries in the file</p>
+</dd>
+</dl>
+</section>
+<section id="id6">
+<h3>Examples<a class="headerlink" href="#id6" title="Link to this heading"></a></h3>
+<p>6</p>
+</section>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.io.BedBuffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">BedBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer_extractor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextBufferExtractor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/io/delimited_buffers.html#BedBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.BedBuffer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.io.VCFBuffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">VCFBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer_extractor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextBufferExtractor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">header_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/io/vcf_buffers.html#VCFBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.VCFBuffer" title="Link to this definition"></a></dt>
+<dd><p><a class="reference external" href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">https://samtools.github.io/hts-specs/VCFv4.2.pdf</a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.io.FastQBuffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">FastQBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer_extractor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextBufferExtractor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/io/fastq_buffer.html#FastQBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.FastQBuffer" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.io.TwoLineFastaBuffer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">TwoLineFastaBuffer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer_extractor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">TextBufferExtractor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/io/one_line_buffer.html#TwoLineFastaBuffer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.TwoLineFastaBuffer" title="Link to this definition"></a></dt>
+<dd><p>Buffer for fasta files where each entry is contained in two lines (one for header and one for sequence)
+For multi-line fasta files, use MultiLineFastaBuffer</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="bionumpy.io.IndexedFasta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">bionumpy.io.</span></span><span class="sig-name descname"><span class="pre">IndexedFasta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/bionumpy/io/indexed_fasta.html#IndexedFasta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.IndexedFasta" title="Link to this definition"></a></dt>
+<dd><p>Class representing an indexed fasta file.
+Behaves like dict of chrom names to sequences</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.io.IndexedFasta.get_contig_lengths">
+<span class="sig-name descname"><span class="pre">get_contig_lengths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../_modules/bionumpy/io/indexed_fasta.html#IndexedFasta.get_contig_lengths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.IndexedFasta.get_contig_lengths" title="Link to this definition"></a></dt>
+<dd><p>Return a dict of chromosome names to seqeunce lengths</p>
+<section id="id7">
+<h3>Returns<a class="headerlink" href="#id7" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>dict</dt><dd><p>chromosome name to sequence length mapping</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="bionumpy.io.IndexedFasta.get_interval_sequences">
+<span class="sig-name descname"><span class="pre">get_interval_sequences</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intervals</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Interval</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">EncodedRaggedArray</span></span></span><a class="reference internal" href="../_modules/bionumpy/io/indexed_fasta.html#IndexedFasta.get_interval_sequences"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#bionumpy.io.IndexedFasta.get_interval_sequences" title="Link to this definition"></a></dt>
+<dd><p>Get the sequences for a set of genomic intervals</p>
+<section id="id8">
+<h3>Parameters<a class="headerlink" href="#id8" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>intervals<span class="classifier">Interval</span></dt><dd><p>Intervals</p>
+</dd>
+</dl>
+</section>
+<section id="id9">
+<h3>Returns<a class="headerlink" href="#id9" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>EncodedRaggedArray</dt><dd><p>Sequences</p>
+</dd>
+</dl>
+</section>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="genomic_data.html" class="btn btn-neutral float-left" title="Genomic Data" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sequences.html" class="btn btn-neutral float-right" title="Sequences" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,648 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.bnpdataclass.bnpdataclass &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.bnpdataclass.bnpdataclass</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.bnpdataclass.bnpdataclass</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Tuple</span>
+<span class="kn">from</span> <span class="nn">numpy.typing</span> <span class="kn">import</span> <span class="n">ArrayLike</span>
+<span class="kn">from</span> <span class="nn">npstructures.npdataclasses</span> <span class="kn">import</span> <span class="n">npdataclass</span><span class="p">,</span> <span class="n">NpDataClass</span><span class="p">,</span> <span class="n">shallow_tuple</span>
+<span class="kn">from</span> <span class="nn">npstructures</span> <span class="kn">import</span> <span class="n">RaggedArray</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">..typing</span> <span class="kn">import</span> <span class="n">SequenceID</span>
+<span class="kn">from</span> <span class="nn">.pandas_adaptor</span> <span class="kn">import</span> <span class="n">pandas_adaptor</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">as_encoded_array</span>
+<span class="kn">from</span> <span class="nn">..encodings</span> <span class="kn">import</span> <span class="n">Encoding</span><span class="p">,</span> <span class="n">NumericEncoding</span>
+<span class="kn">from</span> <span class="nn">..encodings.alphabet_encoding</span> <span class="kn">import</span> <span class="n">FlatAlphabetEncoding</span>
+<span class="kn">from</span> <span class="nn">..string_array</span> <span class="kn">import</span> <span class="n">as_string_array</span>
+<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">is_subclass_or_instance</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_vanilla_generator</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">convertor</span> <span class="o">=</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">item</span><span class="p">())</span> <span class="k">if</span> <span class="p">(</span><span class="nb">object</span><span class="o">.</span><span class="n">ndim</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="k">else</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">convertor</span><span class="p">(</span><span class="n">o</span><span class="p">)</span> <span class="k">for</span> <span class="n">o</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="p">(</span><span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">BNPDataClass</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">object</span><span class="o">.</span><span class="n">toiter</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">to_string</span><span class="p">()</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">object</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">BNPDataClass</span><span class="p">(</span><span class="n">NpDataClass</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">todict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convert the data into a dictionary with the field names as keys and the corresponding data as values.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            dict[str, ArrayLike]</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">field_dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">pandas_obj</span> <span class="o">=</span> <span class="n">pandas_adaptor</span><span class="o">.</span><span class="n">pandas_converter</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pandas_obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="n">field_dict</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pandas_obj</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">field_dict</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">pandas_obj</span>
+
+        <span class="k">return</span> <span class="n">field_dict</span>
+
+    <span class="k">def</span> <span class="nf">topandas</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;pandas.DataFrame&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convert the data into a pandas DataFrame with the fields as columns</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            pandas.DataFrame</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="k">return</span> <span class="n">pandas_adaptor</span><span class="o">.</span><span class="n">get_data_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">todict</span><span class="p">())</span>
+        <span class="c1"># return pd.DataFrame(self.todict())</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data_frame</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">df</span><span class="p">:</span> <span class="s1">&#39;pandas.DataFrame&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BNPDataClass&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convert a pandas DataFrame into a BNPDataClass object.</span>
+<span class="sd">        The columns of the dataframe are used as fields in the BNPDataClass object.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        df: pandas.DataFrame</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            BNPDataClass</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="s1">&#39;series&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">dict_object</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;BNPDataClass&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        Convert a dictionary into a BNPDataClass object. The keys of the dictionary are used as field names in the BNPDataClass object.</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        dict_object: dict</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            BNPDataClass</span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">dict_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">dict_object</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="n">field_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">)}</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Dropping columns: </span><span class="si">{</span><span class="p">[</span><span class="n">n</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">dict_names</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">field_names</span><span class="p">]</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">new_dict</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dict_object</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="s1">&#39;.&#39;</span> <span class="ow">in</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">name</span><span class="p">,</span> <span class="n">subname</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="n">maxsplit</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">new_dict</span><span class="p">[</span><span class="n">name</span><span class="p">][</span><span class="n">subname</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">new_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_dict</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">],</span> <span class="nb">dict</span><span class="p">):</span>
+                <span class="k">assert</span> <span class="n">is_subclass_or_instance</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">BNPDataClass</span><span class="p">),</span> <span class="n">field</span>
+                <span class="n">new_dict</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="o">.</span><span class="n">from_dict</span><span class="p">(</span><span class="n">new_dict</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">new_dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">tolist</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="s1">&#39;dataclass&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert the data into a list of entries from the</span>
+<span class="sd">        corrsponding dataclass with normal python types.</span>
+<span class="sd">        Similar to np.tolist and pd.tolist.</span>
+<span class="sd">        This is good for debugging, but for real applications</span>
+<span class="sd">        requires a lot of memory allocation. For iterating over</span>
+<span class="sd">        the data, use `toiter` instead.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            list[cls.dataclass]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">toiter</span><span class="p">())</span>
+        <span class="n">lists</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">shallow_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="o">*</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">lists</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">toiter</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="s1">&#39;dataclass&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert the data into an iterator of entries from the</span>
+<span class="sd">        corrsponding dataclass with normal python types.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            Iterable[cls.dataclass]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">iters</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">get_vanilla_generator</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">shallow_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="o">*</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">iters</span><span class="p">))</span>
+
+    <span class="n">to_iter</span> <span class="o">=</span> <span class="n">toiter</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">extend</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="s1">&#39;BNPDataClass&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fields: tuple</span>
+<span class="sd">            A tuple in format (field_name, field_type) for the new fields to be added</span>
+<span class="sd">        name: str</span>
+<span class="sd">            The optional user-defined name for the new class</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        BNPDataClass with added fields</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ---------</span>
+
+<span class="sd">        &gt;&gt;&gt; from bionumpy.bnpdataclass import bnpdataclass</span>
+<span class="sd">        &gt;&gt;&gt; from bionumpy.encodings import AminoAcidEncoding, DNAEncoding</span>
+<span class="sd">        &gt;&gt;&gt; @bnpdataclass</span>
+<span class="sd">        ... class BaseDC:</span>
+<span class="sd">        ...     sequence_aa: AminoAcidEncoding</span>
+
+<span class="sd">        &gt;&gt;&gt; extended_class = BaseDC.extend(((&#39;sequence&#39;, DNAEncoding), (&#39;s1&#39;, int)))</span>
+<span class="sd">        &gt;&gt;&gt; assert all(field.name in [&#39;sequence&#39;, &#39;sequence_aa&#39;, &#39;s1&#39;] for field in dataclasses.fields(extended_class))</span>
+<span class="sd">        &gt;&gt;&gt; print([field.name for field in dataclasses.fields(extended_class)])</span>
+<span class="sd">        [&#39;sequence_aa&#39;, &#39;sequence&#39;, &#39;s1&#39;]</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cls_name</span> <span class="o">=</span> <span class="n">name</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="sa">f</span><span class="s2">&quot;Dynamic</span><span class="si">{</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">if</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">[</span>
+                                                                             <span class="p">:</span><span class="mi">7</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;Dynamic&#39;</span> <span class="k">else</span> <span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span>
+        <span class="k">return</span> <span class="n">bnpdataclass</span><span class="p">(</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">make_dataclass</span><span class="p">(</span><span class="n">cls_name</span><span class="p">,</span> <span class="n">bases</span><span class="o">=</span><span class="p">(</span><span class="bp">cls</span><span class="p">,),</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">add_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fields</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ArrayLike</span><span class="p">],</span> <span class="n">field_type_map</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BNPDataClass&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fields: dict</span>
+<span class="sd">            a dictionary in containing the names of the new fields as keys and lists of values for each of the field as values</span>
+
+<span class="sd">        field_type_map: dict</span>
+<span class="sd">            a dictionary with field names as keys and types as values; for basic types, they can be inferred from the data and don&#39;t need to be</span>
+<span class="sd">            specified; but for fields that need to use some of the encodings, the specific encoding can be provided here</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        --------</span>
+<span class="sd">        BNPDataClass object with added fields with the provided values</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        ---------</span>
+
+<span class="sd">        &gt;&gt;&gt; from bionumpy.bnpdataclass import bnpdataclass</span>
+<span class="sd">        &gt;&gt;&gt; from bionumpy.encodings import AminoAcidEncoding, DNAEncoding</span>
+<span class="sd">        &gt;&gt;&gt; @bnpdataclass</span>
+<span class="sd">        ... class BaseDC:</span>
+<span class="sd">        ...     sequence_aa: AminoAcidEncoding</span>
+
+<span class="sd">        &gt;&gt;&gt; base_obj = BaseDC([&#39;ACD&#39;, &quot;EEA&quot;])</span>
+<span class="sd">        &gt;&gt;&gt; res_obj = base_obj.add_fields({&quot;sequence&quot;: [&#39;AA&#39;, &#39;ACT&#39;]}, field_type_map={&#39;sequence&#39;: DNAEncoding})</span>
+<span class="sd">        &gt;&gt;&gt; print(res_obj)</span>
+<span class="sd">        DynamicBaseDC with 2 entries</span>
+<span class="sd">                      sequence_aa                 sequence</span>
+<span class="sd">                              ACD                       AA</span>
+<span class="sd">                              EEA                      ACT</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">fields</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">isidentifier</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Field name must be a valid identifier (No whitespace or dots and such): </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">fields_with_types</span> <span class="o">=</span> <span class="n">_extract_field_types</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">field_type_map</span><span class="p">)</span>
+        <span class="n">new_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">fields_with_types</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+        <span class="k">return</span> <span class="n">new_class</span><span class="p">(</span><span class="o">**</span><span class="p">{</span><span class="o">**</span><span class="nb">vars</span><span class="p">(</span><span class="bp">self</span><span class="p">),</span> <span class="o">**</span><span class="n">fields</span><span class="p">})</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_entry_tuples</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">tuples</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s1">&#39;BNPDataClass&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">tuples</span><span class="p">)))</span>
+
+    <span class="k">def</span> <span class="nf">sort_by</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;BNPDataClass&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sort the data by the given field</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        field_name: str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        BNPDataClass</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_name</span><span class="p">))]</span>
+
+    <span class="k">def</span> <span class="nf">set_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set a context value for the object, typycally used for storing auxillary information like header information</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+<span class="sd">        value: Any</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_context&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">get_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Any</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get a context value for the object, typycally used for storing auxillary information like header information</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name: str</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Deprecated method set_context in BNPDataClass&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_context&#39;</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_context</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">has_context</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;_context&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_context</span>
+
+
+<div class="viewcode-block" id="bnpdataclass">
+<a class="viewcode-back" href="../../../modules/bnpdataclass.html#bionumpy.bnpdataclass.bnpdataclass">[docs]</a>
+<span class="k">def</span> <span class="nf">bnpdataclass</span><span class="p">(</span><span class="n">base_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">BNPDataClass</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a `bnpdataclass` from a class with fields specified</span>
+
+<span class="sd">    A wrapper around `@npdataclass` that includes implicit format conversion</span>
+<span class="sd">    for strings and other encoded data. `@npdataclass` is again a wrapper</span>
+<span class="sd">    around `dataclasses.dataclass` but where all the fields are assumed to be</span>
+<span class="sd">    objects that supports advanced numpy indexing so that any dataclass objects</span>
+<span class="sd">    are also indexible like a numpy array.</span>
+
+<span class="sd">    `bnpdataclass` classes are meant to be dataclasses and so should not have </span>
+<span class="sd">    any methods other than those implicitly given by `npdataclass`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base_class : type</span>
+<span class="sd">        Base class that defines the fields of the dataclass.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    bnpdataclass</span>
+<span class="sd">        `bnpdataclass` object that supports numpy like indexing</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; from bionumpy.bnpdataclass import bnpdataclass</span>
+<span class="sd">    &gt;&gt;&gt; @bnpdataclass</span>
+<span class="sd">    ... class Person:</span>
+<span class="sd">    ...       name: str</span>
+<span class="sd">    ...       age: int</span>
+<span class="sd">    ... </span>
+<span class="sd">    &gt;&gt;&gt; data = Person([&quot;Knut&quot;, &quot;Ivar&quot;, &quot;Geir&quot;], [35, 30, 40])</span>
+<span class="sd">    &gt;&gt;&gt; print(data)</span>
+<span class="sd">    Person with 3 entries</span>
+<span class="sd">                         name                      age</span>
+<span class="sd">                         Knut                       35</span>
+<span class="sd">                         Ivar                       30</span>
+<span class="sd">                         Geir                       40</span>
+
+<span class="sd">    &gt;&gt;&gt; print(data[[0,2]])</span>
+<span class="sd">    Person with 2 entries</span>
+<span class="sd">                         name                      age</span>
+<span class="sd">                         Knut                       35</span>
+<span class="sd">                         Geir                       40</span>
+<span class="sd">    </span>
+<span class="sd">    &gt;&gt;&gt; print(data[[False,True, False]])</span>
+<span class="sd">    Person with 1 entries</span>
+<span class="sd">                         name                      age</span>
+<span class="sd">                         Ivar                       30</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">NewClass</span><span class="p">(</span><span class="n">npdataclass</span><span class="p">(</span><span class="n">base_class</span><span class="p">),</span> <span class="n">BNPDataClass</span><span class="p">):</span>
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">_implicit_format_conversion</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">obj</span><span class="p">:</span> <span class="n">npdataclass</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Convert the data in given in the init into numpy like data</span>
+
+<span class="sd">            This is convenience functionionality that converts e.g. list of strings</span>
+<span class="sd">            into EncodedRaggedArray objects, and numeric data into `np.ndarray` objects.</span>
+
+<span class="sd">            Called by the `__init__` method from `npdataclass`.</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            cls : 3</span>
+<span class="sd">                The class this is called from</span>
+<span class="sd">            obj : npdataclass</span>
+<span class="sd">                The partially initialzed object from `npdataclass` `__init__`</span>
+
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+                <span class="n">pre_val</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">__convert_single_field</span><span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">pre_val</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error when converting </span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="si">}</span><span class="s2"> with value </span><span class="si">{</span><span class="n">pre_val</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">e</span>
+
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">val</span><span class="p">)</span>
+
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">__convert_single_field</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">pre_val</span><span class="p">):</span>
+            <span class="n">numeric_types</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">)</span>
+            <span class="n">optional_numeric_types</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">Optional</span><span class="p">[</span><span class="n">t</span><span class="p">]</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">numeric_types</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">Union</span><span class="p">[</span><span class="n">BNPDataClass</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span>
+                              <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">or</span> \
+                        <span class="nb">hasattr</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="s1">&#39;to_numpy&#39;</span><span class="p">):</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">pre_val</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="kc">True</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="n">BNPDataClass</span><span class="p">):</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">pre_val</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pre_val</span><span class="p">))</span>
+
+            <span class="k">elif</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="n">numeric_types</span> <span class="o">+</span> <span class="n">optional_numeric_types</span><span class="p">:</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">pre_val</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="nb">str</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="p">(</span>
+                    <span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span>
+                                                                                                      <span class="s1">&#39;to_numpy&#39;</span><span class="p">),</span> <span class="p">(</span>
+                    <span class="n">field</span><span class="p">,</span> <span class="n">pre_val</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pre_val</span><span class="p">))</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">pre_val</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">SequenceID</span> <span class="ow">or</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">):</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">pre_val</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">as_string_array</span><span class="p">(</span><span class="n">pre_val</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">is_subclass_or_instance</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">Encoding</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">is_subclass_or_instance</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">NumericEncoding</span><span class="p">):</span>
+                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span>
+                                      <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)),</span> \
+                        <span class="p">(</span><span class="n">field</span><span class="p">,</span> <span class="n">pre_val</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pre_val</span><span class="p">))</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+                <span class="k">elif</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="s1">&#39;returns_raw&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">)):</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">pre_val</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="nb">bool</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span>
+                                                                                                               <span class="s1">&#39;to_numpy&#39;</span><span class="p">),</span> <span class="p">(</span>
+                    <span class="n">field</span><span class="p">,</span> <span class="n">pre_val</span><span class="p">,</span> <span class="nb">type</span><span class="p">(</span><span class="n">pre_val</span><span class="p">),</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">generic</span><span class="p">))</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+                <span class="c1"># must do as_encoded and not explicit encode as pre_val might already</span>
+                <span class="c1"># be encoded</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">FlatAlphabetEncoding</span><span class="p">):</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+            <span class="k">elif</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="ow">or</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">List</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="ow">or</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="o">==</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">pre_val</span><span class="p">,</span> <span class="n">RaggedArray</span><span class="p">):</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">pre_val</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                        <span class="n">val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">pre_val</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">val</span> <span class="o">=</span> <span class="n">pre_val</span>
+            <span class="k">elif</span> <span class="n">inspect</span><span class="o">.</span><span class="n">isclass</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">BNPDataClass</span><span class="p">):</span>
+                <span class="c1"># assert isinstance(pre_val, (field.type, field.type._single_entry)), (field.type, type(pre_val))</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">pre_val</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span>
+            <span class="k">return</span> <span class="n">val</span>
+
+    <span class="n">NewClass</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__name__</span>
+    <span class="n">NewClass</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">=</span> <span class="n">base_class</span><span class="o">.</span><span class="vm">__qualname__</span>
+    <span class="n">NewClass</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">dataclass</span><span class="p">(</span><span class="n">base_class</span><span class="p">)</span><span class="o">.</span><span class="vm">__doc__</span>
+    <span class="k">return</span> <span class="n">NewClass</span></div>
+
+
+
+<div class="viewcode-block" id="make_dataclass">
+<a class="viewcode-back" href="../../../modules/bnpdataclass.html#bionumpy.bnpdataclass.make_dataclass">[docs]</a>
+<span class="k">def</span> <span class="nf">make_dataclass</span><span class="p">(</span><span class="n">fields</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">],</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;DynamicDC&quot;</span><span class="p">,</span> <span class="n">bases</span><span class="o">=</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="n">Type</span><span class="p">[</span><span class="n">BNPDataClass</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Constructs a dynamic dataclass from a list of attributes</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fields: list</span>
+<span class="sd">        a list of tuples in format (field_name, field_type) to be used to construct the dynamic bnp dataclass</span>
+
+<span class="sd">    name: str</span>
+<span class="sd">        optional name of new class</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    new BNPDataClass</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bnpdataclass</span><span class="p">(</span><span class="n">dataclasses</span><span class="o">.</span><span class="n">make_dataclass</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">fields</span><span class="o">=</span><span class="n">fields</span><span class="p">,</span> <span class="n">bases</span><span class="o">=</span><span class="n">bases</span><span class="p">))</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">narrow_type</span><span class="p">(</span><span class="n">bnp_dc</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">BNPDataClass</span><span class="p">],</span> <span class="n">field_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Resticts the type of a field in a BNPDataClass</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    bnp_dc: Type[BNPDataClass]</span>
+<span class="sd">    field_name: str</span>
+<span class="sd">    field_type: type</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Type[BNPDataClass]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_fields</span> <span class="o">=</span> <span class="p">[(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span> <span class="k">if</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="o">==</span><span class="n">field_name</span> <span class="k">else</span> <span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">bnp_dc</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">make_dataclass</span><span class="p">(</span><span class="n">new_fields</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">bnp_dc</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">bases</span><span class="o">=</span><span class="p">(</span><span class="n">bnp_dc</span><span class="p">,))</span>
+
+
+<span class="k">def</span> <span class="nf">_extract_field_types</span><span class="p">(</span><span class="n">fields_with_values</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">field_type_map</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="n">fields_with_values</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">_assert_all_same_type</span><span class="p">(</span><span class="n">fields_with_values</span><span class="p">[</span><span class="n">field_name</span><span class="p">])</span>
+
+        <span class="k">if</span> <span class="n">field_type_map</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">field_name</span> <span class="ow">in</span> <span class="n">field_type_map</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="n">field_type_map</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fields_with_values</span><span class="p">[</span><span class="n">field_name</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">EncodedArray</span><span class="p">):</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">fields_with_values</span><span class="p">[</span><span class="n">field_name</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">encoding</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">fields_with_values</span><span class="p">[</span><span class="n">field_name</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">fields_with_values</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">fields</span><span class="p">[</span><span class="n">field_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">field_type</span>
+
+    <span class="k">return</span> <span class="n">fields</span>
+
+
+<span class="k">def</span> <span class="nf">_assert_all_same_type</span><span class="p">(</span><span class="n">values</span><span class="p">):</span>
+    <span class="n">original_type</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">original_type</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">),</span> <span class="p">(</span><span class="n">original_type</span><span class="p">,</span> <span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">values</span><span class="p">])</span>
+
+
+<span class="k">def</span> <span class="nf">dynamic_concatenate</span><span class="p">(</span><span class="n">dataclass_iter</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">BNPDataClass</span><span class="p">]):</span>
+    <span class="n">iterable</span> <span class="o">=</span> <span class="nb">iter</span><span class="p">(</span><span class="n">dataclass_iter</span><span class="p">)</span>
+
+    <span class="n">first</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iterable</span><span class="p">)</span>
+    <span class="n">first_class</span> <span class="o">=</span> <span class="n">first</span><span class="o">.</span><span class="vm">__class__</span>
+    <span class="n">fields</span> <span class="o">=</span> <span class="p">[[</span><span class="n">vals</span><span class="p">]</span> <span class="k">for</span> <span class="n">vals</span> <span class="ow">in</span> <span class="n">first</span><span class="o">.</span><span class="n">shallow_tuple</span><span class="p">()]</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">first</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">f</span><span class="p">,</span> <span class="n">vals</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fields</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">shallow_tuple</span><span class="p">()):</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vals</span><span class="p">)</span>
+        <span class="n">l</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Joining fields&#39;</span><span class="p">,</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">f</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+        <span class="n">fields</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;creating object&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">first_class</span><span class="p">(</span><span class="o">*</span><span class="n">fields</span><span class="p">)</span>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

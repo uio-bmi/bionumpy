@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Implementing encodings &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="BioNumPy manuscript" href="../manuscript/index.html" />
+    <link rel="prev" title="Design principles and code overview" href="design_principles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../developer_guide.html">Developer guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="getting_started.html">Getting started and how to contribute</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setting_up_development_environment.html">Setting up your development environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing.html">How we do testing in BioNumPy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="making_examples.html">Making examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="writing_documentation.html">Writing documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="design_principles.html">Design principles and code overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Implementing encodings</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../developer_guide.html">Developer guide</a></li>
+      <li class="breadcrumb-item active">Implementing encodings</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/developer_guide/encodings.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="implementing-encodings">
+<h1>Implementing encodings<a class="headerlink" href="#implementing-encodings" title="Link to this heading"></a></h1>
+<p>When implementing a new encoding, one should subclass:</p>
+<ul class="simple">
+<li><p><cite>NumericEncoding</cite> if your encoding is numeric. An encoding is numeric if is meant to only encode numbers, e.g. BaseQualities.</p></li>
+<li><p><cite>OneToOneEncoding</cite> if your encoding is not numeric, but it always encodes a single byte to another byte (e.g. a letter to a number).</p></li>
+<li><p><cite>Encoding</cite> if your encoding is not one-to-one. In such cases, the encoding is typically more complex and could e.g. be meant to encode multiple elements to a single element, as in the case of <cite>KmerEncoding</cite>.</p></li>
+</ul>
+<p>Note that all NumericEncodings are one-to-one (and inherit from OneToOneEncodings).</p>
+<p>All OneToOneEncodings only needs to implement the <cite>_encode</cite> and <cite>_decode</cite> methods, and will the automatically be able to encode and decode strings, list of strings, BaseEncoded objects, etc:</p>
+<p>The <cite>_encode</cite> and <cite>_decode</cite> methods will always be called with raw numpy-arrays. For <cite>_encode</cite> the array represents the byte value of the ASCII-character to encode (e.g. A will be “65”).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">bionumpy</span> <span class="k">as</span> <span class="nn">bnp</span>
+
+<span class="k">class</span> <span class="nc">MyCustomEncoding</span><span class="p">(</span><span class="n">bnp</span><span class="o">.</span><span class="n">OneToOneEncoding</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_encode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">data</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">_decode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">data</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;MyCustomEncoding()&quot;</span>
+
+<span class="n">encoding</span> <span class="o">=</span> <span class="n">MyCustomEncoding</span><span class="p">()</span>
+<span class="n">sequence</span> <span class="o">=</span> <span class="s2">&quot;ACT&quot;</span>
+<span class="n">encoded</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+<span class="n">decoded</span> <span class="o">=</span> <span class="n">encoding</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">encoded</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">encoded</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">encoded</span><span class="o">.</span><span class="n">raw</span><span class="p">()))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">decoded</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">decoded</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="n">decoded</span><span class="o">.</span><span class="n">raw</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>Note that the <cite>encode</cite>-method can take many different types of data, such as strings and  lists of strings. It will detect the type and call the private <cite>_encode</cite> method with a numpy array as input. The <cite>_decode</cite> method is meant to produce the byte-values of the original data. The above code will give:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ACT
+encoded_array(&#39;ACT&#39;, MyCustomEncoding())
+array([66, 68, 85], dtype=uint8)
+ACT
+encoded_array(&#39;ACT&#39;)
+array([65, 67, 84], dtype=uint8)
+</pre></div>
+</div>
+<p>Some other rules/guidelines:</p>
+<ul class="simple">
+<li><p>Encodings that are used should always be objects, not classes (i.e. when specifying an encoding to <cite>as_encoded_array</cite> or <cite>EncodedArray</cite>).</p></li>
+<li><p><cite>EncodedArray</cite> and <cite>EncodedRaggedArray</cite> should only be used explicitely when data is already encoded correctly. No sanity checking is done when using these classes. When it is not clear whether data is encoded or not, use <cite>as_encoded_array</cite>. Users are not meant to be using <cite>Encoded(Ragged)Array</cite> directly.</p></li>
+<li><p>All encoded data are wrapped in <cite>EncodedArray</cite> or <cite>EncodedRaggedArray</cite> EXCEPT when something is encoded with a NumericEncoding. In such cases, the encoded data will be an <cite>np.array</cite> or a <cite>RaggedArray</cite>. This is so that numeric numpy operations can be performed directly on the data.</p></li>
+<li><p>Unencoded data may be “Encoded” with <cite>BaseEncoding</cite>. When decoding data, the result will typically be an <cite>Encoded(Ragged)Array</cite> with encoding <cite>BaseEncoding</cite>.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="design_principles.html" class="btn btn-neutral float-left" title="Design principles and code overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../manuscript/index.html" class="btn btn-neutral float-right" title="BioNumPy manuscript" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

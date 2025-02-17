@@ -1,0 +1,746 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bionumpy.io.delimited_buffers &mdash; bionumpy  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../menu.html" class="icon icon-home">
+            bionumpy
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">BioNumPy at a glance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Getting started with BioNumPy in 10 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using_bionumpy_in_your_existing_project.html">Using BioNumPy in your existing project</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Tutorials</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastq_filtering.html">Filtering FASTQ reads</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/bam_handling.html">Working with BAM-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/subsetting_bed.html">Getting read pileup inside peaks (intervals)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/fastqc.html">FastQC-like quality-checking of FASTQ files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/gc_content.html">Computing GC content inside genes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/position_weight_matrix.html">Position Weight Matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/set_of_sequences.html">Simulating sequence datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/similarity_measures.html">Computing the similarity between two BED-files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../tutorials/extracting_kmers_around_snps.html">Extracting kmers around snps</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Interoperability</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/numpy_operations.html">Numpy Interoperability</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/working_with_biopython.html">Using BioNumPy with Biopython</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../interoperability/pandas.html">Pandas Interoperability</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">BioNumPy Concepts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/reading_files.html">Reading files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/encoding.html">Encodings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html">Supported file formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/supported_file_formats.html#reading-a-new-file-format">Reading a new file format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/intervals.html">Intervals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/multiple_data_sources.html">Working with Multiple Files/Data Sources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../source/broadcastable_functions.html">Broadcastable Functions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/bnpdataclass.html">BnpDataclass</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genome_arithmetics.html">Genome arithmetics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/genomic_data.html">Genomic Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/io.html">IO</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/sequences.html">Sequences</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules/streams.html">Streams</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Other</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../developer_guide.html">Developer guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../manuscript/index.html">BioNumPy manuscript</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../menu.html">bionumpy</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../menu.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bionumpy.io.delimited_buffers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bionumpy.io.delimited_buffers</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">from</span> <span class="nn">npstructures</span> <span class="kn">import</span> <span class="n">RaggedArray</span><span class="p">,</span> <span class="n">RaggedShape</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass</span> <span class="kn">import</span> <span class="n">bnpdataclass</span><span class="p">,</span> <span class="n">BNPDataClass</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass.lazybnpdataclass</span> <span class="kn">import</span> <span class="n">LazyBNPDataClass</span>
+<span class="kn">from</span> <span class="nn">..datatypes</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Interval</span><span class="p">,</span> <span class="n">SequenceEntry</span><span class="p">,</span> <span class="n">Bed12</span><span class="p">,</span> <span class="n">Bed6</span><span class="p">,</span> <span class="n">BedGraph</span><span class="p">,</span>
+                         <span class="n">GTFEntry</span><span class="p">,</span> <span class="n">GFFEntry</span><span class="p">,</span> <span class="n">ChromosomeSize</span><span class="p">,</span> <span class="n">NarrowPeak</span><span class="p">,</span> <span class="n">GfaPath</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">EncodedArray</span><span class="p">,</span> <span class="n">EncodedRaggedArray</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">as_encoded_array</span>
+<span class="kn">from</span> <span class="nn">..encodings</span> <span class="kn">import</span> <span class="n">Encoding</span>
+<span class="kn">from</span> <span class="nn">..encodings.exceptions</span> <span class="kn">import</span> <span class="n">EncodingError</span>
+<span class="kn">from</span> <span class="nn">..encodings.alphabet_encoding</span> <span class="kn">import</span> <span class="n">DigitEncoding</span>
+<span class="kn">from</span> <span class="nn">..encoded_array</span> <span class="kn">import</span> <span class="n">BaseEncoding</span>
+<span class="kn">from</span> <span class="nn">..string_array</span> <span class="kn">import</span> <span class="n">as_string_array</span>
+<span class="kn">from</span> <span class="nn">..typing</span> <span class="kn">import</span> <span class="n">SequenceID</span>
+<span class="kn">from</span> <span class="nn">..util</span> <span class="kn">import</span> <span class="n">is_subclass_or_instance</span>
+<span class="kn">from</span> <span class="nn">.file_buffers</span> <span class="kn">import</span> <span class="n">FileBuffer</span><span class="p">,</span> <span class="n">NEWLINE</span><span class="p">,</span> <span class="n">TextBufferExtractor</span><span class="p">,</span> <span class="n">TextThroughputExtractor</span>
+<span class="kn">from</span> <span class="nn">.strops</span> <span class="kn">import</span> <span class="p">(</span>
+    <span class="n">split</span><span class="p">,</span> <span class="n">str_to_int</span><span class="p">,</span> <span class="n">str_to_float</span><span class="p">,</span> <span class="n">str_to_int_with_missing</span><span class="p">,</span> <span class="n">str_to_float_with_missing</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">.dump_csv</span> <span class="kn">import</span> <span class="n">dump_csv</span><span class="p">,</span> <span class="n">join_columns</span>
+<span class="kn">from</span> <span class="nn">.exceptions</span> <span class="kn">import</span> <span class="n">FormatException</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass.bnpdataclass</span> <span class="kn">import</span> <span class="n">make_dataclass</span>
+<span class="kn">from</span> <span class="nn">..bnpdataclass.lazybnpdataclass</span> <span class="kn">import</span> <span class="n">create_lazy_class</span>
+
+
+<span class="k">class</span> <span class="nc">DelimitedBuffer</span><span class="p">(</span><span class="n">FileBuffer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Base class for file buffers for delimited files such as csv or tsv.</span>
+<span class="sd">    Each line should correspond to an entry, and each column to a variable.</span>
+
+<span class="sd">    Provides convenience methods for extracting and decoding integers from columns,</span>
+<span class="sd">    and text from columns into Sequences objects</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DELIMITER</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span>
+    <span class="n">COMMENT</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span>
+    <span class="n">HAS_UNCOMMENTED_HEADER_LINE</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">n_lines_per_entry</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer_extractor</span><span class="p">:</span> <span class="n">TextBufferExtractor</span><span class="p">,</span> <span class="n">header_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span> <span class="o">=</span> <span class="n">buffer_extractor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span> <span class="o">=</span> <span class="n">header_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_validated</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="nf">concatenate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffers</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">b</span><span class="o">.</span><span class="n">_buffer_extractor</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">buffers</span><span class="p">]),</span>
+                              <span class="n">header_data</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_raw_buffer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">header_data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DelimitedBuffer&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make EncodedArray of the chunk and extract all complete lines</span>
+
+<span class="sd">        Also find all delimiters in the buffer</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chunk : np.ndarray</span>
+<span class="sd">            Raw bytes chunk as array</span>
+<span class="sd">        header_data : 6</span>
+<span class="sd">            Any header data that was read in `read_header`</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DelimitedBuffer</span>
+<span class="sd">            DelimitedBuffer object of all complete lines</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">BaseEncoding</span><span class="p">)</span>
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">chunk</span> <span class="o">==</span> <span class="n">NEWLINE</span>
+        <span class="n">mask</span> <span class="o">|=</span> <span class="n">chunk</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span>
+        <span class="n">delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">mask</span><span class="p">)</span>
+        <span class="n">entry_ends</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">chunk</span><span class="p">[</span><span class="n">delimiters</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">entry_ends</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;Foud no new lines. Chunk size may be too low. Try increasing&quot;</span><span class="p">)</span>
+            <span class="k">raise</span>
+        <span class="n">n_fields</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_n_fields</span><span class="p">(</span><span class="n">entry_ends</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="n">delimiters</span><span class="p">[</span><span class="n">entry_ends</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">delimiters</span><span class="p">[:</span><span class="n">entry_ends</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">buffer_extractor</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_buffer_extractor</span><span class="p">(</span>
+            <span class="n">chunk</span><span class="p">[:</span><span class="n">size</span><span class="p">],</span> <span class="n">delimiters</span><span class="p">,</span> <span class="n">n_fields</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">buffer_extractor</span><span class="p">,</span> <span class="n">header_data</span><span class="p">)</span>
+        <span class="c1"># return cls(chunk[:new_lines[-1] + 1], new_lines, delimiters, header_data, buffer_extractor=buffer_extractor)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">entries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">&quot;_entries&quot;</span><span class="p">):</span>
+            <span class="n">lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_new_lines</span><span class="p">)</span>
+            <span class="n">lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">lengths</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_new_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span> <span class="o">=</span> <span class="n">EncodedRaggedArray</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="n">RaggedShape</span><span class="p">(</span><span class="n">lengths</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_entries</span>
+
+    <span class="k">def</span> <span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">fixed_length</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">keep_sep</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">fixed_length</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">keep_sep</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_field_by_number</span><span class="p">(</span><span class="n">col</span><span class="p">)</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract text from a column</span>
+
+<span class="sd">        Extract strings from the specified column into either a 2d</span>
+<span class="sd">        array or a RaggedArray</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        col : int</span>
+<span class="sd">            column index</span>
+<span class="sd">        fixed_length : bool</span>
+<span class="sd">            whether all strings have equal length</span>
+<span class="sd">        keep_sep : bool</span>
+<span class="sd">            keep seperator at end</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        FIXME: Add docs.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">join_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">fields_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">EncodedRaggedArray</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">EncodedRaggedArray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">join_columns</span><span class="p">(</span><span class="n">fields_list</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span><span class="p">)</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">get_field_range_as_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedRaggedArray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_column_range_as_text</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_column_range_as_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_start</span><span class="p">,</span> <span class="n">col_end</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedRaggedArray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get multiple columns as text</span>
+
+<span class="sd">       Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        col_start : int</span>
+<span class="sd">            column index to start at</span>
+<span class="sd">        col_end : int</span>
+<span class="sd">            column index to end at</span>
+<span class="sd">        keep_sep : bool</span>
+<span class="sd">            keep seperator at end</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        EncodedRaggedArray</span>
+<span class="sd">            EncodedRaggedArray of the columns</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_if_not</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="n">col_end</span> <span class="o">==</span> <span class="n">col_start</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_field_by_number</span><span class="p">(</span><span class="n">col_start</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DelimitedBuffer&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Put each field of the dataclass into a column in a buffer.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        data : bnpdataclass</span>
+<span class="sd">            Data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">LazyBNPDataClass</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">cls</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">get_data_object</span><span class="p">())</span>
+        <span class="n">data_dict</span> <span class="o">=</span> <span class="p">[(</span><span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">))</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">data</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">dump_csv</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">make_header</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">BNPDataClass</span><span class="p">):</span>
+        <span class="n">header</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">has_context</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">):</span>
+            <span class="n">header</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">get_context</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">header</span><span class="p">,</span> <span class="s2">&quot;ascii&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BNPDataClass</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse the data in the buffer according to the fields in _dataclass</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        _dataclass</span>
+<span class="sd">            Dataclass with parsed data</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_if_not</span><span class="p">()</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">fields</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">actual_dataclass</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">col_number</span><span class="p">,</span> <span class="n">field</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fields</span><span class="p">):</span>
+            <span class="n">col</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_field_by_number</span><span class="p">(</span><span class="n">col_number</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+            <span class="n">columns</span><span class="p">[</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">col</span>
+        <span class="n">n_entries</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">next</span><span class="p">(</span><span class="n">col</span> <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="n">columns</span> <span class="k">if</span> <span class="n">col</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">))</span>
+        <span class="n">columns</span> <span class="o">=</span> <span class="p">{</span><span class="n">c</span><span class="p">:</span> <span class="n">value</span> <span class="k">if</span> <span class="n">c</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">n_entries</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+                   <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">columns</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">actual_dataclass</span><span class="p">(</span><span class="o">**</span><span class="n">columns</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">set_context</span><span class="p">(</span><span class="s2">&quot;header&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">actual_dataclass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataclass</span>
+
+    <span class="k">def</span> <span class="nf">get_field_by_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">object</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get a field by number&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_if_not</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">field_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">field_type</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">actual_dataclass</span><span class="p">)[</span><span class="n">field_nr</span><span class="p">]</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_field_by_number</span><span class="p">(</span>
+            <span class="n">field_nr</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_get_field_by_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col_number</span><span class="p">,</span> <span class="n">field_type</span><span class="p">):</span>
+
+        <span class="k">if</span> <span class="n">field_type</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">validate_if_not</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">field_type</span> <span class="o">==</span> <span class="nb">int</span><span class="p">:</span>
+            <span class="n">subresult</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_digit_array</span><span class="p">(</span><span class="n">col_number</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">subresult</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">field_type</span> <span class="o">==</span> <span class="n">SequenceID</span><span class="p">:</span>
+            <span class="n">subresult</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_padded_field</span><span class="p">(</span><span class="n">col_number</span><span class="p">)</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">subresult</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">subresult</span><span class="p">:</span> <span class="n">EncodedRaggedArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="o">.</span><span class="n">get_field_by_number</span><span class="p">(</span>
+                <span class="n">col_number</span><span class="p">,</span>
+                <span class="n">keep_sep</span><span class="o">=</span><span class="p">(</span><span class="n">field_type</span> <span class="o">==</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="ow">or</span> <span class="n">field_type</span> <span class="o">==</span> <span class="n">List</span><span class="p">[</span><span class="nb">float</span><span class="p">]))</span>
+            <span class="n">text</span> <span class="o">=</span> <span class="n">subresult</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="p">(</span><span class="n">EncodedRaggedArray</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">)),</span> <span class="n">text</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_parser</span><span class="p">(</span><span class="n">field_type</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">parser</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">assert</span> <span class="kc">False</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">parsed</span> <span class="o">=</span> <span class="n">parser</span><span class="p">(</span><span class="n">subresult</span><span class="p">)</span>
+            <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">parsed</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">EncodingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">EncodedArray</span><span class="p">):</span>
+                <span class="n">row_number</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">offset</span> <span class="o">//</span> <span class="n">text</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">row_number</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">searchsorted</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">lengths</span><span class="p">),</span> <span class="n">e</span><span class="o">.</span><span class="n">offset</span><span class="p">,</span> <span class="n">side</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">FormatException</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line_number</span><span class="o">=</span><span class="n">row_number</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">parsed</span>
+
+    <span class="k">def</span> <span class="nf">count_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Count the number of entries in the buffer&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">n_lines</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_split_floats</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="n">str_to_float</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_split_fields</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">sep</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_split_ints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">):</span>
+        <span class="n">function</span> <span class="o">=</span> <span class="n">str_to_int</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_split_fields</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">sep</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_parse_split_fields</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">,</span> <span class="n">function</span><span class="p">,</span> <span class="n">sep</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sep</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">text</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sep</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">text</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">sep</span>
+            <span class="n">int_strings</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="n">sep</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">int_strings</span><span class="o">.</span><span class="n">lengths</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="n">mask</span> <span class="o">=</span> <span class="n">int_strings</span><span class="o">.</span><span class="n">lengths</span> <span class="o">!=</span> <span class="mi">0</span>
+                <span class="k">return</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">int_strings</span><span class="p">[</span><span class="n">mask</span><span class="p">]),</span> <span class="p">(</span><span class="n">text</span> <span class="o">==</span> <span class="n">sep</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">),</span>
+                                   <span class="n">safe_mode</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># TODO: is it necessary with unsafe mode here</span>
+            <span class="k">return</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">function</span><span class="p">(</span><span class="n">int_strings</span><span class="p">),</span> <span class="p">(</span><span class="n">text</span> <span class="o">==</span> <span class="n">sep</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">DigitEncoding</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span> <span class="n">text</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_n_fields</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">entry_ends</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">entry_ends</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">__buffer_extractor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__buffer_extractor</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__buffer_extractor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_buffer_extractor</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__buffer_extractor</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_buffer_extractor</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">delimiters</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TextThroughputExtractor</span><span class="p">:</span>
+        <span class="n">starts</span> <span class="o">=</span> <span class="n">delimiters</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">ends</span> <span class="o">=</span> <span class="n">delimiters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_cols</span><span class="p">)</span>
+        <span class="n">ends</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_modify_for_carriage_return</span><span class="p">(</span><span class="n">ends</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+        <span class="n">entry_starts</span> <span class="o">=</span> <span class="n">starts</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">entry_ends</span> <span class="o">=</span> <span class="n">ends</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">TextThroughputExtractor</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">starts</span><span class="p">,</span> <span class="n">field_ends</span><span class="o">=</span><span class="n">ends</span><span class="p">,</span> <span class="n">entry_starts</span><span class="o">=</span><span class="n">entry_starts</span><span class="p">,</span> <span class="n">entry_ends</span><span class="o">=</span><span class="n">entry_ends</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_modify_for_carriage_return</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">ends</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">ends</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">ends</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">ends</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span><span class="p">:</span>
+            <span class="n">ends</span> <span class="o">=</span> <span class="n">ends</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+            <span class="n">ends</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-=</span> <span class="n">data</span><span class="p">[</span><span class="n">ends</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\r</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="n">ends</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_move_ints_to_digit_array</span><span class="p">(</span><span class="n">ints</span><span class="p">,</span> <span class="n">n_digits</span><span class="p">):</span>
+        <span class="n">powers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">n_digits</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="p">(</span><span class="n">ints</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">//</span> <span class="n">powers</span><span class="p">)</span> <span class="o">%</span> <span class="mi">10</span>
+        <span class="k">return</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">ret</span><span class="p">,</span> <span class="n">DigitEncoding</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span>
+        <span class="n">delimiters</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delimiters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">n_delimiters_per_line</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">delimiters</span><span class="p">)</span> <span class="k">if</span> <span class="n">chunk</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">==</span> <span class="n">NEWLINE</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_n_cols</span> <span class="o">=</span> <span class="n">n_delimiters_per_line</span>
+        <span class="n">should_be_new_lines</span> <span class="o">=</span> <span class="n">chunk</span><span class="p">[</span><span class="n">delimiters</span><span class="p">[</span><span class="n">n_delimiters_per_line</span> <span class="o">-</span> <span class="mi">1</span><span class="p">::</span><span class="n">n_delimiters_per_line</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">delimiters</span><span class="o">.</span><span class="n">size</span> <span class="o">%</span> <span class="n">n_delimiters_per_line</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">should_be_new_lines</span> <span class="o">!=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">):</span>
+            <span class="n">offending_line</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">should_be_new_lines</span> <span class="o">!=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">,</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">FormatException</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Irregular number of delimiters per line (</span><span class="si">{</span><span class="n">delimiters</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">n_delimiters_per_line</span><span class="si">}</span><span class="s2">): </span><span class="si">{</span><span class="n">lines</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">line_number</span><span class="o">=</span><span class="n">offending_line</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validated</span> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">class</span> <span class="nc">GfaSequenceBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">SequenceEntry</span>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">sequences</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="n">col</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">SequenceEntry</span><span class="p">(</span><span class="n">ids</span><span class="p">,</span> <span class="n">sequences</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_field_by_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">field_nr</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">field_type</span><span class="p">:</span> <span class="nb">type</span> <span class="o">=</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_field_by_number</span><span class="p">(</span><span class="n">field_nr</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">field_type</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">SequenceEntry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EncodedArray</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">dump_csv</span><span class="p">([(</span><span class="nb">str</span><span class="p">,</span> <span class="n">as_encoded_array</span><span class="p">([</span><span class="s2">&quot;S&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))),</span>
+                         <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">name</span><span class="p">),</span>
+                         <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">sequence</span><span class="p">)])</span>
+
+
+<span class="k">class</span> <span class="nc">GfaPathBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">nodes_lists</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_text</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">keep_sep</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fixed_length</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">nodes_lists</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;,&quot;</span>
+        <span class="n">lengths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">nodes_lists</span> <span class="o">==</span> <span class="s2">&quot;,&quot;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">all_node_texts</span> <span class="o">=</span> <span class="n">split</span><span class="p">(</span><span class="n">nodes_lists</span><span class="o">.</span><span class="n">ravel</span><span class="p">()[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s2">&quot;,&quot;</span><span class="p">)</span>
+        <span class="n">int_text</span> <span class="o">=</span> <span class="n">all_node_texts</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="n">str_to_int</span><span class="p">(</span><span class="n">int_text</span><span class="p">)</span>
+        <span class="n">directions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">all_node_texts</span><span class="p">[:,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;+&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">node_ids</span> <span class="o">=</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">node_ids</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+        <span class="n">directions</span> <span class="o">=</span> <span class="n">RaggedArray</span><span class="p">(</span><span class="n">directions</span><span class="p">,</span> <span class="n">lengths</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">GfaPath</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">node_ids</span><span class="p">,</span> <span class="n">directions</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="k">def</span> <span class="nf">get_bufferclass_for_datatype</span><span class="p">(</span><span class="n">_dataclass</span><span class="p">:</span> <span class="n">bnpdataclass</span><span class="p">,</span> <span class="n">delimiter</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">has_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+                                 <span class="n">comment</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span><span class="p">,</span>
+                                 <span class="n">sub_delimiter</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create a FileBuffer class that can read a delimited file with the fields specified in `_dataclass`</span>
+
+<span class="sd">    This can be used to create a parser for a custom delimited file format and also more generic csv </span>
+<span class="sd">    reading. The order of the fields in the `_dataclass` is used as the order of the columns in the delimited</span>
+<span class="sd">    file, unless `has_header=True`, in whcih case the name of the field corresponds to the name in the header.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    _dataclass : bnpdataclass</span>
+<span class="sd">        The dataclass used as template for the DelimitedBuffer</span>
+<span class="sd">    delimiter : str</span>
+<span class="sd">        The character used to separate the columns</span>
+<span class="sd">    has_header : bool</span>
+<span class="sd">        Wheter a header line should used to match the dataclass fields to columns</span>
+<span class="sd">    comment : str</span>
+<span class="sd">        The characted used to specify comment/unused lines in the file</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">class</span> <span class="nc">DatatypeBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+        <span class="n">DELIMITER</span> <span class="o">=</span> <span class="n">delimiter</span>
+        <span class="n">COMMENT</span> <span class="o">=</span> <span class="n">comment</span>
+        <span class="n">HAS_UNCOMMENTED_HEADER_LINE</span> <span class="o">=</span> <span class="n">has_header</span>
+        <span class="n">dataclass</span> <span class="o">=</span> <span class="n">_dataclass</span>
+
+        <span class="c1"># fields = None</span>
+        <span class="c1"># data: EncodedArray, new_lines: np.ndarray, delimiters: np.ndarray = None,</span>
+        <span class="c1"># def __init__(self, buffer_extractor, header_data: List[str] = None):</span>
+        <span class="c1">#     super().__init__(buffer_extractor, header_data)</span>
+        <span class="c1">#     # super().__init__(data, new_lines, delimiters, header_data)</span>
+        <span class="c1">#   # self.set_fields_from_header(header_data)</span>
+
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">modify_class_with_header_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+            <span class="n">fields</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">dataclass</span><span class="p">)</span>
+            <span class="n">type_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">field</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">field</span><span class="o">.</span><span class="n">type</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">}</span>
+            <span class="n">new_fields</span> <span class="o">=</span> <span class="p">[(</span><span class="n">name</span><span class="p">,</span> <span class="n">type_dict</span><span class="p">[</span><span class="n">name</span><span class="p">])</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">type_dict</span> <span class="k">else</span> <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">]</span>
+            <span class="c1"># ordered_fields = [next(field for field in fields if field.name == col) for col in columns]</span>
+            <span class="n">tmp</span> <span class="o">=</span> <span class="n">make_dataclass</span><span class="p">(</span>
+                <span class="n">new_fields</span><span class="p">,</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dataclass</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;Permuted&#39;</span><span class="p">)</span>
+            <span class="n">new_dataclass</span> <span class="o">=</span> <span class="n">make_dataclass</span><span class="p">([],</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dataclass</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s1">&#39;Permuted&#39;</span><span class="p">,</span> <span class="n">bases</span><span class="o">=</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">dataclass</span><span class="p">,</span> <span class="n">tmp</span><span class="p">))</span>
+            <span class="k">assert</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">tmp</span><span class="p">)]</span> <span class="o">==</span> <span class="n">columns</span><span class="p">,</span> <span class="p">(</span>
+                <span class="n">columns</span><span class="p">,</span> <span class="p">[</span><span class="n">f</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">tmp</span><span class="p">)])</span>
+
+            <span class="k">class</span> <span class="nc">NewClass</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+                <span class="n">_actual_dataclass</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">dataclass</span>
+                <span class="n">dataclass</span> <span class="o">=</span> <span class="n">tmp</span>
+                <span class="n">lazy_class</span> <span class="o">=</span> <span class="n">create_lazy_class</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">NewClass</span>
+
+        <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">BNPDataClass</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_actual_dataclass</span><span class="p">)</span>
+
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">read_header</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">file_object</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">FileIO</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Read the column names from the header if `has_header=True`</span>
+
+<span class="sd">            Parameters</span>
+<span class="sd">            ----------</span>
+<span class="sd">            file_object : io.FileIO</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">            List[str]</span>
+<span class="sd">                Column names</span>
+<span class="sd">            &quot;&quot;&quot;</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">read_header</span><span class="p">(</span><span class="n">file_object</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">has_header</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">None</span>
+            <span class="n">delimiter</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">delimiter</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">delimiter</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(</span><span class="n">delimiter</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">file_object</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;ascii&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">delimiter</span><span class="p">)</span>
+
+        <span class="nd">@classmethod</span>
+        <span class="k">def</span> <span class="nf">make_header</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">bnpdataclass</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;makes a header from field names separated by delimiter&quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="nb">bytes</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">field</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">fields</span><span class="p">(</span><span class="n">data</span><span class="p">)])</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s1">&#39;ascii&#39;</span><span class="p">)</span>
+
+    <span class="n">DatatypeBuffer</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">=</span> <span class="n">_dataclass</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">+</span> <span class="s2">&quot;Buffer&quot;</span>
+    <span class="n">DatatypeBuffer</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">=</span> <span class="n">_dataclass</span><span class="o">.</span><span class="vm">__qualname__</span> <span class="o">+</span> <span class="s2">&quot;Buffer&quot;</span>
+    <span class="k">return</span> <span class="n">DatatypeBuffer</span>
+
+
+<div class="viewcode-block" id="BedBuffer">
+<a class="viewcode-back" href="../../../modules/io.html#bionumpy.io.BedBuffer">[docs]</a>
+<span class="k">class</span> <span class="nc">BedBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">Interval</span>
+
+    <span class="k">def</span> <span class="nf">__get_integers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39; This is maybe a quicker way to parse ints than the default&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get integers from integer string</span>
+
+<span class="sd">        Extract integers from the specified columns</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cols : list</span>
+<span class="sd">            list of columns containing integers</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">cols</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_cols</span><span class="p">),</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">),</span> <span class="n">cols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_cols</span><span class="p">)</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">cols</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1</span>
+        <span class="n">integer_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_col_starts</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="n">integer_ends</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_col_ends</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_intervals_to_2d_array</span><span class="p">(</span><span class="n">integer_starts</span><span class="p">,</span> <span class="n">integer_ends</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">digits</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">DigitEncoding</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">EncodingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">row_number</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">offset</span> <span class="o">//</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># rows._shape.starts, e.offset, side=&quot;right&quot;)-1</span>
+            <span class="k">raise</span> <span class="n">FormatException</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line_number</span><span class="o">=</span><span class="n">row_number</span><span class="p">)</span>
+        <span class="n">powers</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">digits</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">powers</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">.</span><span class="n">size</span><span class="p">)</span></div>
+
+
+
+<span class="k">class</span> <span class="nc">Bed6Buffer</span><span class="p">(</span><span class="n">BedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">Bed6</span>
+
+
+<span class="k">class</span> <span class="nc">Bed12Buffer</span><span class="p">(</span><span class="n">Bed6Buffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">Bed12</span>
+
+
+<span class="k">class</span> <span class="nc">BdgBuffer</span><span class="p">(</span><span class="n">BedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">BedGraph</span>
+
+
+<span class="k">class</span> <span class="nc">NarrowPeakBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">NarrowPeak</span>
+
+
+<span class="k">class</span> <span class="nc">GTFBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">GTFEntry</span>
+
+
+<span class="k">class</span> <span class="nc">ChromosomeSizeBuffer</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">ChromosomeSize</span>
+
+
+<span class="k">class</span> <span class="nc">DelimitedBufferWithInernalComments</span><span class="p">(</span><span class="n">DelimitedBuffer</span><span class="p">):</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_calculate_col_starts_and_ends</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">delimiters</span><span class="p">):</span>
+        <span class="n">comment_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">delimiters</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">delimiters</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">COMMENT</span><span class="p">)</span>
+        <span class="n">comment_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">comment_mask</span><span class="p">)</span>
+        <span class="n">start_delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">delimiters</span><span class="p">,</span> <span class="n">comment_mask</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">end_delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">delimiters</span><span class="p">,</span> <span class="n">comment_mask</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">COMMENT</span><span class="p">:</span>
+            <span class="n">start_delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">start_delimiters</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">end_delimiters</span> <span class="o">=</span> <span class="n">end_delimiters</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="n">start_delimiters</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end_delimiters</span>
+
+    <span class="k">def</span> <span class="nf">_col_ends</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wig_col_ends</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_col_starts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wig_col_starts</span><span class="p">[:,</span> <span class="n">col</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_validate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validated</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer_extractor</span><span class="p">:</span> <span class="n">TextBufferExtractor</span><span class="p">,</span> <span class="n">header_data</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buffer_extractor</span> <span class="o">=</span> <span class="n">buffer_extractor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_header_data</span> <span class="o">=</span> <span class="n">header_data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_is_validated</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># data: EncodedArray, new_lines: np.ndarray, delimiters: np.ndarray = None, header_data=None):</span>
+        <span class="c1"># delimiters_mask = data == self.DELIMITER</span>
+        <span class="c1"># delimiters_mask[new_lines] = True</span>
+        <span class="c1"># delimiters = np.append(np.flatnonzero(delimiters_mask), data.size-1)</span>
+        <span class="c1"># super().__init__(data, new_lines, delimiters, header_data)</span>
+        <span class="c1"># starts, ends = self._calculate_col_starts_and_ends(data, delimiters)</span>
+        <span class="c1"># n_fields = next(i for i, d in enumerate(ends) if data[d] == &#39;\n&#39;) + 1</span>
+        <span class="c1"># self._n_cols = n_fields</span>
+        <span class="c1"># self._wig_col_starts = starts.reshape(-1, n_fields)</span>
+        <span class="c1"># self._wig_col_ends = ends.reshape(-1, n_fields)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">_get_buffer_extractor</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">new_lines</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TextBufferExtractor</span><span class="p">:</span>
+        <span class="n">delimiters_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">DELIMITER</span><span class="p">)</span>
+        <span class="n">delimiters_mask</span><span class="p">[</span><span class="n">new_lines</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">delimiters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">delimiters_mask</span><span class="p">),</span> <span class="n">data</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">starts</span><span class="p">,</span> <span class="n">ends</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_calculate_col_starts_and_ends</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">delimiters</span><span class="p">)</span>
+        <span class="n">n_fields</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ends</span><span class="p">)</span> <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">TextBufferExtractor</span><span class="p">(</span><span class="n">data</span><span class="p">,</span>
+                                   <span class="n">starts</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_fields</span><span class="p">),</span>
+                                   <span class="n">ends</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_fields</span><span class="p">))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_raw_buffer</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">chunk</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">header_data</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">&quot;DelimitedBuffer&quot;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Make EncodedArray of the chunk and extract all complete lines</span>
+
+<span class="sd">        Also find all delimiters in the buffer</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        chunk : np.ndarray</span>
+<span class="sd">            Raw bytes chunk as array</span>
+<span class="sd">        header_data : 6</span>
+<span class="sd">            Any header data that was read in `read_header`</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        DelimitedBuffer</span>
+<span class="sd">            DelimitedBuffer object of all complete lines</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">EncodedArray</span><span class="p">(</span><span class="n">chunk</span><span class="p">,</span> <span class="n">BaseEncoding</span><span class="p">)</span>
+        <span class="n">new_lines</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatnonzero</span><span class="p">(</span><span class="n">chunk</span> <span class="o">==</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">extractor</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">_get_buffer_extractor</span><span class="p">(</span>
+            <span class="n">chunk</span><span class="p">[:</span><span class="n">new_lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">new_lines</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">extractor</span><span class="p">,</span> <span class="n">header_data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__get_integers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cols</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Get integers from integer string</span>
+
+<span class="sd">        Extract integers from the specified columns</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        cols : list</span>
+<span class="sd">            list of columns containing integers</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">cols</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_cols</span><span class="p">),</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">),</span> <span class="n">cols</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n_cols</span><span class="p">)</span>
+        <span class="n">cols</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="n">integer_starts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_col_starts</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="n">integer_ends</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_col_ends</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span>
+        <span class="n">array</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_move_intervals_to_2d_array</span><span class="p">(</span><span class="n">integer_starts</span><span class="p">,</span> <span class="n">integer_ends</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">digits</span> <span class="o">=</span> <span class="n">as_encoded_array</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">DigitEncoding</span><span class="p">)</span><span class="o">.</span><span class="n">raw</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">EncodingError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">row_number</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">offset</span> <span class="o">//</span> <span class="n">array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># rows._shape.starts, e.offset, side=&quot;right&quot;)-1</span>
+            <span class="k">raise</span> <span class="n">FormatException</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">line_number</span><span class="o">=</span><span class="n">row_number</span><span class="p">)</span>
+        <span class="n">powers</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">**</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">digits</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">digits</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">powers</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cols</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GFFBuffer</span><span class="p">(</span><span class="n">DelimitedBufferWithInernalComments</span><span class="p">):</span>
+    <span class="n">dataclass</span> <span class="o">=</span> <span class="n">GFFEntry</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Knut Rand.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
